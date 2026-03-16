@@ -2447,7 +2447,7 @@
                     <a href="#links" class="nav-link" style="">Länkar</a>
                 </li>
                 <li class="nav-item" style="">
-                    <a href="admin/index.html" class="nav-link" style="">Admin</a>
+                    <a href="#kalender" class="nav-link" style="">Kalender</a>
                 </li>
             </ul>
             <div class="hamburger" aria-label="Mobilt navigeringsmeny" onclick="(function(){const h=document.querySelector('.hamburger');const m=document.querySelector('.nav-menu');h.classList.toggle('active');m.classList.toggle('active');h.setAttribute('aria-expanded',h.classList.contains('active'));})()">
@@ -7116,7 +7116,7 @@
                         const targetSection = document.querySelector(href);
 
                         if (targetSection) {
-                            const offsetTop = targetSection.offsetTop - 80;
+                            const offsetTop = targetSection.getBoundingClientRect().top + window.pageYOffset - 80;
                             window.scrollTo({
                                 top: offsetTop,
                                 behavior: 'smooth'
@@ -7133,7 +7133,7 @@
                 heroScroll.addEventListener('click', function () {
                     const aboutSection = document.querySelector('#about');
                     if (aboutSection) {
-                        const offsetTop = aboutSection.offsetTop - 80;
+                        const offsetTop = aboutSection.getBoundingClientRect().top + window.pageYOffset - 80;
                         window.scrollTo({
                             top: offsetTop,
                             behavior: 'smooth'
