@@ -2367,12 +2367,13 @@
                     <div class="dropdown-content" style="">
                         <div class="dropdown-submenu" style="">
                             <div class="nav-link-wrapper" style="">
-                                <a href="#agarbyte" style="">Ägarbyte/Ägarförändring <i class="fas fa-chevron-right menu-indicator"></i></a>
+                                <a href="#aegarbyte" class="nav-link" style="">Ägarbyte/Ägarförändring <i class="fas fa-chevron-right menu-indicator"></i></a>
                                 <span class="dropdown-toggle" onclick="(function(e){e.preventDefault();e.stopPropagation();const submenu=e.target.closest('.dropdown-submenu');const content=submenu.querySelector('.dropdown-submenu-content');submenu.classList.toggle('show');content.classList.toggle('show');console.log('Submenu toggled');})(event)"><i class="fas fa-chevron-down"></i></span>
                             </div>
                             <div class="dropdown-submenu-content" style="">
                                 <a href="#ekonomisk-forvaltare" class="nav-link" style="">Ekonomisk förvaltare</a>
                                 <a href="#maklarinfo" class="nav-link" style="">Mäklarinfo</a>
+                                <a href="#energideklaration" class="nav-link" style="">Energideklaration</a>
                             </div>
                         </div>
                         <div class="dropdown-submenu" style="">
@@ -2408,9 +2409,10 @@
                         <a href="#krypgrund" class="nav-link" style="">Krypgrund</a>
                         <a href="#bygglov" class="nav-link" style="">Bygglov</a>
                         <a href="#takflakt" class="nav-link" style="">Takfläkt</a>
-                        <a href="#agarbyte" class="nav-link" style="">Ägarbyte/Ägarförändring</a>
+                        <a href="#aegarbyte" class="nav-link" style="">Ägarbyte/Ägarförändring</a>
                         <a href="#ekonomisk-forvaltare" class="nav-link" style="">Ekonomisk förvaltare</a>
                         <a href="#maklarinfo" class="nav-link" style="">Mäklarinfo</a>
+                        <a href="#energideklaration" class="nav-link" style="">Energideklaration</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown" style="">
@@ -2437,7 +2439,6 @@
                         <a href="#bilder-galleri" class="nav-link" style="">Bildgalleri</a>
                         <a href="#omradesbilder" class="nav-link" style="">Områdesbilder</a>
                         <a href="#historia" class="nav-link" style="">Historia</a>
-                        <a href="#historik" class="nav-link" style="">Historik</a>
                         <a href="#byggstart" class="nav-link" style="">Byggstart Ribe, Februari 1979</a>
                         <a href="#bygge-lekplats" class="nav-link" style="">Bygge lekplats</a>
                     </div>
@@ -2535,6 +2536,19 @@
     <!-- Grannsamverkan Section -->
     <section id="grannsamverkan" class="about">
         <div class="container" style="">
+            <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 3rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; text-align: center; max-width: 900px; margin-left: auto; margin-right: auto;">
+                <a href="https://app.boappa.se/login" target="_blank" style="display: block; margin-bottom: 1.5rem;">
+                    <img src="boappa.png" alt="boAppa" style="max-height: 120px; max-width: 100%;">
+                </a>
+                <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.5rem;">boAppa</h3>
+                <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;">
+                    Föreningen använder boAppa som är en app och webb för all boende information som inte är upplagd på hemsidan.
+                </p>
+                <a href="https://boappa.se/ribe-samf-kista" target="_blank" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">
+                    boappa.se/ribe-samf-kista <i class="fas fa-external-link-alt" style="margin-left: 0.3rem; font-size: 0.8rem;"></i>
+                </a>
+            </div>
+
             <div class="section-header" style="">
                 <h2 style="">Grannsamverkan</h2>
                 <p style="">Trygghet och trivsel genom samarbete i Ribe</p>
@@ -2613,12 +2627,81 @@
 
             <div class="aktuellt-content" style="max-width: 900px; margin: 0px auto;">
 
+                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; text-align: center;">
+                    <a href="https://app.boappa.se/login" target="_blank" style="display: block; margin-bottom: 1.5rem;">
+                        <img src="boappa.png" alt="boAppa" style="max-height: 120px; max-width: 100%;">
+                    </a>
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.5rem;">boAppa</h3>
+                    <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;">
+                        Föreningen använder boAppa som är en app och webb för all boende information som inte är upplagd på hemsidan.
+                    </p>
+                    <a href="https://boappa.se/ribe-samf-kista" target="_blank" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">
+                        boappa.se/ribe-samf-kista <i class="fas fa-external-link-alt" style="margin-left: 0.3rem; font-size: 0.8rem;"></i>
+                    </a>
+                </div>
+
                 <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative;">
                     <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Information</h3>
                     <p>Här publiceras löpande information till medlemmarna. Vid brådskande ärenden hänvisas till anslagstavlorna i tvättstugorna eller kontakt med styrelsen.</p>
+                    <p style="margin-top: 1rem;"><strong>För frågor rörande avisering, avier och autogiro kan ni kontakta oss på:</strong> <a href="mailto:medlem@redisa.se" style="color: var(--primary-color);">medlem@redisa.se</a></p>
                 </div>
 
-                    <p style=""><strong>För frågor rörande avisering, avier och autogiro kan ni kontakta oss på:</strong> <a href="mailto:medlem@redisa.se" style="color: var(--primary-color);">medlem@redisa.se</a></p>
+                <!-- Kalender Section -->
+                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 0.5rem; display: flex; align-items: center;">
+                        <i class="far fa-calendar-alt" style="margin-right: 0.75rem; color: var(--secondary-color);"></i>Kalender
+                    </h3>
+                    <p style="color: #666; margin-bottom: 2rem;">Kommande händelser så man ser vad som är på gång.</p>
+
+                    <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                        <!-- Vårstäddag -->
+                        <div style="display: flex; flex-wrap: wrap; align-items: center; padding: 1.5rem; border-radius: 0.75rem; background: #f8f9fa; border-left: 4px solid #4a7c59; box-shadow: 0 2px 4px rgba(0,0,0,0.02); gap: 1rem;">
+                            <div style="flex: 0 0 90px; text-align: center; border-right: 2px solid #e9ecef; padding-right: 1.5rem;">
+                                <span style="display: block; font-size: 0.9rem; text-transform: uppercase; color: #dc2626; font-weight: 700; letter-spacing: 1px;">Apr</span>
+                                <span style="display: block; font-size: 2.2rem; font-weight: 800; color: #2c5530; line-height: 1.1; margin: 0.2rem 0;">25</span>
+                                <span style="display: block; font-size: 0.85rem; color: #6c757d; font-weight: 500;">Lör 2026</span>
+                            </div>
+                            <div style="flex-grow: 1; min-width: 150px;">
+                                <h4 style="margin: 0 0 0.4rem 0; color: #2c5530; font-size: 1.3rem; font-weight: 700;">Vårstäddag</h4>
+                                <div style="display: flex; align-items: center; color: #6c757d; font-size: 0.95rem; font-weight: 500;">
+                                    <i class="far fa-clock" style="margin-right: 0.5rem; color: #adb5bd;"></i>
+                                    10:00 - 13:00
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Höststäddag -->
+                        <div style="display: flex; flex-wrap: wrap; align-items: center; padding: 1.5rem; border-radius: 0.75rem; background: #f8f9fa; border-left: 4px solid #d97706; box-shadow: 0 2px 4px rgba(0,0,0,0.02); gap: 1rem;">
+                            <div style="flex: 0 0 90px; text-align: center; border-right: 2px solid #e9ecef; padding-right: 1.5rem;">
+                                <span style="display: block; font-size: 0.9rem; text-transform: uppercase; color: #dc2626; font-weight: 700; letter-spacing: 1px;">Okt</span>
+                                <span style="display: block; font-size: 2.2rem; font-weight: 800; color: #2c5530; line-height: 1.1; margin: 0.2rem 0;">24</span>
+                                <span style="display: block; font-size: 0.85rem; color: #6c757d; font-weight: 500;">Lör 2026</span>
+                            </div>
+                            <div style="flex-grow: 1; min-width: 150px;">
+                                <h4 style="margin: 0 0 0.4rem 0; color: #2c5530; font-size: 1.3rem; font-weight: 700;">Höststäddag</h4>
+                                <div style="display: flex; align-items: center; color: #6c757d; font-size: 0.95rem; font-weight: 500;">
+                                    <i class="far fa-clock" style="margin-right: 0.5rem; color: #adb5bd;"></i>
+                                    10:00 - 13:00
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Årsstämma -->
+                        <div style="display: flex; flex-wrap: wrap; align-items: center; padding: 1.5rem; border-radius: 0.75rem; background: #f8f9fa; border-left: 4px solid #2563eb; box-shadow: 0 2px 4px rgba(0,0,0,0.02); gap: 1rem;">
+                            <div style="flex: 0 0 90px; text-align: center; border-right: 2px solid #e9ecef; padding-right: 1.5rem;">
+                                <span style="display: block; font-size: 0.9rem; text-transform: uppercase; color: #dc2626; font-weight: 700; letter-spacing: 1px;">Dec</span>
+                                <span style="display: block; font-size: 2.2rem; font-weight: 800; color: #2c5530; line-height: 1.1; margin: 0.2rem 0;">03</span>
+                                <span style="display: block; font-size: 0.85rem; color: #6c757d; font-weight: 500;">Tors 2026</span>
+                            </div>
+                            <div style="flex-grow: 1; min-width: 150px;">
+                                <h4 style="margin: 0 0 0.4rem 0; color: #2c5530; font-size: 1.3rem; font-weight: 700;">Årsstämma</h4>
+                                <div style="display: flex; align-items: center; color: #6c757d; font-size: 0.95rem; font-weight: 500;">
+                                    <i class="far fa-clock" style="margin-right: 0.5rem; color: #adb5bd;"></i>
+                                    19:00 - 21:00
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative;">
@@ -2898,13 +2981,20 @@
                 <!-- Byggstart och utveckling -->
                 <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
                     <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">
-                        <i class="fas fa-hard-hat" style="margin-right: 0.5rem;"></i>Byggstart och utveckling
+                        <i class="fas fa-hard-hat" style="margin-right: 0.5rem;"></i>Byggstart och utveckling (Självbyggeri)
                     </h3>
 
                     <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                        Redan i början av 1900-talet inrättade Stockholms kommun en särskild ”självbyggaravdelning”. Avsikten var att erbjuda invånarna en möjlighet att bygga sitt eget hem genom eget arbete istället för kontantinsats.
+                    </p>
+
+                    <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem;">
                         Kvarteret Ribe byggdes som <strong>självbyggeri genom SMÅA</strong> (Svenska Måttliga Avgifters
-                        Aktiebolag), vilket var ett unikt koncept där de blivande husägarna själva deltog i
-                        byggprocessen.
+                        Aktiebolag), och är ett av de sista stora självbyggarprojekten i Stockholm.
+                    </p>
+
+                    <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                        Under 1979-1980 samlades blivande grannar för att tillsammans bygga de 162 husen. Det var ett enormt projekt som krävde tusentals timmar av hårt arbete, men som också skapade en unik sammanhållning i området. Idag lever arvet vidare i en välskött samfällighet där gemenskap och samarbete fortfarande står i centrum.
                     </p>
 
                     <!-- Tidslinje -->
@@ -3278,11 +3368,8 @@
 
                 <!-- Avslutning -->
                 <div style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%); color: white; padding: 2rem; border-radius: 1rem; text-align: center; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
-                    <img src="ribegatan.se/res/Renovering/urban.jpg" alt="Urban Näsgårde" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid white; margin-bottom: 1rem; box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;">
                     <h3 style="margin-bottom: 0.5rem; font-size: 1.8rem; color: white; text-shadow: rgba(0, 0, 0, 0.3) 2px 2px 4px;">
                         Lycka till!</h3>
-                    <p style="font-size: 1.2rem; color: white; text-shadow: rgba(0, 0, 0, 0.3) 1px 1px 3px; font-weight: 500;">
-                        Urban Näsgårde</p>
                 </div>
 
             </div>
@@ -3310,6 +3397,9 @@
                             <p style="margin-top: 1rem; line-height: 1.8;">De har lagt upp ett artikelnummer som de
                                 kallar <strong>"Kälad Ribeläkt"</strong>.</p>
                         </div>
+                    </div>
+                    <div style="text-align: center; margin: 2rem 0;">
+                        <img src="ribegatan.se/res/Renovering/kalad_ribelakt_liten.gif" alt="Ritning på kälad ribeläkt" style="max-width: 100%; height: auto; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; border: 1px solid var(--gray-200);">
                     </div>
 
                     <div style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; margin-top: 2rem;">
@@ -4852,39 +4942,30 @@
             </div>
             <div class="about-content" style="grid-template-columns: 1fr;">
                 <div class="about-text" style="">
-                    <div style="background: rgb(231, 243, 255); padding: 2rem; border-radius: 1rem; border-left: 6px solid rgb(0, 123, 255); margin-bottom: 2.5rem;">
-                        <h3 style="color: rgb(0, 64, 133); margin-bottom: 1rem;">
-                            <i class="fas fa-info-circle" style="margin-right: 0.75rem;"></i>Viktigt att meddela styrelsen
-                        </h3>
-                        <p style="font-size: 1.1rem; line-height: 1.8; color: rgb(0, 64, 133); margin-bottom: 0px;">
-                            När du säljer ditt hus eller anmäler ägarförändring är det viktigt att informera styrelsen om vilka de nya ägarna är och när de flyttar in. Detta krävs för att medlemsförteckningen och debiteringsregistret ska vara korrekt.
-                        </p>
+                    <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
+                        <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Ska ni sälja ert hus eller anmäla ägarförändring?</h3>
+                        <p style="margin-bottom: 1.5rem; line-height: 1.8;">Kontakta gärna styrelsens när ni står inför en försäljning där styrelsen kan lämna referenser för val av mäklare.</p>
+
+                        <p style="margin-bottom: 1.5rem; line-height: 1.8;">Vid ägarförändring skall anmälan till styrelsen också lämnas in med blanketten Anmälan Ägarbyte/Ägarförändring och köpebrevet.</p>
+
+                        <p style="margin-bottom: 1.5rem; line-height: 1.8;">Styrelsen behöver få in handlingarna vilka de nya ägarna är och när de flyttar in. Du hittar blankett för Anmälan Ägarbyte/Ägarförändring under Samfälligheten/Arkiv &amp; Blanketter.</p>
+                        
+                        <div style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                            <a href="ribegatan.se/res/Blanketter/Aegarbyte_2023-08-02.pdf" target="_blank" class="btn" style="background: rgb(40, 167, 69); color: white; padding: 0.6rem 1.2rem; border-radius: 2rem; text-decoration: none; display: inline-flex; align-items: center; font-size: 0.9rem;">
+                                <i class="fas fa-file-pdf" style="margin-right: 0.5rem;"></i>Blankett för Ägarbyte
+                            </a>
+                        </div>
                     </div>
 
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                        <div class="card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 6px; border-top: 4px solid var(--primary-color);">
-                            <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Uppgifter som behövs</h3>
-                            <ul style="list-style: disc; padding-left: 1.5rem; line-height: 1.6; color: #666;">
-                                <li style="">Namnuppgifter med personnummer på nya ägare</li>
-                                <li style="">Tillträdesdag</li>
-                                <li style="">Kopia på köpehandling</li>
-                            </ul>
-                            <p style="margin-top: 1rem; font-size: 0.9rem; color: rgb(136, 136, 136);">
-                                Skicka handlingar till: Ribe Samfällighetsförening, Ribegatan 77, 164 45 Kista.
-                            </p>
-                        </div>
-
-                        <div class="card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 6px; border-top: 4px solid var(--primary-color);">
-                            <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Viktig information</h3>
-                            <p style="line-height: 1.6; color: rgb(102, 102, 102);">
-                                Samfällighetsavgifterna följer med fastigheten. Den nya ägaren ansvarar för tidigare ägares eventuella obetalda avgifter.
-                            </p>
-                            <div style="margin-top: 1.5rem;">
-                                <a href="ribegatan.se/res/Blanketter/Aegarbyte_2023-08-02.pdf" target="_blank" class="btn" style="background: rgb(40, 167, 69); color: white; padding: 0.6rem 1.2rem; border-radius: 2rem; text-decoration: none; display: inline-flex; align-items: center; font-size: 0.9rem;">
-                                    <i class="fas fa-file-pdf" style="margin-right: 0.5rem;"></i>Blankett för Ägarbyte
-                                </a>
-                            </div>
-                        </div>
+                    <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; border-left: 6px solid var(--primary-color);">
+                        <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Vid Ägarbyte eller Ägarförändring</h3>
+                        <p style="margin-bottom: 1rem; line-height: 1.8;">När du säljer ditt hus, måste du meddela styrelsen följande uppgifter:</p>
+                        <ul style="list-style: disc; padding-left: 2rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                            <li style="">Namnuppgifter med personnummer på den/de nya ägaren/ägarna</li>
+                            <li style="">Tillträdesdag</li>
+                            <li style="">Köpebrevet</li>
+                        </ul>
+                        <p style="margin-bottom: 0; line-height: 1.8;">Detta är viktigt för att namnändringen ska bli införd i debiteringsregistret och medlemsförteckningen. Kopia på handlingarna skickas till styrelsens mejladress (<a href="mailto:styrelsen@ribegatan.se" style="color: var(--primary-color); text-decoration: underline;">styrelsen@ribegatan.se</a>).</p>
                     </div>
                 </div>
             </div>
@@ -4916,6 +4997,26 @@
                             sista augusti. Fördelningen av kredetering eller debetering görs upp mellan köpare och
                             säljare.</li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Energideklaration Section -->
+    <section id="energideklaration" class="about">
+        <div class="container" style="">
+            <div class="section-header" style="">
+                <h2 style="">Energideklaration</h2>
+                <p style="">Information om energiförbrukning</p>
+            </div>
+            <div class="about-content" style="grid-template-columns: 1fr;">
+                <div class="about-text" style="">
+                    <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; border-top: 4px solid var(--primary-color);">
+                        <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Energideklaration</h3>
+                        <p style="margin-bottom: 1.5rem; line-height: 1.8;">Vid försäljning krävs det att en energideklaration.</p>
+                        <p style="margin-bottom: 1.5rem; line-height: 1.8;">Energideklarationen består av att den årliga avräkningsrapporten som lämnas till mäklaren.</p>
+                        <p style="margin-bottom: 0; line-height: 1.8;">Där framgår hur mycket energi fastigheten förbrukar.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -6317,16 +6418,30 @@
                 <!-- Allmän information och anmälningsplikt -->
                 <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: var(--shadow-md);">
                     <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Anmälningsplikt och regler</h3>
-                    <p style="">Som fastighetsägare i Ribe har du vissa skyldigheter och anmälningsplikter för att säkerställa hela samfällighetens funktion och säkerhet.</p>
                     
                     <div style="margin-top: 1.5rem;">
-                        <h4 style="color: var(--secondary-color); margin-bottom: 0.5rem;">Förändringar i rördragningar</h4>
-                        <p style="">Anmälningsplikt gäller vid förändringar i rördragningar i krypgrunden. Om ett avloppsrör glider ur drabbas inte enbart den som ansvarar för rördragningen, utan även grannar kan drabbas av lukt och saneringsbehov.</p>
+                        <h4 style="color: var(--secondary-color); margin-bottom: 0.5rem;">Anmälningsplikt vid förändringar i rördragningar i krypgrunden</h4>
+                        <p style="">Om ett avloppsrör glider ur drabbas inte enbart den som ansvarar för rördragningen. Även de andra i huskroppen får stå ut med dålig lukt och sanering. Styrelsen vill att även tidigare utförda rörarbeten anmäls till styrelsen så vi ges möjlighet att inspektera arbetet.</p>
                     </div>
 
                     <div style="margin-top: 1.5rem;">
-                        <h4 style="color: var(--secondary-color); margin-bottom: 0.5rem;">Ventilation</h4>
-                        <p style="">Medlemmarna har skyldighet att se till att ventilationen i huset fungerar (t.ex. vid köksfläktbyte). Det är också viktigt att ventilationsöppningarna till krypgrunden inte är tilltäppta och att näten är hela.</p>
+                        <h4 style="color: var(--secondary-color); margin-bottom: 0.5rem;">Anmälningsplikt vid installationsarbeten i värmesystemet</h4>
+                        <p style="margin-bottom: 1rem;">Anmälningsplikt vid alla installationsarbeten i värmesystemet, exempelvis inkoppling av vattenburen golvvärme. När det gäller installation på värmeslingorna ute i huset krävs inte tillstånd från föreningen men anmälningsplikt gäller fortsättningsvis så att vi kan hålla koll på nivån i expansionskärlet. Beträffande installation i mätarskåpet krävs både anmälan till och godkännande från styrelsen.</p>
+                        <p style="margin-bottom: 1rem;">Observera att detta godkännande enbart utgör en tillåtelse att utföra arbetet på beskrivet sätt och att det inte innebär ett ansvarstagande för utförandet eller konsekvenserna av installationen som är fastighetsägarens ansvar. Fastighetsägaren ansvarar således ex. för att värmeavläsningen fungerar som det är tänkt. Styrelsen förbehåller sig rätten till inspektion av slutfört arbete.</p>
+                        <p style=""><strong>Även tidigare utförda arbeten i mätarskåpen måste anmälas till styrelsen.</strong><br>
+                        Observera att alla ingrepp som skett i mätarskåpen ska anmälas till styrelsen. Fastighetsägare som inte följer detta riskerar skadeståndsskyldighet gentemot Ribe Samfällighetsförening eftersom värmeavläsningarna kan påverkas.</p>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <h4 style="color: var(--secondary-color); margin-bottom: 0.5rem;">Medlemmarna har skyldighet att se till att ventilationen i huset fungerar.</h4>
+                        <p style="margin-bottom: 1rem;">Vid ombyggnad av köket måste man tänka på att originalkonstruktionen är att spiskåpan reglerar takfläkten. Förutom kök, badrum, toalett och klädkammare är även krypgrunden beroende av att utsuget fungerar, särskilt viktigt är detta i hustyperna 112 och 113, då dessa bara har ventilationsöppningar på en sida av husgrunden.</p>
+                        <p style="margin-bottom: 1rem;">Byter du till en spisfläkt eller spiskåpa som inte kan styra husets takfläkt måste du reglera styrningen av takfläkten på annat sätt, annars förstör du inte enbart ventilationen i ditt eget hus utan även i den gemensamma krypgrunden, vilket kan få allvarliga följder för dig och dina grannar. Det finns spisfläktar på marknaden som kan reglera takfläkten. Det viktiga är att takfläkten fungerar. Takfläkten bör kunna ha två lägen så att man kan öka varvtalet för att ex.vis få ut fukt efter duschning.</p>
+                        <p style="">Vid inspektion av krypgrunderna på arbetsdagarna så skall även ventilationrörets utsug i krypgrunden kontrolleras. Detta åligger för för varje fastighetsägares ansvar att ventilationen fungerar. Uppstår skador i krypgrunden kan du bli skadeståndsskyldig.</p>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <h4 style="color: var(--secondary-color); margin-bottom: 0.5rem;">Medlemmarna har skyldighet att se till att ventilationsöppningarna till krypgrunden inte är tilltäppta och att ventilationsnäten är hela.</h4>
+                        <p style="">Ventilationsöppningarna till krypgrunden får inte vara tilltäppta, att näten är hela samt att det är lättåtkomligt för inspektion. Vid altanbygge och liknande bör du tänka på att göra en lucka i altanen så att ventilationsöppningen kan inspekteras. Har du inte det måste du skruva loss brädor inför Ribes arbetsdagar både höst och vår så att inspektion då kan ske.</p>
                     </div>
                 </div>
 
@@ -6396,25 +6511,6 @@
         </div>
     </section>
 
-    <!-- Historik Section -->
-    <section id="historik" class="about">
-        <div class="container" style="">
-            <div class="section-header" style="">
-                <h2 style="">Historik</h2>
-                <p style="">Berättelsen om hur Ribe byggdes</p>
-            </div>
-            <div style="max-width: 900px; margin: 0px auto;">
-                <div style="background: white; padding: 3rem; border-radius: 1rem; box-shadow: var(--shadow-md);">
-                    <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Ribe – kvarteret som vi byggde själva</h3>
-                    <div style="line-height: 1.8; color: var(--gray-700);">
-                        <p style="margin-bottom: 1.5rem;">Redan i början av 1900-talet inrättade Stockholms kommun en särskild ”självbyggaravdelning”. Avsikten var att erbjuda invånarna en möjlighet att bygga sitt eget hem genom eget arbete istället för kontantinsats.</p>
-                        <p style="margin-bottom: 1.5rem;">Kvarteret Ribe i Kista är ett av de sista stora självbyggarprojekten i Stockholm. Under 1979-1980 samlades blivande grannar för att tillsammans bygga de 162 husen. Det var ett enormt projekt som krävde tusentals timmar av hårt arbete, men som också skapade en unik sammanhållning i området.</p>
-                        <p style="">Idag lever arvet vidare i en välskött samfällighet där gemenskap och samarbete fortfarande står i centrum.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Länkar Section -->
     <section id="links" class="about">
