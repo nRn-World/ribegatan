@@ -2449,6 +2449,9 @@
                 <li class="nav-item" style="">
                     <a href="#kalender" class="nav-link" style="">Kalender</a>
                 </li>
+                <li class="nav-item" style="">
+                    <a href="admin/index.html" class="nav-link" style="">Admin</a>
+                </li>
             </ul>
             <div class="hamburger" aria-label="Mobilt navigeringsmeny" onclick="(function(){const h=document.querySelector('.hamburger');const m=document.querySelector('.nav-menu');h.classList.toggle('active');m.classList.toggle('active');h.setAttribute('aria-expanded',h.classList.contains('active'));})()">
                 <span class="bar"></span>
@@ -2549,25 +2552,50 @@
                 </a>
             </div>
 
-            <!-- Välkommen Section -->
-            <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; max-width: 900px; margin-left: auto; margin-right: auto;">
-                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.8rem; text-align: center;">Välkommen till kvarteret Ribe!</h3>
+            <!-- Välkommen Section med bilder -->
+            <div style="max-width: 900px; margin: 0 auto 2rem; text-align: center;">
+                <h2 style="color: var(--primary-color); font-size: 2.2rem; margin-bottom: 1.5rem; font-weight: 600;">
+                    Välkommen till kvarteret Ribe!
+                </h2>
 
-                <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem; color: #444;">
-                    Vår boendemiljö påminner om en småstadsidyll. Lugnt, barnvänligt och nära till fina promenadvägar på Järvafältet. Vid Eggeby Gård kan du få se frigående höns, ta en fika på Kafé Grönlingen.
-                </p>
-                <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem; color: #444;">
-                    Vi har promenadavstånd till T-bana, Kista Galleria med en mängd butiker, restauranger, biografer m.m.
-                </p>
-                <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem; color: #444; font-weight: 600;">
-                    Styrelsen och samfällighetsföreningen hälsar dig varmt välkommen till kvarteret Ribe!
-                </p>
+                <!-- Stor huvudbild -->
+                <div style="margin-bottom: 1.5rem;">
+                    <img id="mainWelcomeImageTop" src="ribegatan.se/res/Bilderhost/Drone1.jpg" alt="Välkommen till kvarteret Ribe" style="width: 100%; max-width: 700px; height: auto; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
+                </div>
 
-                <p style="font-size: 1rem; margin-bottom: 0.75rem; color: #444;">Information till boende i Ribe Samfällighetsförening!<br>Klicka här för mer info:</p>
-                <a href="ribegatan.se/res/Boendeinformation/Info-till-boende-2016.pdf" target="_blank"
-                   style="display: inline-flex; align-items: center; color: var(--primary-color); font-weight: 600; text-decoration: underline;">
-                    <i class="fas fa-file-pdf" style="margin-right: 0.5rem; color: #dc3545;"></i> Info till boende 2016
-                </a>
+                <!-- Tre små miniatyrbilder -->
+                <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem;">
+                    <img src="ribegatan.se/res/Bilderhost/Drone1.jpg" alt="Drönarbild 1" style="width: 120px; height: 80px; object-fit: cover; border-radius: 0.25rem; cursor: pointer; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" onclick="document.getElementById('mainWelcomeImageTop').src = 'ribegatan.se/res/Bilderhost/Drone1.jpg'">
+                    <img src="ribegatan.se/res/Bilderhost/Drone2.jpg" alt="Drönarbild 2" style="width: 120px; height: 80px; object-fit: cover; border-radius: 0.25rem; cursor: pointer; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" onclick="document.getElementById('mainWelcomeImageTop').src = 'ribegatan.se/res/Bilderhost/Drone2.jpg'">
+                    <img src="ribegatan.se/res/Bilderhost/Drone3.jpg" alt="Drönarbild 3" style="width: 120px; height: 80px; object-fit: cover; border-radius: 0.25rem; cursor: pointer; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" onclick="document.getElementById('mainWelcomeImageTop').src = 'ribegatan.se/res/Bilderhost/Drone3.jpg'">
+                </div>
+
+                <!-- Beskrivande text -->
+                <div style="text-align: left; background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 4px;">
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                        Vår boendemiljö påminner om en småstadsidyll. Lugnt, barnvänligt och nära till fina
+                        promenadvägar på Järvafältet. Vid Eggeby Gård kan du få se frigående höns, ta en fika på Kafé
+                        Grönlingen.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                        Vi har promenadavstånd till T-bana, Kista Galleria med en mängd butiker, restauranger, biografer m.m.
+                    </p>
+                    <p style="font-size: 1.2rem; line-height: 1.8; color: var(--primary-color); font-weight: 500; font-style: italic; margin-top: 2rem;">
+                        Styrelsen och samfällighetsföreningen hälsar dig varmt välkommen till kvarteret Ribe!
+                    </p>
+                    <!-- Information till boende -->
+                    <div style="margin-top: 2.5rem; padding-top: 2rem; border-top: 2px solid rgb(224, 224, 224);">
+                        <h4 style="color: var(--primary-color); font-size: 1.3rem; margin-bottom: 1rem;">
+                            Information till boende i Ribe Samfällighetsförening!
+                        </h4>
+                        <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem;">
+                            Klicka här för mer info:
+                        </p>
+                        <a href="ribegatan.se/res/Boendeinformation/Info-till-boende-2016.pdf" target="_blank" style="display: inline-block; background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%); color: white; padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 500; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
+                            <i class="fas fa-file-pdf" style="margin-right: 0.5rem;"></i>Info till boende 2016
+                        </a>
+                    </div>
+                </div>
             </div>
 
             <div class="section-header" style="">
