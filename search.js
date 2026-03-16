@@ -1,141 +1,288 @@
-// Search functionality
-console.log('search.js loaded');
+// ================================================
+// RIBE SAMFÄLLIGHETSFÖRENING - Fullständig sökning
+// Söker igenom VARJE TEXT i hela sidans HTML
+// ================================================
 
-(function() {
+(function () {
+    'use strict';
+
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
-    
-    if (!searchInput || !searchResults) {
-        console.error('Search elements not found!', {searchInput, searchResults});
-        return;
-    }
-    
-    console.log('Search elements found!');
+
+    if (!searchInput || !searchResults) return;
+
     let searchTimeout = null;
+    let fullIndex = []; // Array av { text, sectionId, sectionTitle }
 
-    // Build search index
-    function buildSearchIndex() {
-        const sections = document.querySelectorAll('section');
-        const searchIndex = [];
+    // =============================================
+    // BYGG INDEX AV HELA SIDANS TEXT
+    // =============================================
+    function buildFullIndex() {
+        const index = [];
 
+        // Samla alla section[id] och deras texter
+        const sections = document.querySelectorAll('section[id]');
         sections.forEach(section => {
-            const sectionId = section.id;
-            const heading = section.querySelector('h2, h3, h1');
+            const id = section.id;
+            const heading = section.querySelector('h1, h2, h3, h4');
+            const title = heading ? heading.textContent.trim() : id;
 
-            if (sectionId) {
-                const title = heading ? heading.textContent.trim() : sectionId;
-                // Get ALL text content from the section
-                const content = section.textContent.trim().replace(/\s+/g, ' ');
+            // Hämta ALL text från sektionen
+            // textContent fungerar även för dolda element, innerText bara för synliga
+            const rawText = getAllText(section);
 
-                if (title && content) {
-                    searchIndex.push({
-                        id: sectionId,
-                        title: title,
-                        content: content
+            // Dela upp texten i meningsfragment för bättre matchning
+            const chunks = splitIntoChunks(rawText);
+
+            chunks.forEach(chunk => {
+                if (chunk.trim().length > 3) {
+                    index.push({
+                        chunk: chunk.trim(),
+                        sectionId: id,
+                        sectionTitle: title
                     });
                 }
-            }
+            });
         });
 
-        console.log('Search index built:', searchIndex.length, 'items');
-        return searchIndex;
+        // Indexera också alla divs/artiklar med ID som inte är direkt i en section
+        const idElements = document.querySelectorAll('[id]:not(section)');
+        idElements.forEach(el => {
+            const id = el.id;
+            if (!id || id.startsWith('search') || id.startsWith('nav') || id.startsWith('modal')) return;
+
+            const parentSection = el.closest('section[id]');
+            if (parentSection) return; // Hanteras redan ovan
+
+            const heading = el.querySelector('h1, h2, h3, h4, h5') || el;
+            const title = heading ? heading.textContent.trim().substring(0, 60) : id;
+            const rawText = getAllText(el);
+            const chunks = splitIntoChunks(rawText);
+
+            chunks.forEach(chunk => {
+                if (chunk.trim().length > 3) {
+                    index.push({
+                        chunk: chunk.trim(),
+                        sectionId: id,
+                        sectionTitle: title
+                    });
+                }
+            });
+        });
+
+        return index;
     }
 
-    const searchIndex = buildSearchIndex();
+    // Hämta all text, inklusive hidden element (via textContent)
+    function getAllText(el) {
+        // Klon för att ta bort script/style
+        const clone = el.cloneNode(true);
+        clone.querySelectorAll('script, style, noscript, svg, button').forEach(e => e.remove());
+        // Använd textContent för att fånga ALL text (inkl. dolda element)
+        return (clone.textContent || '').replace(/\s+/g, ' ').trim();
+    }
 
-    // Perform search
+    // Dela text i hanterbara bitar (meningar/fraser)
+    function splitIntoChunks(text) {
+        // Dela vid punkt, ny rad, semikolon etc.
+        return text
+            .split(/[.\n\r;|]+/)
+            .map(s => s.trim())
+            .filter(s => s.length > 2);
+    }
+
+    // =============================================
+    // SÖK-LOGIK - Aggregerar resultat per sektion
+    // =============================================
     function performSearch(query) {
-        if (!query || query.length < 2) {
-            searchResults.innerHTML = '';
-            searchResults.classList.remove('active');
+        const q = query.trim();
+        if (q.length < 2) {
+            hideResults();
             return;
         }
 
-        const lowerQuery = query.toLowerCase();
-        const results = searchIndex.filter(item => {
-            return item.title.toLowerCase().includes(lowerQuery) ||
-                item.content.toLowerCase().includes(lowerQuery);
+        const lowerQ = q.toLowerCase();
+
+        // Sök igenom varje sektion direkt i DOM (mest pålitlig metod)
+        const sectionResults = [];
+        const seenIds = new Set();
+
+        document.querySelectorAll('section[id]').forEach(section => {
+            const id = section.id;
+            if (seenIds.has(id)) return;
+
+            // textContent fångar ALL text oavsett synlighet
+            const fullText = section.textContent || '';
+            const lowerText = fullText.toLowerCase();
+
+            if (lowerText.includes(lowerQ)) {
+                const heading = section.querySelector('h1, h2, h3');
+                const title = heading ? heading.textContent.trim() : id;
+                const snippet = buildSnippet(fullText, q);
+                const score = countOccurrences(lowerText, lowerQ);
+
+                sectionResults.push({ id, title, snippet, score });
+                seenIds.add(id);
+            }
         });
 
-        console.log('Search results:', results.length);
-        displayResults(results, query);
+        // Sök även i divs med ID som inte ligger i sections (t.ex. boappa, grannsamverkan)
+        document.querySelectorAll('[id]:not(section)').forEach(el => {
+            const id = el.id;
+            if (!id || seenIds.has(id)) return;
+            if (id.startsWith('search') || id.startsWith('nav')) return;
+
+            // Kolla om den har en sektion-parent som redan hittades
+            const parentSection = el.closest('section[id]');
+            if (parentSection && seenIds.has(parentSection.id)) return;
+
+            const fullText = el.textContent || '';
+            const lowerText = fullText.toLowerCase();
+
+            if (lowerText.includes(lowerQ)) {
+                const targetId = parentSection ? parentSection.id : id;
+                if (seenIds.has(targetId)) return;
+
+                const heading = (parentSection || el).querySelector('h1, h2, h3') || el;
+                const title = heading ? heading.textContent.trim().substring(0, 60) : id;
+                const snippet = buildSnippet(fullText, q);
+                const score = countOccurrences(lowerText, lowerQ);
+
+                sectionResults.push({ id: targetId, title, snippet, score });
+                seenIds.add(targetId);
+            }
+        });
+
+        // Sortera: fler träffar = högre upp
+        sectionResults.sort((a, b) => b.score - a.score);
+
+        displayResults(sectionResults, q);
     }
 
-    // Display results
+    // =============================================
+    // HJÄLPFUNKTIONER
+    // =============================================
+
+    function countOccurrences(text, query) {
+        let count = 0;
+        let pos = 0;
+        while ((pos = text.indexOf(query, pos)) !== -1) {
+            count++;
+            pos += query.length;
+        }
+        return count;
+    }
+
+    function buildSnippet(text, query) {
+        const cleaned = text.replace(/\s+/g, ' ').trim();
+        const lowerText = cleaned.toLowerCase();
+        const lowerQ = query.toLowerCase();
+        const idx = lowerText.indexOf(lowerQ);
+
+        if (idx === -1) {
+            return cleaned.substring(0, 130) + '...';
+        }
+
+        const start = Math.max(0, idx - 70);
+        const end = Math.min(cleaned.length, idx + query.length + 90);
+        let snippet = cleaned.substring(start, end);
+
+        if (start > 0) snippet = '…' + snippet;
+        if (end < cleaned.length) snippet = snippet + '…';
+
+        return snippet;
+    }
+
+    function highlight(text, query) {
+        if (!text || !query) return text;
+        const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        try {
+            return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark>$1</mark>');
+        } catch (e) {
+            return text;
+        }
+    }
+
+    // =============================================
+    // VISA RESULTAT
+    // =============================================
     function displayResults(results, query) {
         searchResults.innerHTML = '';
 
         if (results.length === 0) {
-            searchResults.innerHTML = '<div class="search-no-results">Inga resultat hittades</div>';
+            searchResults.innerHTML = `
+                <div class="search-no-results">
+                    <i class="fas fa-search" style="margin-right:0.5rem;opacity:0.5;"></i>
+                    Ingen träff på "<strong>${escapeHtml(query)}</strong>" — prøv kortare sökord
+                </div>`;
             searchResults.classList.add('active');
             return;
         }
 
-        results.forEach(result => {
+        const toShow = results.slice(0, 10);
+
+        toShow.forEach(result => {
             const div = document.createElement('div');
             div.className = 'search-result-item';
-            
-            const titleText = result.title.replace(new RegExp(`(${query})`, 'gi'), '<mark>$1</mark>');
-            const snippetText = result.content.substring(0, 150).replace(new RegExp(`(${query})`, 'gi'), '<mark>$1</mark>');
-            
+
             div.innerHTML = `
-                <div class="search-result-title">${titleText}</div>
-                <div class="search-result-snippet">${snippetText}...</div>
+                <div class="search-result-title">${highlight(escapeHtml(result.title), query)}</div>
+                <div class="search-result-snippet">${highlight(escapeHtml(result.snippet), query)}</div>
             `;
-            
+
             div.addEventListener('click', () => {
-                const targetSection = document.querySelector(`#${result.id}`);
-                if (targetSection) {
-                    searchResults.classList.remove('active');
-                    searchResults.innerHTML = '';
-                    searchInput.value = '';
-                    searchInput.blur();
-
-                    const navbar = document.querySelector('.navbar');
-                    const navbarHeight = navbar ? navbar.offsetHeight : 80;
-                    const targetPosition = targetSection.offsetTop - navbarHeight - 20;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
+                scrollToSection(result.id);
+                hideResults();
+                searchInput.value = '';
+                searchInput.blur();
             });
-            
+
             searchResults.appendChild(div);
         });
 
         searchResults.classList.add('active');
     }
 
-    // Event listeners
-    searchInput.addEventListener('input', (e) => {
-        console.log('Search input:', e.target.value);
+    function escapeHtml(str) {
+        return (str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function scrollToSection(id) {
+        const target = document.getElementById(id);
+        if (!target) return;
+
+        const navbar = document.querySelector('.navbar');
+        const navbarHeight = navbar ? navbar.offsetHeight + 10 : 90;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }
+
+    function hideResults() {
+        searchResults.classList.remove('active');
+        searchResults.innerHTML = '';
+    }
+
+    // =============================================
+    // EVENT LISTENERS
+    // =============================================
+    searchInput.addEventListener('input', e => {
         clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(() => {
-            performSearch(e.target.value);
-        }, 300);
+        searchTimeout = setTimeout(() => performSearch(e.target.value), 250);
     });
 
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.search-container')) {
-            searchResults.classList.remove('active');
-            searchResults.innerHTML = '';
-        }
-    });
-
-    searchResults.addEventListener('click', (e) => {
-        e.stopPropagation();
-    });
-
-    searchInput.addEventListener('keydown', (e) => {
+    searchInput.addEventListener('keydown', e => {
         if (e.key === 'Enter') {
-            const firstResult = searchResults.querySelector('.search-result-item');
-            if (firstResult) {
-                firstResult.click();
-            }
+            const first = searchResults.querySelector('.search-result-item');
+            if (first) first.click();
         }
+        if (e.key === 'Escape') hideResults();
     });
-    
-    console.log('Search initialized successfully!');
+
+    document.addEventListener('click', e => {
+        if (!e.target.closest('.search-container')) hideResults();
+    });
+
+    searchResults.addEventListener('click', e => e.stopPropagation());
+
 })();
