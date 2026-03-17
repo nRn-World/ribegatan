@@ -1263,11 +1263,28 @@
                 transform: translateY(-7px) rotate(-45deg);
             }
 
+            .hero {
+                align-items: flex-start !important;
+                padding-top: 160px; /* Space for navbar + searchbox */
+            }
+
             .hero-content {
                 grid-template-columns: 1fr;
                 text-align: center;
                 gap: var(--space-xl);
-                padding: 18rem var(--space-md) var(--space-2xl);
+                padding: 2rem var(--space-md) var(--space-2xl);
+            }
+
+            .hero-text h1 {
+                font-size: 2.2rem !important;
+                margin-top: 0;
+                margin-bottom: 1.5rem;
+                -webkit-text-fill-color: var(--primary-color) !important; /* Fallback for transparency issues */
+                background: none !important;
+                color: var(--primary-color) !important;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
             }
 
             .hero-dates-grid {
