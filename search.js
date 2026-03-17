@@ -248,9 +248,16 @@
     }
 
     function scrollToSection(id) {
+        // First reveal the section if it is hidden (homepage shortening logic)
+        // Check if revealSection exists in the global scope (defined in index.html)
+        if (typeof window.revealSection === 'function') {
+            window.revealSection(id);
+        }
+
         const target = document.getElementById(id);
         if (!target) return;
 
+        // Give the revelation a tiny bit of time if needed, though direct call is sync
         const navbar = document.querySelector('.navbar');
         const navbarHeight = navbar ? navbar.offsetHeight + 10 : 90;
         const top = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
