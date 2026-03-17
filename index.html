@@ -1265,7 +1265,7 @@
 
             .hero {
                 align-items: flex-start !important;
-                padding-top: 160px; /* Space for navbar + searchbox */
+                padding-top: 220px !important; /* Heavily increased to clear fixed header + search */
             }
 
             .hero-content {
@@ -2277,7 +2277,7 @@
         }
 
         /* Content spacing for mobile */
-        section {
+        section:not(.hero) {
             padding: 4rem 0 !important;
         }
     </style>
