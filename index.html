@@ -2713,7 +2713,7 @@
                     <p>Enligt årsstämmobeslut den 25 november 2021 kommer tvättavgiften per pass att ändras från 20
                         kronor till 40 kronor. Den nya avgiften startar 1 februari 2022.</p>
 
-                    <p>De boende som är intresserade av att använda tjänsten kan kontakta styrelsen via mejl: <a href="mailto:styrelsen@ribegatan.se" style="color: var(--primary-color);">styrelsen@ribegatan.se</a></p>
+                    <p>De boende som är intresserade av att använda tjänsten kan kontakta styrelsen via <a href="#contact" style="color: var(--primary-color);">kontaktformuläret</a>.</p>
 
                     <p>Då får ni uppgifter per mejl, användarnamn, lösenord och information, hur man får tillgång till
                         portalen.</p>
@@ -6220,8 +6220,8 @@
                 <h2>Kontakta Styrelsen</h2>
                 <p>Besök oss eller kontakta oss för mer information</p>
             </div>
-            <div class="contact-content">
-                <div class="contact-info">
+            <div class="contact-content" style="display: block; max-width: 900px; margin: 0 auto;">
+                <div class="contact-info" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
                     <div class="uniform-card">
                         <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                         <div>
@@ -6229,11 +6229,11 @@
                             <p>Ribe Samfällighetsförening<br>Ribegatan 77<br>164 45 Kista</p>
                         </div>
                     </div>
-                    <div class="uniform-card">
+                    <div class="uniform-card" id="openEmailModalBtn" style="cursor: pointer; border: 2px solid transparent; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='transparent'">
                         <i class="fas fa-envelope" aria-hidden="true"></i>
                         <div>
                             <h4>E-post</h4>
-                            <p>styrelsen@ribegatan.se</p>
+                            <p style="color: var(--primary-color); font-weight: 500;">Klicka här för att öppna kontaktformuläret</p>
                         </div>
                     </div>
                     <div class="uniform-card">
@@ -6251,28 +6251,62 @@
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <h3>Skicka ett meddelande</h3>
-                    <form id="contactForm" novalidate="">
-                        <div class="form-group">
-                            <label for="name" class="sr-only">Ditt namn</label>
-                            <input type="text" id="name" name="name" placeholder="Ditt namn" required="" aria-required="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="sr-only">Din e-post</label>
-                            <input type="email" id="email" name="email" placeholder="Din e-post" required="" aria-required="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="subject" class="sr-only">Ämne</label>
-                            <input type="text" id="subject" name="subject" placeholder="Ämne" required="" aria-required="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="message" class="sr-only">Ditt meddelande</label>
-                            <textarea id="message" name="message" placeholder="Ditt meddelande" rows="5" required="" aria-required="true"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" aria-label="Skicka meddelande">Skicka</button>
-                    </form>
                 </div>
+                
+                <!-- Modal Overlay för Kontaktformulär -->
+                <div id="contactModalOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; flex-direction: column; justify-content: center; align-items: center; padding: 1rem; backdrop-filter: blur(4px);">
+                    <div class="contact-form" style="background: white; padding: 2.5rem; border-radius: 1rem; width: 100%; max-width: 650px; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); max-height: 90vh; overflow-y: auto; margin: 0;">
+                        <button id="closeContactModalBtn" type="button" aria-label="Stäng kontaktformulär" style="position: absolute; top: 1.5rem; right: 1.5rem; background: #f3f4f6; border: none; font-size: 1.25rem; color: #4b5563; cursor: pointer; transition: all 0.3s; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;" onmouseover="this.style.background='#e5e7eb'; this.style.color='#1f2937';" onmouseout="this.style.background='#f3f4f6'; this.style.color='#4b5563';">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <h3 style="margin-bottom: 0.5rem; color: var(--primary-color);">Kontakta Styrelsen</h3>
+                        <p style="font-size: 0.95rem; color: #6b7280; margin-bottom: 2rem; line-height: 1.6;">
+                            Använd formuläret nedan för att nå styrelsen. Vi hanterar personuppgifter enligt GDPR och sparar endast information som krävs för att besvara ditt ärende.
+                        </p>
+                        <form id="contactForm" novalidate>
+                            <div class="form-group">
+                                <label for="name">Ditt Namn <span style="color: #e53e3e;">*</span></label>
+                                <input type="text" id="name" name="name" placeholder="Ange ditt fullständiga namn" required aria-required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-postadress <span style="color: #e53e3e;">*</span></label>
+                                <input type="email" id="email" name="email" placeholder="namn@domän.se" required aria-required="true" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+                                <small style="color: #6b7280; font-size: 0.8rem;">Valideras för att förhindra felskrivningar.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Ärende <span style="color: #e53e3e;">*</span></label>
+                                <select id="subject" name="subject" required aria-required="true" style="width: 100%; padding: 0.75rem 1rem; border: 2px solid #e5e7eb; border-radius: 0.5rem; font-size: 1rem; background: white; color: #333; transition: border-color 0.3s ease; appearance: auto;">
+                                    <option value="" disabled selected>-- Välj ärende --</option>
+                                    <option value="Felanmälan">Felanmälan</option>
+                                    <option value="Medlemsfrågor">Medlemsfrågor</option>
+                                    <option value="Ägarbyte">Ägarbyte / Försäljning</option>
+                                    <option value="Motion">Motion till årsstämman</option>
+                                    <option value="Övrigt">Övrigt</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Meddelande <span style="color: #e53e3e;">*</span></label>
+                                <textarea id="message" name="message" placeholder="Skriv ditt meddelande här..." rows="5" required aria-required="true" maxlength="1000"></textarea>
+                                <small id="charCount" style="color: #6b7280; font-size: 0.8rem;">0 / 1000 tecken</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="attachment">Bilaga (Valfritt)</label>
+                                <div style="position: relative;">
+                                    <input type="file" id="attachment" name="attachment" accept=".pdf,.jpg,.jpeg,.png,.zip,.rar" style="width: 100%; padding: 0.75rem 1rem; border: 2px dashed #e5e7eb; border-radius: 0.5rem; font-size: 0.95rem; background: #f9fafb; cursor: pointer; transition: border-color 0.3s ease;">
+                                </div>
+                                <small style="color: #6b7280; font-size: 0.8rem;">Tillåtna filtyper: .pdf, .jpg, .png, .zip, .rar — Blockerar .exe och andra filtyper.</small>
+                                <div id="fileError" style="color: #e53e3e; font-size: 0.85rem; margin-top: 0.25rem; display: none;"></div>
+                            </div>
+                            <div style="background: #f0fdf4; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #22c55e; margin-bottom: 1rem;">
+                                <p style="font-size: 0.85rem; color: #166534; margin: 0; line-height: 1.5;">
+                                    <i class="fas fa-shield-alt" style="margin-right: 0.5rem;"></i>
+                                    <strong>GDPR:</strong> Dina uppgifter behandlas konfidentiellt och används enbart för att besvara ditt ärende.
+                                </p>
+                            </div>
+                            <button type="submit" class="btn btn-primary" aria-label="Skicka meddelande" style="width: 100%;">Skicka meddelande</button>
+                        </form>
+                    </div>
+                </div> <!-- End Modal -->
             </div>
         </div>
     </section>
@@ -6586,7 +6620,7 @@
                 <div class="footer-section">
                     <h4>Kontaktinfo</h4>
                     <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Ribegatan 77, 164 45 Kista</p>
-                    <p><i class="fas fa-envelope" aria-hidden="true"></i> styrelsen@ribegatan.se</p>
+                    <p id="openEmailModalFooterBtn" style="cursor: pointer; color: var(--primary-color); font-weight: 500; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-color)'" onmouseout="this.style.color='var(--primary-color)'"><i class="fas fa-envelope" aria-hidden="true"></i> Klicka här för kontaktformulär</p>
                     <p style="margin-top: 15px; font-size: 0.9rem; color: #94a3b8;">Created 2026 by © nRn World</p>
                     <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 5px;">bynrnworld@gmail.com</p>
                 </div>
@@ -6939,6 +6973,67 @@
             // ENHANCED CONTACT FORM
             // ======================================
             const contactForm = document.getElementById('contactForm');
+            const messageField = document.getElementById('message');
+            const charCount = document.getElementById('charCount');
+            const attachmentField = document.getElementById('attachment');
+            const fileError = document.getElementById('fileError');
+
+            // Character counter for message field
+            if (messageField && charCount) {
+                messageField.addEventListener('input', function () {
+                    const count = this.value.length;
+                    charCount.textContent = count + ' / 1000 tecken';
+                    if (count > 900) {
+                        charCount.style.color = '#e53e3e';
+                    } else if (count > 700) {
+                        charCount.style.color = '#d97706';
+                    } else {
+                        charCount.style.color = '#6b7280';
+                    }
+                });
+            }
+
+            // File upload validation
+            const allowedExtensions = ['.pdf', '.jpg', '.jpeg', '.png', '.zip', '.rar'];
+            const blockedExtensions = ['.exe', '.bat', '.cmd', '.com', '.msi', '.scr', '.pif', '.vbs', '.js', '.ws', '.wsf'];
+
+            if (attachmentField && fileError) {
+                attachmentField.addEventListener('change', function () {
+                    fileError.style.display = 'none';
+                    fileError.textContent = '';
+
+                    if (this.files.length > 0) {
+                        const file = this.files[0];
+                        const fileName = file.name.toLowerCase();
+                        const fileExt = '.' + fileName.split('.').pop();
+
+                        // Check blocked extensions
+                        if (blockedExtensions.includes(fileExt)) {
+                            fileError.textContent = '⛔ Filtypen ' + fileExt + ' är blockerad av säkerhetsskäl.';
+                            fileError.style.display = 'block';
+                            this.value = '';
+                            return;
+                        }
+
+                        // Check allowed extensions
+                        if (!allowedExtensions.includes(fileExt)) {
+                            fileError.textContent = '⚠️ Otillåten filtyp. Tillåtna: .pdf, .jpg, .png, .zip, .rar';
+                            fileError.style.display = 'block';
+                            this.value = '';
+                            return;
+                        }
+
+                        // Check file size (max 10MB)
+                        if (file.size > 10 * 1024 * 1024) {
+                            fileError.textContent = '⚠️ Filen är för stor. Maxstorlek: 10 MB.';
+                            fileError.style.display = 'block';
+                            this.value = '';
+                            return;
+                        }
+                    }
+                });
+            }
+
             if (contactForm) {
                 contactForm.addEventListener('submit', function (e) {
                     e.preventDefault();
@@ -6947,17 +7042,28 @@
                     const formData = new FormData(this);
                     const name = formData.get('name').trim();
                     const email = formData.get('email').trim();
-                    const subject = formData.get('subject').trim();
+                    const subject = formData.get('subject');
                     const message = formData.get('message').trim();
 
                     // Enhanced validation
                     const validationErrors = [];
 
                     if (!name) validationErrors.push('Namn är obligatoriskt');
-                    if (!email) validationErrors.push('E-post är obligatoriskt');
-                    if (!isValidEmail(email)) validationErrors.push('Ogiltig e-postadress');
-                    if (!subject) validationErrors.push('Ämne är obligatoriskt');
+                    if (!email) validationErrors.push('E-postadress är obligatoriskt');
+                    if (!isValidEmail(email)) validationErrors.push('Ogiltig e-postadress (t.ex. namn@domän.se)');
+                    if (!subject) validationErrors.push('Välj ett ärende');
                     if (!message) validationErrors.push('Meddelande är obligatoriskt');
+                    if (message.length > 1000) validationErrors.push('Meddelandet får vara max 1000 tecken');
+
+                    // Validate attachment
+                    if (attachmentField && attachmentField.files.length > 0) {
+                        const file = attachmentField.files[0];
+                        const fileName = file.name.toLowerCase();
+                        const fileExt = '.' + fileName.split('.').pop();
+                        if (!allowedExtensions.includes(fileExt) || blockedExtensions.includes(fileExt)) {
+                            validationErrors.push('Otillåten filtyp bifogad');
+                        }
+                    }
 
                     if (validationErrors.length > 0) {
                         showNotification(validationErrors.join('\n'), 'error');
@@ -6976,8 +7082,17 @@
                     setTimeout(() => {
                         showNotification('Tack för ditt meddelande! Vi återkommer snart.', 'success');
                         this.reset();
+                        if (charCount) charCount.textContent = '0 / 1000 tecken';
+                        if (fileError) { fileError.style.display = 'none'; fileError.textContent = ''; }
                         submitButton.innerHTML = originalText;
                         submitButton.disabled = false;
+                        
+                        // Stäng modalen och återställ scroll
+                        const modal = document.getElementById('contactModalOverlay');
+                        if (modal) {
+                            modal.style.display = 'none';
+                            document.body.style.overflow = '';
+                        }
                     }, 2000);
                 });
             }
@@ -6988,13 +7103,45 @@
             const uniformCards = document.querySelectorAll('.uniform-card');
             uniformCards.forEach((item, index) => {
                 item.addEventListener('click', function () {
+                    if (this.id === 'openEmailModalBtn') return; // Ignore if it's the modal trigger
                     const text = this.querySelector('p').textContent;
                     showNotification(`Information om: ${text}`, 'info');
                 });
-
-                // Kort är synliga från början - ingen animation behövs
-                // Animationer hanteras av IntersectionObserver istället
             });
+
+            // ======================================
+            // MODAL LOGIC FOR CONTACT FORM
+            // ======================================
+            const contactModal = document.getElementById('contactModalOverlay');
+            const openBtns = [document.getElementById('openEmailModalBtn'), document.getElementById('openEmailModalFooterBtn')];
+            const closeBtn = document.getElementById('closeContactModalBtn');
+
+            if (contactModal) {
+                openBtns.forEach(btn => {
+                    if (btn) {
+                        btn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            contactModal.style.display = 'flex';
+                            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                        });
+                    }
+                });
+
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', function() {
+                        contactModal.style.display = 'none';
+                        document.body.style.overflow = '';
+                    });
+                }
+
+                // Close on outside click
+                contactModal.addEventListener('click', function(e) {
+                    if (e.target === contactModal) {
+                        contactModal.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
 
             // ======================================
             // ENHANCED ANIMATION OBSERVER
