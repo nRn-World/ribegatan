@@ -2369,16 +2369,18 @@
                 </li>
                 <li class="nav-item dropdown">
                     <div class="nav-link-wrapper">
-                        <a href="#omradet" class="nav-link">Området <i class="fas fa-chevron-right menu-indicator"></i></a>
+                        <a href="#indelning" class="nav-link">Området <i class="fas fa-chevron-right menu-indicator"></i></a>
                         <span class="dropdown-toggle" onclick="(function(e){e.preventDefault();e.stopPropagation();const dropdown=e.target.closest('.nav-item.dropdown');const content=dropdown.querySelector('.dropdown-content');dropdown.classList.toggle('show');content.classList.toggle('show');console.log('Dropdown toggled');})(event)"><i class="fas fa-chevron-down"></i></span>
                     </div>
                     <div class="dropdown-content">
                         <a href="#indelning" class="nav-link">Indelning</a>
                         <a href="#karta" class="nav-link">Karta</a>
                         <a href="#skotsel" class="nav-link">Skötsel</a>
+                        <a href="#fordon" class="nav-link">Fordon i området</a>
                         <a href="#avfall" class="nav-link">Avfall &amp; Återvinning</a>
                         <a href="#tvattstuga" class="nav-link">Tvättstugor &amp; träfflokaler</a>
                         <a href="#grannsamverkan" class="nav-link">Grannsamverkan</a>
+                        <a href="#snorojning" class="nav-link">Snöröjning</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -5567,6 +5569,107 @@
         </div>
     </section>
 
+    <!-- Fordon i området Section (Ny) -->
+    <section id="fordon" class="about hidden-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Fordon i området</h2>
+                <p>Regler och information kring biltrafik och parkering</p>
+            </div>
+            <div style="max-width: 900px; margin: 0px auto;">
+                
+                <!-- Biltrafik -->
+                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Biltrafik</h3>
+                    <p style="margin-bottom: 1rem;">Gångvägarna i området är inte anpassade för biltrafik. För allas säkerhet och trevnad bör biltrafik inom kvarteret undvikas i möjligaste mån. Inom området råder parkeringsförbud. Du får bara stanna en kort stund för i- och urlastning. Parkering inom området gäller max 5 minuter enligt Stockholms parkerings regler.</p>
+                    <p style="margin-bottom: 1rem; font-weight: 600; color: #dc2626;">Tänk också på att det finns lekande barn i området – kör därför mycket långsamt!</p>
+                    <p>Tänk också på hastighetsbegränsningen – på Ribegatan (huvudgatan) gäller max 30 km/tim - även hela Jyllandsgatan ingår i en 30-zon!</p>
+                </div>
+
+                <!-- Garage -->
+                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Garage</h3>
+                    <p style="margin-bottom: 1rem;">Samfälligheten äger två garage där varje hushåll disponerar en bilplats var. Platserna är försedda med eluttag för motorvärmare, max 1100 watt/p-plats. Motorvärmare skall ha tidur för högst tre timmars inkoppling.</p>
+                    <p style="margin-bottom: 1rem;"><strong>Ordningsregler för garage se särskild skrivelse</strong></p>
+                    <p style="margin-bottom: 1rem;">Behöver du en extra garageplats kan du ställa dig i kö. Ta kontakt med antingen ansvarig för uthyrning av garageplatser, <a href="#" onclick="document.getElementById('contactModalOverlay').style.display='flex'; document.body.style.overflow='hidden'; return false;" style="color: var(--primary-color);">skicka e-post till styrelsen via formuläret</a> eller lägg en ansökan i styrelsens brevlåda vid Ribegatan 77.</p>
+                    <p style="margin-bottom: 1rem;">Garageplatsen får endast disponeras som bilplats och inte som upplag – detta på grund av brandfaran och allmän trevnad. Sommar- respektive vinterdäck får dock förvaras i anslutning till garageplatsen.</p>
+                    <p>Felanmälan som avser garagen görs till garageansvarig (namn- och telefonuppgifter finns anslagna i respektive garage och på vår hemsida).</p>
+                </div>
+
+                <!-- Besöksparkering -->
+                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Besöksparkering</h3>
+                    <p style="margin-bottom: 1rem;"><strong>Parkeringsbolag</strong><br>Inom föreningens område så sköter Apcoa om vår bevakning av våra besöksparkeringar och vägarna inom vårt område. Parkering inom området gäller max 5 minuter enligt Stockholm stads parkeringsregler.</p>
+                    <p style="margin-bottom: 1rem;">Vid felanmälan kontakta Apcoa på telefonnummer 0771-401020. För ytterligare information se parkeringsbolag.</p>
+                    <p style="margin-bottom: 1rem;">Leverantör av besöksparkering är APCOA med deras APP - APCOA FLOW</p>
+                    <ul style="margin-bottom: 1.5rem; list-style-type: disc; margin-left: 2rem;">
+                        <li style="margin-bottom: 0.5rem;">Avgiften för besöksparkeringen 00-24 uppges i appen.</li>
+                        <li style="margin-bottom: 0.5rem;">Debitering är per timme eller 24-timmar.</li>
+                        <li style="margin-bottom: 0.5rem;">Zon namn är <strong>APCOA FLOW 3897 - RIBE SFF BESÖKSPARKERING, STOCKHOLM</strong></li>
+                    </ul>
+                    <p style="margin-bottom: 1rem;">Parkering görs via APP och betalningssätt väljs vid registrering. Instruktion med skylt finns vid besöksparkeringen hur man startar och avslutar en parkering via APCOA FLOW.</p>
+                    <p style="margin-bottom: 1rem;">Timdebitering välj "STARTA PARKERING"<br>24-timmar debitering välj "KÖP PERIOD BILJETT</p>
+                    <p style="margin-bottom: 1rem;">Debiteringen per timme eller 24-period framgår i appen och där även en service avgift tillkommer.</p>
+                    <p>För parkering på huvudgatan Ribegatan gäller kommunens bestämmelser.</p>
+                </div>
+
+                <!-- Extra garageplats -->
+                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Extra garageplats</h3>
+                    <p style="margin-bottom: 1rem;">Ribesamfällighets förening tillhandahåller ett antal garageplatser för uthyrning. Debitering av platsen sker genom styrelsen på avgiftsfakturen. Dessa platser kan boende få hyra genom att anmäla sitt intresse till styrelsen. Tilldelning av garageplats sker genom kölista.</p>
+                    <p>Boende kan givitvis hyra ut sin egen garageplats till boende. Styrelsen sköter inte debitering utan det sker mellan boende. De som hyr ut sin plats har fortfarande ansvar att ordningsreglerna följs.</p>
+                </div>
+
+                <!-- Parkerings bolag -->
+                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Parkering bolag inom föreningens område</h3>
+                    <p style="margin-bottom: 1rem;">Inom Ribesamfällighets förening så sköter Apcoa om vår parkerings bevakning. Detta innefattar våra besöksparkeringar och föreningens vägar inom vårt område.</p>
+                    <p>Felanmälan till Apcoa finns uppsatta på skyltar vid våra besöks parkeringar med telefon nummer 0771-401020. Felanmälan kan givetvis göras inom föreningens vägar i vårt område.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Snöröjning Section (Ny) -->
+    <section id="snorojning" class="about hidden-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Snöröjning</h2>
+                <p>Information angående snöröjningen inom samfälligheten.</p>
+            </div>
+            <div style="max-width: 900px; margin: 0px auto;">
+                
+                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Snöröjning - vad gäller?</h3>
+                    <p style="margin-bottom: 1rem;">Alla vägar inom Ribe samfällighetsförening snöröjs på samfällighetens uppdrag av Raines Maskin &amp; Entreprenad som är föreningens entreprenör för snöröjning.</p>
+                    <p style="margin-bottom: 1rem;">Snöröjning av Ribegatan från Jyllansdgatan till vändplanen längst upp på gatan sköts av Stockholms Gatukontor och deras entreprenörer. Vid hårt vinterväder måste Ni dock räkna med att snöhinder kan förekomma.</p>
+                    <p style="margin-bottom: 1rem;">Föreningen betalar för den tid som arbete utförs, vilket innebär att snörika vintrar kostar snöröjningen mer än snöfattiga vintrar. Snöröjning samt halkbekämpning kommer att utföras vid 5-10 cm snö - Ej under pågående snöfall.</p>
+                    <p style="margin-bottom: 1rem;">Halkbekämpning utförs vid behov av Raines eller efter beställning från föreningen. Detta skall dock främst ses som en hjälp för fastighetsägaren och kan innebära att vi ändå måste utföra viss kompletterande snöröjning och sandning själva.</p>
+                    <p style="font-weight: 600; color: #dc2626;">Glöm inte att röja snö framför entrén och vid bodarna.</p>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Tänk på</h3>
+                    <p style="margin-bottom: 1rem;">Vi bor i ett tätexploaterat område med begränsad framkomlighet för maskiner och med ytterst små möjligheter att lämpa undan snömassor. Detta innebär att det alltid efter maskinröjning kommer att finnas kvar snösträngar och smärre snöhögar som kan upplevas försvåra framkomligheten. Boendeformen samfällighet innebär inte bara rättigheter utan också skyldigheter att deltaga, undantaget de som av hälsoskäl inte kan, i områdets skötsel. Boende förväntas bidra med såväl kompletterande snöröjning som kompletterande sandning om så behövs. Sandlådor finns utplacerade på strategiska ställen i området just för detta ändamål.</p>
+                    <p style="margin-bottom: 1rem;">Som nämnts renhålls Ribegatan och gångbanan parallellt med denna av Stockholms Gatukontorets entreprenör. Det är oundvikligt att det i samband med röjning av gatan och gångbanan bildas snösträngar vid infarter till området och garagen. Vid vissa tillfällen kan det även här krävas att den enskilde trafikanten fysiskt agerar genom att ta ett tag med snöskyffeln som man naturligtvis har i sin vinterutrustade bil. Denna motion är dessutom gratis och bidrar till bättre hälsa.</p>
+                    <p>På alla ställen i staden där man parkerar utefter en gata löper man alltid risk att bli inplogad bakom en snösträng. Även där förväntas man själv agera.</p>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Faktorer som avgör start av snöröjning</h3>
+                    <ul style="margin-bottom: 1.5rem; list-style-type: disc; margin-left: 2rem;">
+                        <li style="margin-bottom: 0.5rem;">Mängden nedfallen snö</li>
+                        <li style="margin-bottom: 0.5rem;">När man beräknar att det skall sluta snöa (SMHI prognos)</li>
+                        <li style="margin-bottom: 0.5rem;">Snötyngden</li>
+                    </ul>
+                    <p style="margin-bottom: 1rem;">Släng upp snön på era tomter eller där traktorn har kört upp snön på allmänna ytor på ett sådant sätt att gatan inte blir smalare.</p>
+                    <p style="margin-bottom: 1rem;">Tänk på framkomligheten när du själv röjer.</p>
+                    <p>Föreningens kontaktperson för snöröjningen är Josif Oplopiadis i styrelsen. <a href="#" id="openSnorojsFormBtn1" onclick="document.getElementById('contactModalOverlay').style.display='flex'; document.body.style.overflow='hidden'; return false;" style="color: var(--primary-color); font-weight: 500;">Mailkontakt</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Archive & Forms Section -->
     <section id="arkiv" class="about hidden-section">
         <div class="container">
@@ -6294,7 +6397,7 @@
                                 <div style="position: relative;">
                                     <input type="file" id="attachment" name="attachment" accept=".pdf,.jpg,.jpeg,.png,.zip,.rar" style="width: 100%; padding: 0.75rem 1rem; border: 2px dashed #e5e7eb; border-radius: 0.5rem; font-size: 0.95rem; background: #f9fafb; cursor: pointer; transition: border-color 0.3s ease;">
                                 </div>
-                                <small style="color: #6b7280; font-size: 0.8rem;">Tillåtna filtyper: .pdf, .jpg, .png, .zip, .rar — Blockerar .exe och andra filtyper.</small>
+                                <small style="color: #6b7280; font-size: 0.8rem;">Tillåtna filtyper: .pdf, .jpg, .png, .zip, .rar.</small>
                                 <div id="fileError" style="color: #e53e3e; font-size: 0.85rem; margin-top: 0.25rem; display: none;"></div>
                             </div>
                             <div style="background: #f0fdf4; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #22c55e; margin-bottom: 1rem;">
