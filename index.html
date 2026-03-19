@@ -2313,13 +2313,13 @@
                 </li>
                 <li class="nav-item dropdown">
                     <div class="nav-link-wrapper">
-                        <a href="#samfalligheten" class="nav-link">Samfälligheten <i class="fas fa-chevron-right menu-indicator"></i></a>
+                        <a href="#samfalligheten" class="nav-link" data-category="samfalligheten">Samfälligheten <i class="fas fa-chevron-right menu-indicator"></i></a>
                         <span class="dropdown-toggle" onclick="(function(e){e.preventDefault();e.stopPropagation();const dropdown=e.target.closest('.nav-item.dropdown');const content=dropdown.querySelector('.dropdown-content');dropdown.classList.toggle('show');content.classList.toggle('show');console.log('Dropdown toggled');})(event)"><i class="fas fa-chevron-down"></i></span>
                     </div>
                     <div class="dropdown-content">
                         <div class="dropdown-submenu">
                             <div class="nav-link-wrapper">
-                                <a href="#aegarbyte" class="nav-link">Ägarbyte/Ägarförändring <i class="fas fa-chevron-right menu-indicator"></i></a>
+                                <a href="#aegarbyte" class="nav-link" data-category="aegarbyte">Ägarbyte/Ägarförändring <i class="fas fa-chevron-right menu-indicator"></i></a>
                                 <span class="dropdown-toggle" onclick="(function(e){e.preventDefault();e.stopPropagation();const submenu=e.target.closest('.dropdown-submenu');const content=submenu.querySelector('.dropdown-submenu-content');submenu.classList.toggle('show');content.classList.toggle('show');console.log('Submenu toggled');})(event)"><i class="fas fa-chevron-down"></i></span>
                             </div>
                             <div class="dropdown-submenu-content">
@@ -2330,7 +2330,7 @@
                         </div>
                         <div class="dropdown-submenu">
                             <div class="nav-link-wrapper">
-                                <a href="#foreningen" class="nav-link">Föreningen <i class="fas fa-chevron-right menu-indicator"></i></a>
+                                <a href="#foreningen" class="nav-link" data-category="foreningen">Föreningen <i class="fas fa-chevron-right menu-indicator"></i></a>
                                 <span class="dropdown-toggle" onclick="(function(e){e.preventDefault();e.stopPropagation();const submenu=e.target.closest('.dropdown-submenu');const content=submenu.querySelector('.dropdown-submenu-content');submenu.classList.toggle('show');content.classList.toggle('show');console.log('Submenu toggled');})(event)"><i class="fas fa-chevron-down"></i></span>
                             </div>
                             <div class="dropdown-submenu-content">
@@ -2349,7 +2349,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <div class="nav-link-wrapper">
-                        <a href="#husen" class="nav-link">Husen <i class="fas fa-chevron-right menu-indicator"></i></a>
+                        <a href="#husen" class="nav-link" data-category="husen">Husen <i class="fas fa-chevron-right menu-indicator"></i></a>
                         <span class="dropdown-toggle" onclick="(function(e){e.preventDefault();e.stopPropagation();const dropdown=e.target.closest('.nav-item.dropdown');const content=dropdown.querySelector('.dropdown-content');dropdown.classList.toggle('show');content.classList.toggle('show');console.log('Dropdown toggled');})(event)"><i class="fas fa-chevron-down"></i></span>
                     </div>
                     <div class="dropdown-content">
@@ -2369,7 +2369,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <div class="nav-link-wrapper">
-                        <a href="#indelning" class="nav-link">Området <i class="fas fa-chevron-right menu-indicator"></i></a>
+                        <a href="#indelning" class="nav-link" data-category="omradet">Området <i class="fas fa-chevron-right menu-indicator"></i></a>
                         <span class="dropdown-toggle" onclick="(function(e){e.preventDefault();e.stopPropagation();const dropdown=e.target.closest('.nav-item.dropdown');const content=dropdown.querySelector('.dropdown-content');dropdown.classList.toggle('show');content.classList.toggle('show');console.log('Dropdown toggled');})(event)"><i class="fas fa-chevron-down"></i></span>
                     </div>
                     <div class="dropdown-content">
@@ -2378,7 +2378,7 @@
                         <a href="#skotsel" class="nav-link">Skötsel</a>
                         <div class="dropdown-submenu">
                             <div class="nav-link-wrapper">
-                                <a href="#fordon" class="nav-link">Fordon i området <i class="fas fa-chevron-right menu-indicator"></i></a>
+                                <a href="#fordon" class="nav-link" data-category="fordon">Fordon i området <i class="fas fa-chevron-right menu-indicator"></i></a>
                                 <span class="dropdown-toggle" onclick="(function(e){e.preventDefault();e.stopPropagation();const submenu=e.target.closest('.dropdown-submenu');const content=submenu.querySelector('.dropdown-submenu-content');submenu.classList.toggle('show');content.classList.toggle('show');console.log('Submenu toggled');})(event)"><i class="fas fa-chevron-down"></i></span>
                             </div>
                             <div class="dropdown-submenu-content">
@@ -2397,7 +2397,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <div class="nav-link-wrapper">
-                        <a href="#bilder" class="nav-link">Bilder &amp; Historia <i class="fas fa-chevron-right menu-indicator"></i></a>
+                        <a href="#bilder" class="nav-link" data-category="bilder">Bilder &amp; Historia <i class="fas fa-chevron-right menu-indicator"></i></a>
                         <span class="dropdown-toggle" onclick="(function(e){e.preventDefault();e.stopPropagation();const dropdown=e.target.closest('.nav-item.dropdown');const content=dropdown.querySelector('.dropdown-content');dropdown.classList.toggle('show');content.classList.toggle('show');console.log('Dropdown toggled');})(event)"><i class="fas fa-chevron-down"></i></span>
                     </div>
                     <div class="dropdown-content">
@@ -6831,31 +6831,98 @@
         // MODERN JAVASCRIPT ENHANCEMENTS
         // ======================================
 
-        // ======================================
-        // HOMEPAGE SHORTENING & REVELATION
-        // ======================================
-        window.revealSection = function(targetId) {
+        // Category Mapping for "Show All" functionality
+        const categoryMapping = {
+            'samfalligheten': ['samfalligheten', 'aegarbyte', 'ekonomisk-forvaltare', 'maklarinfo', 'energideklaration', 'foreningen', 'stadgar-section', 'anlaggningar', 'bygglov', 'styrelsen', 'avgift', 'tv', 'bredband', 'formaner', 'arkiv'],
+            'husen': ['husen', 'fonster', 'panel', 'farg', 'varme', 'termostat', 'krypgrund', 'bygglov', 'takflakt', 'aegarbyte', 'ekonomisk-forvaltare', 'maklarinfo', 'energideklaration'],
+            'omradet': ['indelning', 'karta', 'skotsel', 'fordon', 'biltrafik', 'garage', 'besoksparkering', 'extragarage', 'parkeringsbolag', 'avfall', 'tvattstuga', 'grannsamverkan', 'snorojning'],
+            'fordon': ['fordon', 'biltrafik', 'garage', 'besoksparkering', 'extragarage', 'parkeringsbolag'],
+            'foreningen': ['foreningen', 'stadgar-section', 'anlaggningar', 'bygglov'],
+            'aegarbyte': ['aegarbyte', 'ekonomisk-forvaltare', 'maklarinfo', 'energideklaration'],
+            'bilder': ['bilder', 'historia']
+        };
+
+        // Function to hide all sections if needed
+        window.hideAllDynamicSections = function() {
+            document.querySelectorAll('section.about, section.contact, section.gallery, section.documents').forEach(section => {
+                if (section.id !== 'hero' && section.id !== 'home' && section.id !== 'about') {
+                    section.classList.add('hidden-section');
+                    section.classList.remove('show-section');
+                    
+                    // Also hide any inner revealed divs if necessary
+                    const innerShown = section.querySelectorAll('.show-section');
+                    innerShown.forEach(el => {
+                        el.classList.add('hidden-section');
+                        el.classList.remove('show-section');
+                    });
+                }
+            });
+            console.log('All dynamic sections hidden');
+        }
+
+        window.revealSection = function(targetId, skipHide = false) {
             if (!targetId) return null;
             
+            // If target is a category key, show all in category
+            if (categoryMapping[targetId]) {
+                return showCategory(targetId);
+            }
+
             // Remove # if present
             const id = targetId.startsWith('#') ? targetId.substring(1) : targetId;
             const target = document.getElementById(id);
             
             if (target) {
-                // If the target is within a section, reveal the parent section
+                // If not skipping hide, clear others
+                if (!skipHide) hideAllDynamicSections();
+
                 const section = target.closest('section');
-                if (section && section.classList.contains('hidden-section')) {
+                if (section && (section.classList.contains('hidden-section') || !section.classList.contains('show-section'))) {
                     section.classList.remove('hidden-section');
                     section.classList.add('show-section');
                     console.log('Section revealed:', section.id);
-                } else if (target.classList.contains('hidden-section')) {
+                }
+                
+                // If target itself is a sub-element that needs showing
+                if (target.classList.contains('hidden-section')) {
                     target.classList.remove('hidden-section');
                     target.classList.add('show-section');
-                    console.log('Target revealed:', target.id);
+                    console.log('Target element revealed:', target.id);
                 }
+                
                 return target;
             }
             return null;
+        }
+
+        window.showCategory = function(categoryKey) {
+            const sections = categoryMapping[categoryKey];
+            if (!sections) return null;
+
+            console.log('Showing all sections for category:', categoryKey);
+            
+            // First hide everything
+            hideAllDynamicSections();
+            
+            let firstTarget = null;
+            sections.forEach((id, index) => {
+                const target = document.getElementById(id);
+                if (target) {
+                    target.classList.remove('hidden-section');
+                    target.classList.add('show-section');
+                    
+                    // Also ensure parent section is shown if target is inner
+                    const parentSection = target.closest('section');
+                    if (parentSection) {
+                        parentSection.classList.remove('hidden-section');
+                        parentSection.classList.add('show-section');
+                    }
+                    
+                    if (index === 0) firstTarget = target;
+                }
+            });
+
+            return firstTarget;
         }
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -6978,8 +7045,6 @@
             const allNavLinks = navMenu.querySelectorAll('a');
             allNavLinks.forEach(link => {
                 link.addEventListener('click', function () {
-                    // Only close if it's a link to a section (starts with #) or external
-                    // But don't close if it's just a toggle (which we handle separately, but toggles are spans now)
                     hamburger.classList.remove('active');
                     navMenu.classList.remove('active');
                     hamburger.setAttribute('aria-expanded', 'false');
@@ -7038,22 +7103,30 @@
             });
 
             // ======================================
-            // ENHANCED SMOOTH SCROLLING
+            // ENHANCED SMOOTH SCROLLING & NAVIGATION
             // ======================================
             navLinks.forEach(link => {
                 link.addEventListener('click', function (e) {
                     const href = this.getAttribute('href');
+                    const category = this.getAttribute('data-category');
                     
-                    // Only handle internal anchor links that start with #
-                    if (href && href.startsWith('#') && href.length > 1) {
+                    if (category || (href && href.startsWith('#') && href.length > 1)) {
                         e.preventDefault();
                         
-                        // First reveal the section if it's hidden
-                        const targetSection = revealSection(href);
+                        // Close mobile menu
+                        if (window.innerWidth <= 768) {
+                            hamburger.classList.remove('active');
+                            navMenu.classList.remove('active');
+                        }
+
+                        let targetSection = null;
+                        if (category) {
+                            targetSection = showCategory(category);
+                        } else {
+                            targetSection = revealSection(href, false);
+                        }
 
                         if (targetSection) {
-                            // Small timeout to allow the browser to process the visibility change
-                            // and calculate the correct offset
                             setTimeout(() => {
                                 const offsetTop = targetSection.getBoundingClientRect().top + window.pageYOffset - 80;
                                 window.scrollTo({
@@ -7062,11 +7135,12 @@
                                 });
                                 
                                 // Update URL hash without jumping
-                                history.pushState(null, null, href);
+                                if (!category) {
+                                    history.pushState(null, null, href);
+                                }
                             }, 50);
                         }
                     }
-                    // Non-anchor links (like PDFs) will follow their default behavior
                 });
             });
 
