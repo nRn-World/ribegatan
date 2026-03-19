@@ -2376,12 +2376,19 @@
                         <a href="#indelning" class="nav-link">Indelning</a>
                         <a href="#karta" class="nav-link">Karta</a>
                         <a href="#skotsel" class="nav-link">Skötsel</a>
-                        <a href="#fordon" class="nav-link" style="font-weight: 600;">Fordon i området</a>
-                        <a href="#biltrafik" class="nav-link" style="padding-left: 2rem; font-size: 0.9em;">- Biltrafik</a>
-                        <a href="#garage" class="nav-link" style="padding-left: 2rem; font-size: 0.9em;">- Garage</a>
-                        <a href="#besoksparkering" class="nav-link" style="padding-left: 2rem; font-size: 0.9em;">- Besöks parkering</a>
-                        <a href="#extragarage" class="nav-link" style="padding-left: 2rem; font-size: 0.9em;">- Extra garageplats</a>
-                        <a href="#parkeringsbolag" class="nav-link" style="padding-left: 2rem; font-size: 0.9em;">- Parkerings bolag</a>
+                        <div class="dropdown-submenu">
+                            <div class="nav-link-wrapper">
+                                <a href="#fordon" class="nav-link">Fordon i området <i class="fas fa-chevron-right menu-indicator"></i></a>
+                                <span class="dropdown-toggle" onclick="(function(e){e.preventDefault();e.stopPropagation();const submenu=e.target.closest('.dropdown-submenu');const content=submenu.querySelector('.dropdown-submenu-content');submenu.classList.toggle('show');content.classList.toggle('show');console.log('Submenu toggled');})(event)"><i class="fas fa-chevron-down"></i></span>
+                            </div>
+                            <div class="dropdown-submenu-content">
+                                <a href="#biltrafik" class="nav-link">Biltrafik</a>
+                                <a href="#garage" class="nav-link">Garage</a>
+                                <a href="#besoksparkering" class="nav-link">Besöks parkering</a>
+                                <a href="#extragarage" class="nav-link">Extra garageplats</a>
+                                <a href="#parkeringsbolag" class="nav-link">Parkerings bolag</a>
+                            </div>
+                        </div>
                         <a href="#avfall" class="nav-link">Avfall &amp; Återvinning</a>
                         <a href="#tvattstuga" class="nav-link">Tvättstugor &amp; träfflokaler</a>
                         <a href="#grannsamverkan" class="nav-link">Grannsamverkan</a>
