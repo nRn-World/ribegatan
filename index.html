@@ -6415,61 +6415,6 @@
                     </div>
                 </div>
                 </div>
-                
-                <!-- Modal Overlay för Kontaktformulär -->
-                <div id="contactModalOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; flex-direction: column; justify-content: center; align-items: center; padding: 1rem; backdrop-filter: blur(4px);">
-                    <div class="contact-form" style="background: white; padding: 2.5rem; border-radius: 1rem; width: 100%; max-width: 650px; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); max-height: 90vh; overflow-y: auto; margin: 0;">
-                        <button id="closeContactModalBtn" type="button" aria-label="Stäng kontaktformulär" style="position: absolute; top: 1.5rem; right: 1.5rem; background: #f3f4f6; border: none; font-size: 1.25rem; color: #4b5563; cursor: pointer; transition: all 0.3s; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;" onmouseover="this.style.background='#e5e7eb'; this.style.color='#1f2937';" onmouseout="this.style.background='#f3f4f6'; this.style.color='#4b5563';">
-                            <i class="fas fa-times"></i>
-                        </button>
-                        <h3 style="margin-bottom: 0.5rem; color: var(--primary-color);">Kontakta Styrelsen</h3>
-                        <p style="font-size: 0.95rem; color: #6b7280; margin-bottom: 2rem; line-height: 1.6;">
-                            Använd formuläret nedan för att nå styrelsen. Vi hanterar personuppgifter enligt GDPR och sparar endast information som krävs för att besvara ditt ärende.
-                        </p>
-                        <form id="contactForm" novalidate>
-                            <div class="form-group">
-                                <label for="name">Ditt Namn <span style="color: #e53e3e;">*</span></label>
-                                <input type="text" id="name" name="name" placeholder="Ange ditt fullständiga namn" required aria-required="true">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">E-postadress <span style="color: #e53e3e;">*</span></label>
-                                <input type="email" id="email" name="email" placeholder="namn@domän.se" required aria-required="true" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
-                                <small style="color: #6b7280; font-size: 0.8rem;">Valideras för att förhindra felskrivningar.</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="subject">Ärende <span style="color: #e53e3e;">*</span></label>
-                                <select id="subject" name="subject" required aria-required="true" style="width: 100%; padding: 0.75rem 1rem; border: 2px solid #e5e7eb; border-radius: 0.5rem; font-size: 1rem; background: white; color: #333; transition: border-color 0.3s ease; appearance: auto;">
-                                    <option value="" disabled selected>-- Välj ärende --</option>
-                                    <option value="Felanmälan">Felanmälan</option>
-                                    <option value="Medlemsfrågor">Medlemsfrågor</option>
-                                    <option value="Ägarbyte">Ägarbyte / Försäljning</option>
-                                    <option value="Motion">Motion till årsstämman</option>
-                                    <option value="Övrigt">Övrigt</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Meddelande <span style="color: #e53e3e;">*</span></label>
-                                <textarea id="message" name="message" placeholder="Skriv ditt meddelande här..." rows="5" required aria-required="true" maxlength="1000"></textarea>
-                                <small id="charCount" style="color: #6b7280; font-size: 0.8rem;">0 / 1000 tecken</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="attachment">Bilaga (Valfritt)</label>
-                                <div style="position: relative;">
-                                    <input type="file" id="attachment" name="attachment" accept=".pdf,.jpg,.jpeg,.png,.zip,.rar" style="width: 100%; padding: 0.75rem 1rem; border: 2px dashed #e5e7eb; border-radius: 0.5rem; font-size: 0.95rem; background: #f9fafb; cursor: pointer; transition: border-color 0.3s ease;">
-                                </div>
-                                <small style="color: #6b7280; font-size: 0.8rem;">Tillåtna filtyper: .pdf, .jpg, .png, .zip, .rar.</small>
-                                <div id="fileError" style="color: #e53e3e; font-size: 0.85rem; margin-top: 0.25rem; display: none;"></div>
-                            </div>
-                            <div style="background: #f0fdf4; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #22c55e; margin-bottom: 1rem;">
-                                <p style="font-size: 0.85rem; color: #166534; margin: 0; line-height: 1.5;">
-                                    <i class="fas fa-shield-alt" style="margin-right: 0.5rem;"></i>
-                                    <strong>GDPR:</strong> Dina uppgifter behandlas konfidentiellt och används enbart för att besvara ditt ärende.
-                                </p>
-                            </div>
-                            <button type="submit" class="btn btn-primary" aria-label="Skicka meddelande" style="width: 100%;">Skicka meddelande</button>
-                        </form>
-                    </div>
-                </div> <!-- End Modal -->
             </div>
         </div>
     </section>
@@ -6793,6 +6738,61 @@
             </div>
         </div>
     </footer>
+
+    <!-- Modal Overlay för Kontaktformulär -->
+    <div id="contactModalOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; flex-direction: column; justify-content: center; align-items: center; padding: 1rem; backdrop-filter: blur(4px);">
+        <div class="contact-form" style="background: white; padding: 2.5rem; border-radius: 1rem; width: 100%; max-width: 650px; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); max-height: 90vh; overflow-y: auto; margin: 0;">
+            <button id="closeContactModalBtn" type="button" aria-label="Stäng kontaktformulär" style="position: absolute; top: 1.5rem; right: 1.5rem; background: #f3f4f6; border: none; font-size: 1.25rem; color: #4b5563; cursor: pointer; transition: all 0.3s; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;" onmouseover="this.style.background='#e5e7eb'; this.style.color='#1f2937';" onmouseout="this.style.background='#f3f4f6'; this.style.color='#4b5563';">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 style="margin-bottom: 0.5rem; color: var(--primary-color);">Kontakta Styrelsen</h3>
+            <p style="font-size: 0.95rem; color: #6b7280; margin-bottom: 2rem; line-height: 1.6;">
+                Använd formuläret nedan för att nå styrelsen. Vi hanterar personuppgifter enligt GDPR och sparar endast information som krävs för att besvara ditt ärende.
+            </p>
+            <form id="contactForm" novalidate>
+                <div class="form-group">
+                    <label for="name">Ditt Namn <span style="color: #e53e3e;">*</span></label>
+                    <input type="text" id="name" name="name" placeholder="Ange ditt fullständiga namn" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-postadress <span style="color: #e53e3e;">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="namn@domän.se" required aria-required="true" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+                    <small style="color: #6b7280; font-size: 0.8rem;">Valideras för att förhindra felskrivningar.</small>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Ärende <span style="color: #e53e3e;">*</span></label>
+                    <select id="subject" name="subject" required aria-required="true" style="width: 100%; padding: 0.75rem 1rem; border: 2px solid #e5e7eb; border-radius: 0.5rem; font-size: 1rem; background: white; color: #333; transition: border-color 0.3s ease; appearance: auto;">
+                        <option value="" disabled selected>-- Välj ärende --</option>
+                        <option value="Felanmälan">Felanmälan</option>
+                        <option value="Medlemsfrågor">Medlemsfrågor</option>
+                        <option value="Ägarbyte">Ägarbyte / Försäljning</option>
+                        <option value="Motion">Motion till årsstämman</option>
+                        <option value="Övrigt">Övrigt</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Meddelande <span style="color: #e53e3e;">*</span></label>
+                    <textarea id="message" name="message" placeholder="Skriv ditt meddelande här..." rows="5" required aria-required="true" maxlength="1000"></textarea>
+                    <small id="charCount" style="color: #6b7280; font-size: 0.8rem;">0 / 1000 tecken</small>
+                </div>
+                <div class="form-group">
+                    <label for="attachment">Bilaga (Valfritt)</label>
+                    <div style="position: relative;">
+                        <input type="file" id="attachment" name="attachment" accept=".pdf,.jpg,.jpeg,.png,.zip,.rar" style="width: 100%; padding: 0.75rem 1rem; border: 2px dashed #e5e7eb; border-radius: 0.5rem; font-size: 0.95rem; background: #f9fafb; cursor: pointer; transition: border-color 0.3s ease;">
+                    </div>
+                    <small style="color: #6b7280; font-size: 0.8rem;">Tillåtna filtyper: .pdf, .jpg, .png, .zip, .rar.</small>
+                    <div id="fileError" style="color: #e53e3e; font-size: 0.85rem; margin-top: 0.25rem; display: none;"></div>
+                </div>
+                <div style="background: #f0fdf4; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #22c55e; margin-bottom: 1rem;">
+                    <p style="font-size: 0.85rem; color: #166534; margin: 0; line-height: 1.5;">
+                        <i class="fas fa-shield-alt" style="margin-right: 0.5rem;"></i>
+                        <strong>GDPR:</strong> Dina uppgifter behandlas konfidentiellt och används enbart för att besvara ditt ärende.
+                    </p>
+                </div>
+                <button type="submit" class="btn btn-primary" aria-label="Skicka meddelande" style="width: 100%;">Skicka meddelande</button>
+            </form>
+        </div>
+    </div> <!-- End Modal -->
 
     <script>
         // ======================================
