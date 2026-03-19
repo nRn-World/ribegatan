@@ -6989,8 +6989,8 @@
                 <h2>Kontakta Styrelsen</h2>
                 <p>Besök oss eller kontakta oss för mer information</p>
             </div>
-            <div class="contact-content">
-                <div class="contact-info">
+            <div class="contact-content" style="display: block; max-width: 900px; margin: 0 auto;">
+                <div class="contact-info" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
                     <div class="uniform-card">
                         <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                         <div>
@@ -6998,11 +6998,11 @@
                             <p>Ribe Samfällighetsförening<br>Ribegatan 77<br>164 45 Kista</p>
                         </div>
                     </div>
-                    <div class="uniform-card">
+                    <div class="uniform-card" id="openEmailModalBtn" style="cursor: pointer; border: 2px solid transparent; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='transparent'">
                         <i class="fas fa-envelope" aria-hidden="true"></i>
                         <div>
                             <h4>E-post</h4>
-                            <p>Använd formuläret nedan för att kontakta styrelsen</p>
+                            <p style="color: var(--primary-color); font-weight: 500;">Klicka här för att öppna kontaktformuläret</p>
                         </div>
                     </div>
                     <div class="uniform-card">
@@ -7020,12 +7020,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <h3>Kontakta Styrelsen</h3>
-                    <p style="font-size: 0.9rem; color: #6b7280; margin-bottom: 1.5rem; line-height: 1.6;">
-                        Använd formuläret nedan för att nå styrelsen. Vi hanterar personuppgifter enligt GDPR och sparar endast information som krävs för att besvara ditt ärende.
-                    </p>
-                    <form id="contactForm" novalidate>
+                </div>
+                
+                <!-- Modal Overlay för Kontaktformulär -->
+                <div id="contactModalOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; flex-direction: column; justify-content: center; align-items: center; padding: 1rem; backdrop-filter: blur(4px);">
+                    <div class="contact-form" style="background: white; padding: 2.5rem; border-radius: 1rem; width: 100%; max-width: 650px; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); max-height: 90vh; overflow-y: auto; margin: 0;">
+                        <button id="closeContactModalBtn" type="button" aria-label="Stäng kontaktformulär" style="position: absolute; top: 1.5rem; right: 1.5rem; background: #f3f4f6; border: none; font-size: 1.25rem; color: #4b5563; cursor: pointer; transition: all 0.3s; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;" onmouseover="this.style.background='#e5e7eb'; this.style.color='#1f2937';" onmouseout="this.style.background='#f3f4f6'; this.style.color='#4b5563';">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <h3 style="margin-bottom: 0.5rem; color: var(--primary-color);">Kontakta Styrelsen</h3>
+                        <p style="font-size: 0.95rem; color: #6b7280; margin-bottom: 2rem; line-height: 1.6;">
+                            Använd formuläret nedan för att nå styrelsen. Vi hanterar personuppgifter enligt GDPR och sparar endast information som krävs för att besvara ditt ärende.
+                        </p>
+                        <form id="contactForm" novalidate>
                         <div class="form-group">
                             <label for="name">Ditt Namn <span style="color: #e53e3e;">*</span></label>
                             <input type="text" id="name" name="name" placeholder="Ange ditt fullständiga namn" required
@@ -7072,7 +7079,8 @@
                         </div>
                         <button type="submit" class="btn btn-primary" aria-label="Skicka meddelande" style="width: 100%;">Skicka meddelande</button>
                     </form>
-                </div>
+                    </div>
+                </div> <!-- End Modal -->
             </div>
         </div>
     </section>
@@ -7302,7 +7310,7 @@
                 <div class="footer-section">
                     <h4>Kontaktinfo</h4>
                     <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Ribegatan 77, 164 45 Kista</p>
-                    <p><i class="fas fa-envelope" aria-hidden="true"></i> Kontakta oss via formuläret</p>
+                    <p id="openEmailModalFooterBtn" style="cursor: pointer; color: var(--primary-color); font-weight: 500; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-color)'" onmouseout="this.style.color='var(--primary-color)'"><i class="fas fa-envelope" aria-hidden="true"></i> Klicka här för kontaktformulär</p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -7779,6 +7787,13 @@
                         if (fileError) { fileError.style.display = 'none'; fileError.textContent = ''; }
                         submitButton.innerHTML = originalText;
                         submitButton.disabled = false;
+                        
+                        // Stäng modalen och återställ scroll
+                        const modal = document.getElementById('contactModalOverlay');
+                        if (modal) {
+                            modal.style.display = 'none';
+                            document.body.style.overflow = '';
+                        }
                     }, 2000);
                 });
             }
@@ -7789,13 +7804,45 @@
             const uniformCards = document.querySelectorAll('.uniform-card');
             uniformCards.forEach((item, index) => {
                 item.addEventListener('click', function () {
+                    if(this.id === 'openEmailModalBtn') return; // Ignore if it's the modal trigger
                     const text = this.querySelector('p').textContent;
                     showNotification(`Information om: ${text}`, 'info');
                 });
-
-                // Kort är synliga från början - ingen animation behövs
-                // Animationer hanteras av IntersectionObserver istället
             });
+
+            // ======================================
+            // MODAL LOGIC FOR CONTACT FORM
+            // ======================================
+            const contactModal = document.getElementById('contactModalOverlay');
+            const openBtns = [document.getElementById('openEmailModalBtn'), document.getElementById('openEmailModalFooterBtn')];
+            const closeBtn = document.getElementById('closeContactModalBtn');
+
+            if (contactModal) {
+                openBtns.forEach(btn => {
+                    if (btn) {
+                        btn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            contactModal.style.display = 'flex';
+                            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                        });
+                    }
+                });
+
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', function() {
+                        contactModal.style.display = 'none';
+                        document.body.style.overflow = '';
+                    });
+                }
+
+                // Close on outside click
+                contactModal.addEventListener('click', function(e) {
+                    if (e.target === contactModal) {
+                        contactModal.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
 
             // ======================================
             // ENHANCED ANIMATION OBSERVER
