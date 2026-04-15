@@ -1542,6 +1542,53 @@
             animation: fadeInUp 0.8s ease-out;
         }
 
+        @keyframes attentionBadgePulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.14);
+            }
+            50% {
+                transform: scale(1.08);
+                box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
+            }
+        }
+
+        @keyframes attentionIconSwing {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-12deg); }
+            75% { transform: rotate(12deg); }
+        }
+
+        .attention-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: #fff;
+            padding: 0.28rem 0.82rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            animation: attentionBadgePulse 1.8s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        .attention-badge i {
+            animation: attentionIconSwing 1.2s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        .attention-badge--important {
+            background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+        }
+
+        .attention-badge--news {
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        }
+
         /* ======================================
            UNIFORM CARD SYSTEM
         ====================================== */
@@ -2498,17 +2545,77 @@
     <!-- Grannsamverkan Section -->
     <section id="grannsamverkan" class="about">
         <div class="container">
-            <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 3rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; text-align: center; max-width: 900px; margin-left: auto; margin-right: auto;">
-                <a href="https://app.boappa.se/login" target="_blank" style="display: block; margin-bottom: 1.5rem;">
-                    <img src="boappa.png" alt="boAppa" style="max-height: 120px; max-width: 100%;">
-                </a>
-                <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.5rem;">boAppa</h3>
-                <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;">
-                    Föreningen använder boAppa som är en app och webb för all boende information som inte är upplagd på hemsidan.
-                </p>
-                <a href="https://boappa.se/ribe-samf-kista" target="_blank" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">
-                    boappa.se/ribe-samf-kista <i class="fas fa-external-link-alt" style="margin-left: 0.3rem; font-size: 0.8rem;"></i>
-                </a>
+            <!-- Aktuellt Preview (Endast boAppa och APCOA på startsidan) -->
+            <div id="aktuellt-preview" style="margin-bottom: 4rem;">
+                <div class="section-header">
+                    <h2 style="background: linear-gradient(135deg, #2c5530 0%, #4a7c59 50%, #1a3a1f 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 30px rgba(44, 85, 48, 0.3);">Aktuellt</h2>
+                </div>
+
+                <div class="aktuellt-content" style="max-width: 900px; margin: 0px auto;">
+                    <!-- boAppa Info (Överst på startsidan) -->
+                    <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; text-align: center; position: relative;">
+                        <div class="attention-badge attention-badge--important">
+                            <i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Viktigt
+                        </div>
+                        <a href="https://app.boappa.se/login" target="_blank" style="display: block; margin-bottom: 1.5rem;">
+                            <img src="boappa.png" alt="boAppa" style="max-height: 120px; max-width: 100%;">
+                        </a>
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.5rem;">boAppa</h3>
+                        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;">
+                            Föreningen använder boAppa som är en app och webb för all boende information som inte är upplagd på hemsidan.
+                        </p>
+                        <a href="https://boappa.se/ribe-samf-kista" target="_blank" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">
+                            boappa.se/ribe-samf-kista <i class="fas fa-external-link-alt" style="margin-left: 0.3rem; font-size: 0.8rem;"></i>
+                        </a>
+                    </div>
+
+                    <!-- APCOA Guide -->
+                    <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative; border-top: 4px solid var(--primary-color);">
+                        <div class="attention-badge attention-badge--news">
+                            <i class="fas fa-bullhorn" aria-hidden="true"></i> Nyhet
+                        </div>
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                            <i class="fas fa-shield-halved"></i>
+                            Områdesbevakning - APCOA
+                        </h3>
+                        <p style="margin-bottom: 1.5rem; font-style: italic; color: var(--gray-600);">Guide för anmälan av boende till APCOA där alla hjälps åt mot okynnes parkering i området.</p>
+                        
+                        <div style="background: rgba(44, 85, 48, 0.04); padding: 1.5rem; border-radius: 1rem; border-left: 4px solid var(--primary-color);">
+                            <div style="display: flex; gap: 1rem; margin-bottom: 1.25rem;">
+                                <i class="fas fa-pen-to-square" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
+                                <p style="margin: 0; color: var(--gray-800);">Anteckna registreringsnummer och den exakta adressen där fordonet står felparkerad i området.</p>
+                            </div>
+                            
+                            <div style="display: flex; gap: 1rem; margin-bottom: 1.25rem; align-items: center; background: white; padding: 0.75rem 1rem; border-radius: 0.5rem; width: fit-content; box-shadow: var(--shadow-sm);">
+                                <i class="fas fa-phone-volume" style="color: var(--primary-color);"></i>
+                                <p style="margin: 0; font-size: 1.2rem; font-weight: 700; color: var(--primary-dark);">
+                                    Ring <a href="tel:0771401020" style="color: inherit; text-decoration: none;">0771- 401020</a>
+                                </p>
+                            </div>
+                            
+                            <div style="display: flex; gap: 1rem; margin-bottom: 0.75rem;">
+                                <i class="fas fa-list-ol" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
+                                <div>
+                                    <p style="margin: 0 0 0.5rem 0; color: var(--gray-800);">I början av samtalet får du flera knappval.</p>
+                                    <p style="margin: 0; color: var(--primary-color); font-weight: 600;">
+                                        <i class="fas fa-circle-check" style="margin-right: 0.5rem; font-size: 0.9rem;"></i>
+                                        Välj alternativ 1 för att kopplas till rätt avdelning.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; gap: 1rem; margin-bottom: 1.25rem;">
+                                <i class="fas fa-bullhorn" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
+                                <p style="margin: 0; color: var(--gray-800);">Lämna sedan uppgifterna om det felparkerade fordonet.</p>
+                            </div>
+                            
+                            <div style="display: flex; gap: 1rem; padding-top: 1rem; border-top: 1px solid rgba(44, 85, 48, 0.1);">
+                                <i class="fas fa-paper-plane" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
+                                <p style="margin: 0; font-weight: 500; color: var(--primary-dark);">Kundtjänst skickar därefter ett meddelande till samtliga vakter i området så att fordonet bevakas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Välkommen Section med bilder -->
@@ -2532,7 +2639,7 @@
                 </div>
 
                 <!-- Beskrivande text -->
-                <div style="text-align: left; background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 4px;">
+                <div style="text-align: left; background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 4px; margin-bottom: 3rem;">
                     <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
                         Vår boendemiljö påminner om en småstadsidyll. Lugnt, barnvänligt och nära till fina
                         promenadvägar på Järvafältet. Vid Eggeby Gård kan du få se frigående höns, ta en fika på Kafé
@@ -2547,8 +2654,9 @@
                     <p style="font-size: 1.2rem; line-height: 1.8; color: var(--primary-color); font-weight: 500; font-style: italic; margin-top: 2rem;">
                         Styrelsen och samfällighetsföreningen hälsar dig varmt välkommen till kvarteret Ribe!
                     </p>
+                </div>
 
-                    <!-- Kalender Section -->
+                <!-- Kalender Section -->
                     <div id="kalender" style="background: white; padding: 2rem; border-radius: 1rem; margin-top: 2rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative;">
                         <h3 style="color: var(--primary-color); margin-bottom: 0.5rem; display: flex; align-items: center;">
                             <i class="far fa-calendar-alt" style="margin-right: 0.75rem; color: var(--secondary-color);"></i>Kalender
@@ -2815,7 +2923,57 @@
 
             <div class="aktuellt-content" style="max-width: 900px; margin: 0px auto;">
 
-                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; text-align: center;">
+                <!-- Nytt inlägg: Områdesbevakning - APCOA -->
+                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative; border-top: 4px solid var(--primary-color);">
+                    <div class="attention-badge attention-badge--news">
+                        <i class="fas fa-bullhorn" aria-hidden="true"></i> Nyhet
+                    </div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fas fa-shield-halved"></i>
+                        Områdesbevakning - APCOA
+                    </h3>
+                    <p style="margin-bottom: 1.5rem; font-style: italic; color: var(--gray-600);">Guide för anmälan av boende till APCOA där alla hjälps åt mot okynnes parkering i området.</p>
+                    
+                    <div style="background: rgba(44, 85, 48, 0.04); padding: 1.5rem; border-radius: 1rem; border-left: 4px solid var(--primary-color);">
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1.25rem;">
+                            <i class="fas fa-pen-to-square" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
+                            <p style="margin: 0; color: var(--gray-800);">Anteckna registreringsnummer och den exakta adressen där fordonet står felparkerad i området.</p>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1.25rem; align-items: center; background: white; padding: 0.75rem 1rem; border-radius: 0.5rem; width: fit-content; box-shadow: var(--shadow-sm);">
+                            <i class="fas fa-phone-volume" style="color: var(--primary-color);"></i>
+                            <p style="margin: 0; font-size: 1.2rem; font-weight: 700; color: var(--primary-dark);">
+                                Ring <a href="tel:0771401020" style="color: inherit; text-decoration: none;">0771- 401020</a>
+                            </p>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem; margin-bottom: 0.75rem;">
+                            <i class="fas fa-list-ol" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
+                            <div>
+                                <p style="margin: 0 0 0.5rem 0; color: var(--gray-800);">I början av samtalet får du flera knappval.</p>
+                                <p style="margin: 0; color: var(--primary-color); font-weight: 600;">
+                                    <i class="fas fa-circle-check" style="margin-right: 0.5rem; font-size: 0.9rem;"></i>
+                                    Välj alternativ 1 för att kopplas till rätt avdelning.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1.25rem;">
+                            <i class="fas fa-bullhorn" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
+                            <p style="margin: 0; color: var(--gray-800);">Lämna sedan uppgifterna om det felparkerade fordonet.</p>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem; padding-top: 1rem; border-top: 1px solid rgba(44, 85, 48, 0.1);">
+                            <i class="fas fa-paper-plane" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
+                            <p style="margin: 0; font-weight: 500; color: var(--primary-dark);">Kundtjänst skickar därefter ett meddelande till samtliga vakter i området så att fordonet bevakas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; text-align: center; position: relative;">
+                    <div class="attention-badge attention-badge--important">
+                        <i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Viktigt
+                    </div>
                     <a href="https://app.boappa.se/login" target="_blank" style="display: block; margin-bottom: 1.5rem;">
                         <img src="boappa.png" alt="boAppa" style="max-height: 120px; max-width: 100%;">
                     </a>
@@ -3580,6 +3738,65 @@
             </div>
 
             <div style="max-width: 900px; margin: 0px auto;">
+
+                <!-- Allmän information om färg -->
+                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Information om färg och målningsråd</h3>
+                    
+                    <p style="margin-bottom: 1.5rem; line-height: 1.8;">Fasaderna på våra hus och bodar är ursprungligen målade med akrylatfärg. Akrylatfärg är en typ av latexfärg, vilket är en gemensam benämning för flera sorters färg som är vattenburna. Många av dessa färger innehåller också lösningsmedel. Gemensamt för dessa typer av färger är att de vanligtvis används utomhus vid målning av trä.</p>
+                    
+                    <div style="background: rgba(44, 85, 48, 0.04); padding: 1.5rem; border-radius: 1rem; border-left: 4px solid var(--primary-color); margin-bottom: 2rem;">
+                        <p style="margin-bottom: 1rem; font-weight: 500;">Vi i styrelsen har tagit fram nya färgkoder till den akrylatfärg som används till målning av föreningens bodar. Dessa färgkoder bör också användas av ägarna till sitt hus.</p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: var(--shadow-sm);">
+                                <div style="width: 30px; height: 30px; background: #fdf2a8; border-radius: 50%; border: 1px solid #ddd;"></div>
+                                <div>
+                                    <span style="display: block; font-size: 0.8rem; color: var(--gray-500);">Gul</span>
+                                    <strong style="color: var(--primary-dark);">S 0505-y20r</strong>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 1rem; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: var(--shadow-sm);">
+                                <div style="width: 30px; height: 30px; background: #f5e1d5; border-radius: 50%; border: 1px solid #ddd;"></div>
+                                <div>
+                                    <span style="display: block; font-size: 0.8rem; color: var(--gray-500);">Rosa</span>
+                                    <strong style="color: var(--primary-dark);">S 1005-y50r</strong>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 1rem; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: var(--shadow-sm);">
+                                <div style="width: 30px; height: 30px; background: #ffffff; border-radius: 50%; border: 1px solid #ddd;"></div>
+                                <div>
+                                    <span style="display: block; font-size: 0.8rem; color: var(--gray-500);">Vit</span>
+                                    <strong style="color: var(--primary-dark);">S100N / TVT F167</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: white; border: 1px solid var(--gray-200); padding: 1.5rem; border-radius: 1rem; margin-bottom: 2rem;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                            <i class="fas fa-store"></i>
+                            Samarbete med Vårby Färghall
+                        </h4>
+                        <p style="margin-bottom: 1rem;">Föreningen har ett samarbete med <strong>Vårby Färghall</strong> med Ribe prislista.</p>
+                        <p style="margin-bottom: 1rem;">Som medlem går det att handla online på <a href="https://www.fargvaruhuset.se" target="_blank" style="color: var(--primary-color); font-weight: 600;">www.fargvaruhuset.se</a>. För att erhålla rätt priser behöver du kontakta deras kundtjänst för ett inlogg, eller kontakta styrelsen för hjälp med kontaktuppgifter.</p>
+                        
+                        <div style="background: #fff8f8; padding: 1rem; border-radius: 0.5rem; border: 1px solid #fee2e2; margin-top: 1rem;">
+                            <p style="margin: 0; font-size: 0.95rem;">
+                                <i class="fas fa-info-circle" style="color: #ef4444; margin-right: 0.5rem;"></i>
+                                Vårby Färghall har inte Alcro längre utan de hänvisar till <strong>Beckers</strong>. 
+                                Motsvarande till Alcro Bestå Täckfärg är <strong>Beckers Front Akrylatfärg Max</strong>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <p style="font-size: 0.95rem; color: var(--gray-600); line-height: 1.6; margin-bottom: 1rem;">Som ägare får ni givetvis konkurrensutsätta med andra leverantörer, men då måste de kunna erhålla färg med föreningens NCS koder.</p>
+                    
+                    <div style="background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem; font-size: 0.9rem; color: var(--gray-600); border: 1px solid var(--gray-200);">
+                        <p style="margin-bottom: 0.75rem;"><strong>Viktigt ansvar:</strong> Ribe SFF tar inget ansvar för ev. felaktigheter. Det är den enskilde fastighetsägarens ansvar hur denne målar sitt hus eller tar hand om det i övrigt. Hänvisningen till samarbetspartners får ses som en extra service vi ger till medlemmarna för att underlätta och förebygga misstag.</p>
+                        <p style="margin: 0; font-weight: 500; color: var(--primary-dark);">Vid osäkerhet bör man alltid beställa en provburk och provmåla innan en större beställning görs.</p>
+                    </div>
+                </div>
 
                 <!-- Färgkulörer fasad, fönsterfoder och bodar -->
                 <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
@@ -5743,7 +5960,50 @@
                 <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
                     <p style="margin-bottom: 1rem;">Gångvägarna i området är inte anpassade för biltrafik. För allas säkerhet och trevnad bör biltrafik inom kvarteret undvikas i möjligaste mån. Inom området råder parkeringsförbud. Du får bara stanna en kort stund för i- och urlastning. Parkering inom området gäller max 5 minuter enligt Stockholms parkerings regler.</p>
                     <p style="margin-bottom: 1rem; font-weight: 600; color: #dc2626;">Tänk också på att det finns lekande barn i området – kör därför mycket långsamt!</p>
-                    <p>Tänk också på hastighetsbegränsningen – på Ribegatan (huvudgatan) gäller max 30 km/tim - även hela Jyllandsgatan ingår i en 30-zon!</p>
+                    <p style="margin-bottom: 1.5rem;">Tänk också på hastighetsbegränsningen – på Ribegatan (huvudgatan) gäller max 30 km/tim - även hela Jyllandsgatan ingår i en 30-zon!</p>
+                    
+                    <hr style="margin: 2rem 0; border: 0; border-top: 1px solid rgba(44, 85, 48, 0.1);">
+                    
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fas fa-shield-halved"></i>
+                        Områdesbevakning - APCOA
+                    </h4>
+                    <p style="margin-bottom: 1.5rem; font-style: italic; color: var(--gray-600);">Guide för anmälan av boende till APCOA där alla hjälps åt mot okynnes parkering i området.</p>
+                    
+                    <div style="background: rgba(44, 85, 48, 0.04); padding: 1.5rem; border-radius: 1rem; border-left: 4px solid var(--primary-color); box-shadow: var(--shadow-sm);">
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1.25rem;">
+                            <i class="fas fa-pen-to-square" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
+                            <p style="margin: 0; color: var(--gray-800);">Anteckna registreringsnummer och den exakta adressen där fordonet står felparkerad i området.</p>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1.25rem; align-items: center; background: white; padding: 0.75rem 1rem; border-radius: 0.5rem; width: fit-content; box-shadow: var(--shadow-sm);">
+                            <i class="fas fa-phone-volume" style="color: var(--primary-color);"></i>
+                            <p style="margin: 0; font-size: 1.2rem; font-weight: 700; color: var(--primary-dark);">
+                                Ring <a href="tel:0771401020" style="color: inherit; text-decoration: none;">0771- 401020</a>
+                            </p>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem; margin-bottom: 0.75rem;">
+                            <i class="fas fa-list-ol" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
+                            <div>
+                                <p style="margin: 0 0 0.5rem 0; color: var(--gray-800);">I början av samtalet får du flera knappval.</p>
+                                <p style="margin: 0; color: var(--primary-color); font-weight: 600;">
+                                    <i class="fas fa-circle-check" style="margin-right: 0.5rem; font-size: 0.9rem;"></i>
+                                    Välj alternativ 1 för att kopplas till rätt avdelning.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1.25rem;">
+                            <i class="fas fa-bullhorn" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
+                            <p style="margin: 0; color: var(--gray-800);">Lämna sedan uppgifterna om det felparkerade fordonet.</p>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem; padding-top: 1rem; border-top: 1px solid rgba(44, 85, 48, 0.1);">
+                            <i class="fas fa-paper-plane" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
+                            <p style="margin: 0; font-weight: 500; color: var(--primary-dark);">Kundtjänst skickar därefter ett meddelande till samtliga vakter i området så att fordonet bevakas.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
