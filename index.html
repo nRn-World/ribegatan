@@ -667,17 +667,20 @@
         .hero-content {
             display: grid;
             grid-template-columns: 2fr 1fr;
+            grid-template-areas:
+                "heroText heroImage"
+                "heroWidgets heroWidgets";
             gap: var(--space-4xl);
             align-items: start;
             position: relative;
-            padding: var(--space-3xl) 0;
+            padding: calc(var(--space-3xl) + 90px) var(--space-lg) var(--space-3xl);
             z-index: 2;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 var(--space-lg);
         }
 
         .hero-text {
+            grid-area: heroText;
             animation: slideInLeft 1s ease-out;
         }
 
@@ -695,6 +698,7 @@
         }
 
         .hero-image {
+            grid-area: heroImage;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -702,9 +706,49 @@
             animation: slideInRight 1s ease-out;
         }
 
+        .hero-widgets {
+            grid-area: heroWidgets;
+            display: grid;
+            grid-template-columns: minmax(320px, 380px) minmax(320px, 1fr);
+            gap: var(--space-xl);
+            align-items: start;
+            justify-content: space-between;
+            margin-top: var(--space-2xl);
+        }
+
+        .hero-widgets {
+            grid-template-areas: "clock dates";
+        }
+
+        .hero-widgets .clock-widget {
+            grid-area: clock;
+        }
+
+        .hero-widgets .hero-dates {
+            grid-area: dates;
+        }
+
+        .hero-dates-inner {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            width: 100%;
+        }
+
+        .hero-dates h3 {
+            margin-bottom: 0.35rem !important;
+        }
+
+        .hero-dates-inner .hero-dates-grid {
+            margin-top: 0 !important;
+            gap: 0.6rem !important;
+            align-content: start;
+            max-width: none !important;
+        }
+
         .home-icon {
-            width: 15rem;
-            height: 15rem;
+            width: 20rem;
+            height: 20rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1216,6 +1260,84 @@
             margin-top: 0.5rem;
         }
 
+        @keyframes nameDayBadgeGlow {
+            0%, 100% {
+                transform: translateY(0);
+                box-shadow: 0 8px 18px rgba(22, 163, 74, 0.18);
+            }
+            50% {
+                transform: translateY(-1px);
+                box-shadow: 0 12px 26px rgba(22, 163, 74, 0.28);
+            }
+        }
+
+        .name-day-header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.35rem 0.7rem;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: #ffffff;
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+            animation: nameDayBadgeGlow 1.8s ease-in-out infinite;
+            white-space: nowrap;
+            max-width: 190px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .name-day-panel {
+            margin-top: 1rem;
+            padding: 1rem 1.05rem;
+            border-radius: 18px;
+            background: rgba(44, 85, 48, 0.05);
+            border: 1px solid rgba(44, 85, 48, 0.12);
+            text-align: left;
+        }
+
+        .name-day-title {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1rem;
+            line-height: 1.2;
+        }
+
+        .name-day-title i {
+            color: var(--accent-dark);
+        }
+
+        .name-day-greeting {
+            margin-top: 0.4rem;
+            font-weight: 700;
+            color: var(--gray-700);
+        }
+
+        .name-day-names {
+            margin-top: 0.2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            line-height: 1.5;
+        }
+
+        .name-day-wish {
+            margin-top: 0.3rem;
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            line-height: 1.45;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .name-day-header-badge {
+                animation: none;
+            }
+        }
+
         /* ======================================
            RESPONSIVE DESIGN
         ====================================== */
@@ -1267,6 +1389,10 @@
 
             .hero-content {
                 grid-template-columns: 1fr;
+                grid-template-areas:
+                    "heroText"
+                    "heroWidgets"
+                    "heroImage";
                 text-align: center;
                 gap: var(--space-xl);
                 padding: 2rem var(--space-md) var(--space-2xl);
@@ -1284,14 +1410,18 @@
                 opacity: 1 !important;
             }
 
-            .hero-dates-grid {
-                grid-template-columns: 1fr !important;
-                gap: 0.75rem !important;
-                max-width: 350px !important;
+            .hero-content .hero-dates-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                gap: 0.6rem !important;
+                max-width: none !important;
             }
 
-            .date-card {
-                padding: 0.75rem !important;
+            .hero-dates-inner {
+                max-width: none;
+            }
+
+            .hero-content .date-card {
+                padding: 0.55rem !important;
             }
 
             .hero-image {
@@ -1301,11 +1431,93 @@
                 gap: 1rem;
             }
 
+            .hero-content .hero-widgets {
+                width: 100%;
+                justify-content: stretch;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+                gap: 0.75rem;
+                margin-top: var(--space-xl);
+            }
+
+            .hero-dates h3 {
+                font-size: 1.05rem !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .hero-widgets .date-card i {
+                font-size: 1.05rem !important;
+                margin-bottom: 0.35rem !important;
+            }
+
+            .hero-widgets .date-card h4 {
+                font-size: 0.9rem !important;
+                margin-bottom: 0.2rem !important;
+            }
+
+            .hero-widgets .date-card p {
+                font-size: 0.72rem !important;
+                line-height: 1.35 !important;
+            }
+
+            .hero-content .hero-widgets .clock-widget {
+                min-width: 0;
+                max-width: none !important;
+                padding: 1.1rem 0.9rem 0.9rem 0.9rem;
+                border-radius: 20px;
+            }
+
+            .hero-widgets .clock-time {
+                font-size: 1.9rem;
+                letter-spacing: 1px;
+            }
+
+            .hero-widgets .clock-date {
+                font-size: 0.9rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .hero-widgets .clock-week {
+                padding: 0.5rem;
+                font-size: 0.85rem;
+            }
+
+            .hero-widgets .name-day-panel {
+                margin-top: 0.8rem;
+                padding: 0.8rem 0.85rem;
+            }
+
+            @media (max-width: 520px) {
+                .hero-content .hero-widgets {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: flex-start;
+                    justify-content: space-between;
+                    width: 100%;
+                }
+
+                .hero-content .hero-widgets .clock-widget {
+                    flex: 1 1 0;
+                    min-width: 0;
+                    display: block !important;
+                }
+
+                .hero-content .hero-widgets .hero-dates {
+                    flex: 1 1 0;
+                    min-width: 0;
+                }
+
+                .hero-content .hero-dates-grid {
+                    max-width: none !important;
+                }
+            }
+
             .hero-buttons {
                 justify-content: center;
             }
 
             .home-icon {
+                width: 15rem;
+                height: 15rem;
                 font-size: 10rem;
             }
 
@@ -1362,6 +1574,17 @@
 
             .contact-form {
                 padding: var(--space-xl);
+            }
+        }
+
+        @media (min-width: 560px) and (max-width: 768px) {
+            .hero-widgets {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .clock-widget {
+                max-width: none;
             }
         }
 
@@ -2471,7 +2694,10 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="hero-text" style="opacity: 1; transform: translateY(0px);">
-                <h1>Välkommen till Ribe Samfällighetsförening</h1>
+                <h1>
+                    <span style="display: block;">Välkommen till Ribe</span>
+                    <span style="display: block; font-size: 0.92em;">Samfällighetsförening</span>
+                </h1>
                 <p>En grön och barnvänlig boendemiljö i Kista med närhet till natur och stadens alla bekvämligheter.
                     Välkommen till vårt välmående samhälle.</p>
                 <div class="hero-buttons">
@@ -2482,29 +2708,37 @@
                         Läs mer om oss
                     </a>
                 </div>
-
-                <!-- Clock Widget -->
-                <div class="clock-widget">
-                    <div class="clock-header">
-                        <i class="fas fa-clock"></i> Aktuell tid
-                    </div>
-                    <div class="clock-time" id="clockTime">18:08:22</div>
-                    <div class="clock-date" id="clockDate">måndag 16 februari 2026</div>
-                    <div class="clock-divider"></div>
-                    <div class="clock-week" id="clockWeek">Vecka 8</div>
-                </div>
             </div>
             <div class="hero-image">
                 <div class="home-icon" style="opacity: 1; transform: scale(1); transition: 1.2s ease-out;">
                     <img src="logo-removebg-preview.png" alt="Ribe Samfällighetsförening logo" aria-hidden="true">
                 </div>
+            </div>
+            <div class="hero-widgets">
+                <div class="clock-widget">
+                    <div class="clock-header" style="justify-content: center; width: 100%; text-align: center;">
+                        <div style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-clock"></i>
+                            <span>Aktuell tid &amp; Namnsdag</span>
+                        </div>
+                    </div>
+                    <div class="clock-time" id="clockTime">18:08:22</div>
+                    <div class="clock-date" id="clockDate">måndag 16 februari 2026</div>
+                    <div class="clock-divider"></div>
+                    <div class="clock-week" id="clockWeek">Vecka 8</div>
+                    <div class="name-day-panel" id="nameDayPanel">
+                        <div class="name-day-greeting" id="nameDayGreetingText">Grattis på namnsdagen!</div>
+                        <div class="name-day-names" id="nameDayNamesText"></div>
+                        <div class="name-day-wish" id="nameDayWishText">Vi hoppas ni får en fantastisk namnsdag!</div>
+                    </div>
+                </div>
 
-                <!-- Viktiga datum för verksamhetsåret -->
-                <div class="hero-dates" style="margin-top: 2rem;">
-                    <h3 style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.3rem; text-align: center;">
-                        Viktiga datum för verksamhetsåret</h3>
+                <div class="hero-dates" style="margin-top: 0;">
+                    <div class="hero-dates-inner">
+                        <h3 style="color: var(--primary-color); margin-bottom: 0.6rem; font-size: 1.3rem; text-align: center;">
+                            Viktiga datum för verksamhetsåret</h3>
 
-                    <div class="hero-dates-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; max-width: 400px;">
+                        <div class="hero-dates-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-top: 0;">
                         <div class="date-card" style="background: rgba(255, 255, 255, 0.9); padding: 0.8rem; border-radius: 8px; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 10px; text-align: center;">
                             <i class="fas fa-calendar-check" style="color: var(--primary-color); font-size: 1.3rem; margin-bottom: 0.5rem;"></i>
                             <h4 style="color: var(--primary-color); font-size: 1rem; margin-bottom: 0.3rem;">30
@@ -2533,6 +2767,7 @@
                             </h4>
                             <p style="color: var(--gray-700); font-size: 0.85rem; margin: 0px;">Årsstämma</p>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -7854,34 +8089,457 @@
             });
 
             // ======================================
-            // ENHANCED PARALLAX (Optional)
+            // CLOCK WIDGET FUNCTIONALITY
             // ======================================
-            let ticking = false;
+            const nameDaysByMonth = {
+                0: [
+                    null,
+                    '',
+                    'Svea',
+                    'Alfred, Alfrida',
+                    'Rut',
+                    'Hanna, Hannele',
+                    'Kasper, Melker, Baltsar',
+                    'August, Augusta',
+                    'Erland',
+                    'Gunnar, Gunder',
+                    'Sigurd, Sigbritt',
+                    'Jan, Jannike',
+                    'Frideborg, Fridolf',
+                    'Knut',
+                    'Felix, Felicia',
+                    'Laura, Lorentz',
+                    'Hjalmar, Helmer',
+                    'Anton, Tony',
+                    'Hilda, Hildur',
+                    'Henrik, Henry',
+                    'Fabian, Sebastian',
+                    'Agnes, Agneta',
+                    'Vincent, Viktor',
+                    'Frej, Freja',
+                    'Erika',
+                    'Paul, Pål',
+                    'Bodil, Boel',
+                    'Göte, Göta',
+                    'Karl, Karla',
+                    'Diana',
+                    'Gunilla, Gunhild',
+                    'Ivar, Joar'
+                ],
+                1: [
+                    null,
+                    'Max, Maximilian',
+                    '',
+                    'Disa, Hjördis',
+                    'Ansgar, Anselm',
+                    'Agata, Agda',
+                    'Dorotea, Doris',
+                    'Rikard, Dick',
+                    'Berta, Bert',
+                    'Fanny, Franciska',
+                    'Iris',
+                    'Yngve, Inge',
+                    'Evelina, Evy',
+                    'Agne, Ove',
+                    'Valentin',
+                    'Sigfrid',
+                    'Julia, Julius',
+                    'Alexandra, Sandra',
+                    'Frida, Fritiof',
+                    'Gabriella, Ella',
+                    'Vivianne',
+                    'Hilding',
+                    'Pia',
+                    'Torsten, Torun',
+                    'Mattias, Mats',
+                    'Sigvard, Sivert',
+                    'Torgny, Torkel',
+                    'Lage',
+                    'Maria, Maja',
+                    ''
+                ],
+                2: [
+                    null,
+                    'Albin, Elvira',
+                    'Ernst, Erna',
+                    'Gunborg, Gunvor',
+                    'Adrian, Adriana',
+                    'Tora, Tove',
+                    'Ebba, Ebbe',
+                    'Camilla',
+                    'Siv, Saga',
+                    'Torbjörn, Torleif',
+                    'Edla, Ada',
+                    'Edvin, Egon',
+                    'Viktoria, Regina',
+                    'Greger',
+                    'Matilda, Maud',
+                    'Kristoffer, Christel',
+                    'Herbert, Gilbert',
+                    'Gertrud',
+                    'Edvard, Edmund',
+                    'Josef, Josefina',
+                    'Joakim, Kim',
+                    'Bengt',
+                    'Kennet, Kent',
+                    'Gerda, Gerd',
+                    'Gabriel, Rafael',
+                    '',
+                    'Emanuel',
+                    'Rudolf, Ralf',
+                    'Malkolm, Morgan',
+                    'Jonas, Jens',
+                    'Holger, Holmfrid',
+                    'Ester, Noa'
+                ],
+                3: [
+                    null,
+                    'Harald, Hervor',
+                    'Gudmund, Ingemund',
+                    'Ferdinand, Nanna',
+                    'Marianne, Marlene',
+                    'Irene, Irja',
+                    'Vilhelm, William',
+                    'Irma, Irmelin',
+                    'Nadja, Tanja',
+                    'Otto, Ottilia',
+                    'Ingvar, Ingvor',
+                    'Ulf, Ylva',
+                    'Liv',
+                    'Artur, Douglas',
+                    'Tiburtius',
+                    'Olivia, Oliver',
+                    'Patrik, Patricia',
+                    'Elias, Elis',
+                    'Valdemar, Volmar',
+                    'Olaus, Ola',
+                    'Amalia, Amelie',
+                    'Anneli, Annika',
+                    'Allan, Glenn',
+                    'Georg, Göran',
+                    'Vega',
+                    'Markus',
+                    'Teresia, Terese',
+                    'Engelbrekt',
+                    'Ture, Tyra',
+                    'Tyko',
+                    'Mariana'
+                ],
+                4: [
+                    null,
+                    'Valborg',
+                    'Filip, Filippa',
+                    'John, Jane',
+                    'Monika, Mona',
+                    'Gotthard, Erhard',
+                    'Marit, Rita',
+                    'Carina, Carita',
+                    'Åke',
+                    'Reidar, Reidun',
+                    'Esbjörn, Styrbjörn',
+                    'Märta, Märit',
+                    'Charlotta, Lotta',
+                    'Linnea, Linn',
+                    'Halvard, Halvar',
+                    'Sofia, Sonja',
+                    'Ronald, Ronny',
+                    'Rebecka, Ruben',
+                    'Erik',
+                    'Maj, Majken',
+                    'Karolina, Carola',
+                    'Konstantin, Conny',
+                    'Hemming, Henning',
+                    'Desideria, Desirée',
+                    'Ivan, Vanja',
+                    'Urban',
+                    'Vilhelmina, Vilma',
+                    'Beda, Blenda',
+                    'Ingeborg, Borghild',
+                    'Yvonne, Jeanette',
+                    'Vera, Veronika',
+                    'Petronella, Pernilla'
+                ],
+                5: [
+                    null,
+                    'Gun, Gunnel',
+                    'Rutger, Roger',
+                    'Ingemar, Gudmar',
+                    'Solbritt, Solveig',
+                    'Bo',
+                    'Gustav, Gösta',
+                    'Robert, Robin',
+                    'Eivor, Majvor',
+                    'Börje, Birger',
+                    'Svante, Boris',
+                    'Bertil, Berthold',
+                    'Eskil',
+                    'Aina, Aino',
+                    'Håkan, Hakon',
+                    'Margit, Margot',
+                    'Axel, Axelina',
+                    'Torborg, Torvald',
+                    'Björn, Bjarne',
+                    'Germund, Görel',
+                    'Linda',
+                    'Alf, Alvar',
+                    'Paulina, Paula',
+                    'Adolf, Alice',
+                    '',
+                    'David, Salomon',
+                    'Rakel, Lea',
+                    'Selma, Fingal',
+                    'Leo',
+                    'Peter, Petra',
+                    'Elof, Leif'
+                ],
+                6: [
+                    null,
+                    'Aron, Mirjam',
+                    'Rosa, Rosita',
+                    'Aurora',
+                    'Ulrika, Ulla',
+                    'Laila, Ritva',
+                    'Esaias, Jessika',
+                    'Klas',
+                    'Kjell',
+                    'Jörgen, Örjan',
+                    'André, Andrea',
+                    'Eleonora, Ellinor',
+                    'Herman, Hermine',
+                    'Joel, Judit',
+                    'Folke',
+                    'Ragnhild, Ragnvald',
+                    'Reinhold, Reine',
+                    'Bruno',
+                    'Fredrik, Fritz',
+                    'Sara',
+                    'Margareta, Greta',
+                    'Johanna',
+                    'Magdalena, Madeleine',
+                    'Emma, Emmy',
+                    'Kristina, Kerstin',
+                    'Jakob',
+                    'Jesper, Jasmine',
+                    'Marta',
+                    'Botvid, Seved',
+                    'Olof, Olle',
+                    'Algot',
+                    'Helena, Elin'
+                ],
+                7: [
+                    null,
+                    'Per',
+                    'Karin, Kajsa',
+                    'Tage',
+                    'Arne, Arnold',
+                    'Ulrik, Alrik',
+                    'Alfons, Inez',
+                    'Dennis, Denise',
+                    'Silvia, Sylvia',
+                    'Roland',
+                    'Lars',
+                    'Susanna',
+                    'Klara',
+                    'Kaj',
+                    'Uno',
+                    'Stella, Estelle',
+                    'Brynolf',
+                    'Verner, Valter',
+                    'Ellen, Lena',
+                    'Magnus, Måns',
+                    'Bernhard, Bernt',
+                    'Jon, Jonna',
+                    'Henrietta, Henrika',
+                    'Signe, Signhild',
+                    'Bartolomeus',
+                    'Lovisa, Louise',
+                    'Östen',
+                    'Rolf, Raoul',
+                    'Fatima, Leila',
+                    'Hans, Hampus',
+                    'Albert, Albertina',
+                    'Arvid, Vidar'
+                ],
+                8: [
+                    null,
+                    'Samuel, Sam',
+                    'Justus, Justina',
+                    'Alfhild, Alva',
+                    'Gisela',
+                    'Adela, Heidi',
+                    'Lilian, Lilly',
+                    'Kevin, Roy',
+                    'Alma, Hulda',
+                    'Anita, Annette',
+                    'Tord, Turid',
+                    'Dagny, Helny',
+                    'Åsa, Åslög',
+                    'Sture',
+                    'Ida, Ronja',
+                    'Sigrid, Siri',
+                    'Dag, Daga',
+                    'Hildegard, Magnhild',
+                    'Orvar',
+                    'Fredrika',
+                    'Elise, Lisa',
+                    'Matteus',
+                    'Maurits, Moritz',
+                    'Tekla, Tea',
+                    'Gerhard, Gert',
+                    'Tryggve',
+                    'Enar, Einar',
+                    'Dagmar, Rigmor',
+                    'Lennart, Leonard',
+                    'Mikael, Mikaela',
+                    'Helge'
+                ],
+                9: [
+                    null,
+                    'Ragnar, Ragna',
+                    'Ludvig, Love',
+                    'Evald, Osvald',
+                    'Frans, Frank',
+                    'Bror',
+                    'Jenny, Jennifer',
+                    'Birgitta, Britta',
+                    'Nils',
+                    'Ingrid, Inger',
+                    'Harry, Harriet',
+                    'Erling, Jarl',
+                    'Valfrid, Manfred',
+                    'Berit, Birgit',
+                    'Stellan',
+                    'Hedvig, Hillevi',
+                    'Finn',
+                    'Antonia, Toini',
+                    'Lukas',
+                    'Tore, Tor',
+                    'Sibylla',
+                    'Ursula, Yrsa',
+                    'Marika, Marita',
+                    'Severin, Sören',
+                    'Evert, Eilert',
+                    'Inga, Ingalill',
+                    'Amanda, Rasmus',
+                    'Sabina',
+                    'Simon, Simone',
+                    'Viola',
+                    'Elsa, Isabella',
+                    'Edit, Edgar'
+                ],
+                10: [
+                    null,
+                    '',
+                    'Tobias, Tim',
+                    'Hubert, Hugo',
+                    'Sverker',
+                    'Eugen, Eugenia',
+                    'Gustav Adolf',
+                    'Ingegerd, Ingela',
+                    'Vendela',
+                    'Teodor, Teodora',
+                    'Martin, Martina',
+                    'Mårten',
+                    'Konrad, Kurt',
+                    'Kristian, Krister',
+                    'Emil, Emilia',
+                    'Leopold',
+                    'Vibeke, Viveka',
+                    'Naemi, Naima',
+                    'Lillemor, Moa',
+                    'Elisabet, Lisbet',
+                    'Pontus, Marina',
+                    'Helga, Olga',
+                    'Cecilia, Sissela',
+                    'Klemens',
+                    'Gudrun, Rune',
+                    'Katarina, Katja',
+                    'Linus',
+                    'Astrid, Asta',
+                    'Malte',
+                    'Sune',
+                    'Andreas, Anders'
+                ],
+                11: [
+                    null,
+                    'Oskar, Ossian',
+                    'Beata, Beatrice',
+                    'Lydia, Cornelia',
+                    'Barbara, Barbro',
+                    'Sven',
+                    'Nikolaus, Niklas',
+                    'Angela, Angelika',
+                    'Virginia',
+                    'Anna',
+                    'Malin, Malena',
+                    'Daniel, Daniela',
+                    'Alexander, Alexis',
+                    'Lucia',
+                    'Sten, Sixten',
+                    'Gottfrid',
+                    'Assar',
+                    'Stig',
+                    'Abraham',
+                    'Isak',
+                    'Israel, Moses',
+                    'Tomas',
+                    'Natanael, Jonatan',
+                    'Adam',
+                    'Eva',
+                    '',
+                    'Stefan, Staffan',
+                    'Johannes, Johan',
+                    'Benjamin',
+                    'Natalia, Natalie',
+                    'Abel, Set',
+                    'Sylvester'
+                ]
+            };
 
-            function updateParallax() {
-                const scrolled = window.pageYOffset;
-                const parallaxElements = document.querySelectorAll('.hero');
-
-                parallaxElements.forEach(element => {
-                    const speed = 0.5;
-                    element.style.transform = `translateY(${scrolled * speed}px)`;
-                });
-
-                ticking = false;
+            function formatNameList(namesRaw) {
+                const parts = namesRaw
+                    .split(',')
+                    .map(s => s.trim())
+                    .filter(Boolean);
+                if (parts.length <= 1) return parts[0] || '';
+                return `${parts.slice(0, -1).join(', ')} och ${parts[parts.length - 1]}`;
             }
 
-            function requestTick() {
-                if (!ticking) {
-                    requestAnimationFrame(updateParallax);
-                    ticking = true;
+            function updateNameDay(now) {
+                const dateText = now.toLocaleDateString('sv-SE', { day: 'numeric', month: 'long' });
+                const month = now.getMonth();
+                const day = now.getDate();
+                const namesRaw = (nameDaysByMonth[month] && nameDaysByMonth[month][day]) ? nameDaysByMonth[month][day] : '';
+                const namesFormatted = namesRaw ? formatNameList(namesRaw) : '';
+
+                const nameDayDateTextEl = document.getElementById('nameDayDateText');
+                if (nameDayDateTextEl) nameDayDateTextEl.textContent = dateText;
+
+                const headerBadge = document.getElementById('nameDayHeaderBadge');
+                if (headerBadge) {
+                    if (namesFormatted) {
+                        const firstName = namesFormatted.split(/,|\soch\s/)[0]?.trim() || 'Namnsdag';
+                        headerBadge.innerHTML = `<i class="fas fa-gift" aria-hidden="true"></i> ${firstName}`;
+                    } else {
+                        headerBadge.innerHTML = `<i class="fas fa-calendar-xmark" aria-hidden="true"></i> Ingen`;
+                    }
+                }
+
+                const greetingEl = document.getElementById('nameDayGreetingText');
+                const namesEl = document.getElementById('nameDayNamesText');
+                const wishEl = document.getElementById('nameDayWishText');
+
+                if (namesFormatted) {
+                    if (greetingEl) greetingEl.textContent = 'Grattis på namnsdagen!';
+                    if (namesEl) namesEl.textContent = namesFormatted;
+                    if (wishEl) wishEl.textContent = 'Vi hoppas ni får en fantastisk namnsdag!';
+                } else {
+                    if (greetingEl) greetingEl.textContent = 'Ingen namnsdag idag';
+                    if (namesEl) namesEl.textContent = '';
+                    if (wishEl) wishEl.textContent = '';
                 }
             }
 
-            window.addEventListener('scroll', requestTick);
-
-            // ======================================
-            // CLOCK WIDGET FUNCTIONALITY
-            // ======================================
             function updateClock() {
                 const now = new Date();
 
@@ -7905,6 +8563,8 @@
 
                 const clockWeekElement = document.getElementById('clockWeek');
                 if (clockWeekElement) clockWeekElement.textContent = `Vecka ${weekNo}`;
+
+                updateNameDay(now);
             }
 
             // Update immediately and then every second
