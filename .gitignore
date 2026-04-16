@@ -25,6 +25,8 @@ Thumbs.db
 *.swp
 *.swo
 *~
+*.code-workspace
+local-backups/
 
 # Sensitive data
 # admin/api/data/users.json (temporarily allowing for deployment)

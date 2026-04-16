@@ -469,6 +469,18 @@
             border: 1px solid rgba(44, 85, 48, 0.3);
         }
 
+        .nav-link.is-active {
+            color: #dc2626 !important;
+            font-weight: 700 !important;
+            animation: glowPulse 2s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(220, 38, 38, 0.55);
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(220, 38, 38, 0.28);
+            box-shadow:
+                0 0 18px rgba(220, 38, 38, 0.18),
+                inset 0 0 14px rgba(220, 38, 38, 0.08);
+        }
+
         .hamburger {
             display: none;
             flex-direction: column;
@@ -670,7 +682,8 @@
             grid-template-areas:
                 "heroText heroImage"
                 "heroWidgets heroWidgets";
-            gap: var(--space-4xl);
+            column-gap: var(--space-4xl);
+            row-gap: var(--space-lg);
             align-items: start;
             position: relative;
             padding: calc(var(--space-3xl) + 90px) var(--space-lg) var(--space-3xl);
@@ -713,7 +726,7 @@
             gap: var(--space-xl);
             align-items: start;
             justify-content: space-between;
-            margin-top: var(--space-2xl);
+            margin-top: 0;
         }
 
         .hero-widgets {
@@ -2568,11 +2581,11 @@
             </div>
 
             <div class="nav-logo">
-                <h2><a href="#home" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" style="text-decoration: none; color: inherit;">Ribe Samfällighet</a></h2>
+                <h2><a href="#home" onclick="if(window.goToHome){window.goToHome();} else { window.scrollTo({top: 0, behavior: 'smooth'});} return false;" style="text-decoration: none; color: inherit;">Ribe Samfällighet</a></h2>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="#aktuellt" class="nav-link" style="color: #dc2626 !important; font-weight: 700 !important; animation: glowPulse 2s ease-in-out infinite; text-shadow: 0 0 10px rgba(220, 38, 38, 0.8);">Aktuellt</a>
+                    <a href="#aktuellt" class="nav-link is-active">Allmänt</a>
                 </li>
                 <li class="nav-item">
                     <a href="#welcome" class="nav-link">Välkommen</a>
@@ -2583,17 +2596,10 @@
                         <span class="dropdown-toggle" onclick="(function(e){e.preventDefault();e.stopPropagation();const dropdown=e.target.closest('.nav-item.dropdown');const content=dropdown.querySelector('.dropdown-content');dropdown.classList.toggle('show');content.classList.toggle('show');console.log('Dropdown toggled');})(event)"><i class="fas fa-chevron-down"></i></span>
                     </div>
                     <div class="dropdown-content">
-                        <div class="dropdown-submenu">
-                            <div class="nav-link-wrapper">
-                                <a href="#aegarbyte" class="nav-link" data-category="aegarbyte">Ägarbyte/Ägarförändring <i class="fas fa-chevron-right menu-indicator"></i></a>
-                                <span class="dropdown-toggle" onclick="(function(e){e.preventDefault();e.stopPropagation();const submenu=e.target.closest('.dropdown-submenu');const content=submenu.querySelector('.dropdown-submenu-content');submenu.classList.toggle('show');content.classList.toggle('show');console.log('Submenu toggled');})(event)"><i class="fas fa-chevron-down"></i></span>
-                            </div>
-                            <div class="dropdown-submenu-content">
-                                <a href="#ekonomisk-forvaltare" class="nav-link">Ekonomisk förvaltare</a>
-                                <a href="#maklarinfo" class="nav-link">Mäklarinfo</a>
-                                <a href="#energideklaration" class="nav-link">Energideklaration</a>
-                            </div>
-                        </div>
+                        <a href="#aegarbyte" class="nav-link" data-category="aegarbyte">Ägarbyte/Ägarförändring</a>
+                        <a href="#ekonomisk-forvaltare" class="nav-link">Ekonomisk förvaltare</a>
+                        <a href="#maklarinfo" class="nav-link">Mäklarinfo</a>
+                        <a href="#energideklaration" class="nav-link">Energideklaration</a>
                         <div class="dropdown-submenu">
                             <div class="nav-link-wrapper">
                                 <a href="#foreningen" class="nav-link" data-category="foreningen">Föreningen <i class="fas fa-chevron-right menu-indicator"></i></a>
@@ -2627,10 +2633,6 @@
                         <a href="#krypgrund" class="nav-link">Krypgrund</a>
                         <a href="#bygglov" class="nav-link">Bygglov</a>
                         <a href="#takflakt" class="nav-link">Takfläkt</a>
-                        <a href="#aegarbyte" class="nav-link">Ägarbyte/Ägarförändring</a>
-                        <a href="#ekonomisk-forvaltare" class="nav-link">Ekonomisk förvaltare</a>
-                        <a href="#maklarinfo" class="nav-link">Mäklarinfo</a>
-                        <a href="#energideklaration" class="nav-link">Energideklaration</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -2783,7 +2785,7 @@
             <!-- Aktuellt Preview (Endast boAppa och APCOA på startsidan) -->
             <div id="aktuellt-preview" style="margin-bottom: 4rem;">
                 <div class="section-header">
-                    <h2 style="background: linear-gradient(135deg, #2c5530 0%, #4a7c59 50%, #1a3a1f 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 30px rgba(44, 85, 48, 0.3);">Aktuellt</h2>
+                    <h2 style="background: linear-gradient(135deg, #2c5530 0%, #4a7c59 50%, #1a3a1f 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 30px rgba(44, 85, 48, 0.3);">Allmänt</h2>
                 </div>
 
                 <div class="aktuellt-content" style="max-width: 900px; margin: 0px auto;">
@@ -2978,7 +2980,7 @@
                         Målet för grannsamverkan är att förebygga brottslighet och öka tryggheten och därmed också trivseln. Detta kan uppnås genom ett socialt nätverk, som skapas av att de boende samarbetar, stödjer och hjälper varandra. Vi har sex stycken kontaktombud för grannsamverkan som de boende kan vända sig till.
                     </p>
                     <p style="line-height: 1.8; margin-bottom: 1.2rem;">
-                        Kontaktombuden är två från vartdera delområde och finns därför jämnt utspridda över Ribegatan. <strong>Lise-Lotte Smedberg, Ribegatan 75</strong>, är vår huvudkontaktperson inom Grannsamverkan.
+                        Kontaktombuden är två från vartdera delområde och finns därför jämnt utspridda över Ribegatan. Huvudkontaktperson inom Grannsamverkan utses av styrelsen.
                     </p>
 
                     <div style="background: rgb(248, 249, 250); padding: 1.5rem; border-radius: 0.75rem; border-left: 4px solid rgb(59, 89, 152); margin: 1.5rem 0px;">
@@ -3281,7 +3283,7 @@
                 <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative;">
                     <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Samfällighetsföreningen driver
                         Grannsamverkan</h4>
-                    <p>Huvudkontaktombud är Lise-Lotte Smedberg, Ribegatan 75. Läs mer om grannsamverkan under Området,
+                    <p>Läs mer om grannsamverkan under Området,
                         Grannsamverkan, uppdaterad info med länkar och bild till information för att förbättra
                         inbrottsskyddet.</p>
 
@@ -5516,11 +5518,6 @@
                     <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.2rem;">
                         Eftersom Redisa inte får information från banken när autogirot är registrerat behöver du meddela oss när det är klart. Det gör du enklast via e-postadressen nedan. Observera att autogirot kommer att kunna användas först vid nästa aviseringstillfälle, det är därför viktigt att betala avierna för juli till september manuellt.
                     </p>
-                    <div style="background: #e8f5e9; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #2e7d32; margin-top: 1.5rem;">
-                        <p style="font-size: 1.05rem; line-height: 1.8; margin: 0; color: #1b5e20;">
-                            Det kommer att vara möjligt att betala genom e-faktura från och med kvartal 4.
-                        </p>
-                    </div>
                     <p style="font-size: 1.05rem; line-height: 1.8; margin-top: 2rem; text-align: center; font-weight: 600;">
                         För frågor rörande avisering, avier och autogiro kan ni kontakta oss på: <a href="mailto:medlem@redisa.se" style="color: var(--primary-color); text-decoration: underline;">medlem@redisa.se</a>
                     </p>
@@ -6355,7 +6352,7 @@
                     </ul>
                     <p style="margin-bottom: 1rem;">Släng upp snön på era tomter eller där traktorn har kört upp snön på allmänna ytor på ett sådant sätt att gatan inte blir smalare.</p>
                     <p style="margin-bottom: 1rem;">Tänk på framkomligheten när du själv röjer.</p>
-                    <p>Föreningens kontaktperson för snöröjningen är Josif Oplopiadis i styrelsen. <a href="#" id="openSnorojsFormBtn1" onclick="document.getElementById('contactModalOverlay').style.display='flex'; document.body.style.overflow='hidden'; return false;" style="color: var(--primary-color); font-weight: 500;">Mailkontakt</a></p>
+                    <p>Föreningens kontaktperson för snöröjningen finns i styrelsen. <a href="#" id="openSnorojsFormBtn1" onclick="document.getElementById('contactModalOverlay').style.display='flex'; document.body.style.overflow='hidden'; return false;" style="color: var(--primary-color); font-weight: 500;">Mailkontakt</a></p>
                 </div>
             </div>
         </div>
@@ -6435,7 +6432,7 @@
                                     <td style="padding: 1rem;"></td>
                                 </tr>
                                 <tr class="member-row" style="background: var(--gray-50);">
-                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Bertil Nordlander
+                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Ordförande (anonymiserad)
                                     </td>
                                     <td data-label="Ribegatan" style="padding: 0.75rem 1rem; text-align: center;">24
                                     </td>
@@ -6452,7 +6449,7 @@
                                     <td style="padding: 1rem;"></td>
                                 </tr>
                                 <tr class="member-row" style="background: var(--gray-50);">
-                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Peter Thellenberg
+                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Kassör (anonymiserad)
                                     </td>
                                     <td data-label="Ribegatan" style="padding: 0.75rem 1rem; text-align: center;">61
                                     </td>
@@ -6467,7 +6464,7 @@
                                     <td style="padding: 1rem;"></td>
                                 </tr>
                                 <tr class="member-row" style="background: var(--gray-50);">
-                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Sandra Rosado</td>
+                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Sekreterare (anonymiserad)</td>
                                     <td data-label="Ribegatan" style="padding: 0.75rem 1rem; text-align: center;">170
                                     </td>
                                     <td data-label="Ansvarsområde" style="padding: 0.75rem 1rem;">Protokoll, Ribe-Info,
@@ -6480,7 +6477,7 @@
                                     <td style="padding: 1rem;"></td>
                                 </tr>
                                 <tr class="member-row" style="background: var(--gray-50);">
-                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Tohir Hassannov
+                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Ledamot 1 (anonymiserad)
                                     </td>
                                     <td data-label="Ribegatan" style="padding: 0.75rem 1rem; text-align: center;">106
                                     </td>
@@ -6489,7 +6486,7 @@
                                         undercentralen</td>
                                 </tr>
                                 <tr class="member-row">
-                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Josif Oplopiadis
+                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Ledamot 2 (anonymiserad)
                                     </td>
                                     <td data-label="Ribegatan" style="padding: 0.75rem 1rem; text-align: center;">54
                                     </td>
@@ -6503,36 +6500,35 @@
                                     <td style="padding: 1rem;"></td>
                                 </tr>
                                 <tr class="member-row" style="background: var(--gray-50);">
-                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Lise-Lotte
-                                        Smedberg</td>
+                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Suppleant 1 (anonymiserad)</td>
                                     <td data-label="Ribegatan" style="padding: 0.75rem 1rem; text-align: center;">75
                                     </td>
                                     <td data-label="Ansvarsområde" style="padding: 0.75rem 1rem;">Områdes ansvarig 3,
                                         Grannsamverkan</td>
                                 </tr>
                                 <tr class="member-row">
-                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Yussuf Hassen</td>
+                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Suppleant 2 (anonymiserad)</td>
                                     <td data-label="Ribegatan" style="padding: 0.75rem 1rem; text-align: center;">63
                                     </td>
                                     <td data-label="Ansvarsområde" style="padding: 0.75rem 1rem;">Områdes ansvarig 3,
                                         Grannsamverkan</td>
                                 </tr>
                                 <tr class="member-row" style="background: var(--gray-50);">
-                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Paloma Torlo</td>
+                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Suppleant 3 (anonymiserad)</td>
                                     <td data-label="Ribegatan" style="padding: 0.75rem 1rem; text-align: center;">180
                                     </td>
                                     <td data-label="Ansvarsområde" style="padding: 0.75rem 1rem;">Områdes ansvarig 2
                                     </td>
                                 </tr>
                                 <tr class="member-row">
-                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Sofia Bergensten
+                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Suppleant 4 (anonymiserad)
                                     </td>
                                     <td data-label="Ribegatan" style="padding: 0.75rem 1rem; text-align: center;">120
                                     </td>
                                     <td data-label="Ansvarsområde" style="padding: 0.75rem 1rem;">Lekplatser</td>
                                 </tr>
                                 <tr class="member-row" style="background: var(--gray-50);">
-                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Göran Bjurén</td>
+                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Suppleant 5 (anonymiserad)</td>
                                     <td data-label="Ribegatan" style="padding: 0.75rem 1rem; text-align: center;">182
                                     </td>
                                     <td data-label="Ansvarsområde" style="padding: 0.75rem 1rem;">Drift undercentralen,
@@ -6545,14 +6541,14 @@
                                     <td style="padding: 1rem;"></td>
                                 </tr>
                                 <tr class="member-row" style="background: var(--gray-50);">
-                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Zahra Abdurahaman
+                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Revisor 1 (anonymiserad)
                                     </td>
                                     <td data-label="Ribegatan" style="padding: 0.75rem 1rem; text-align: center;">63
                                     </td>
                                     <td data-label="Ansvarsområde" style="padding: 0.75rem 1rem;"></td>
                                 </tr>
                                 <tr class="member-row">
-                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Zehra Aydogan</td>
+                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Revisor 2 (anonymiserad)</td>
                                     <td data-label="Ribegatan" style="padding: 0.75rem 1rem; text-align: center;">102
                                     </td>
                                     <td data-label="Ansvarsområde" style="padding: 0.75rem 1rem;"></td>
@@ -6564,13 +6560,13 @@
                                     <td style="padding: 1rem;"></td>
                                 </tr>
                                 <tr class="member-row" style="background: var(--gray-50);">
-                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Jenny Thornblad
+                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Revisorsuppleant 1 (anonymiserad)
                                     </td>
                                     <td data-label="Ribegatan" style="padding: 0.75rem 1rem; text-align: center;"></td>
                                     <td data-label="Ansvarsområde" style="padding: 0.75rem 1rem;"></td>
                                 </tr>
                                 <tr class="member-row">
-                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Gunvor Magnusson
+                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Revisorsuppleant 2 (anonymiserad)
                                     </td>
                                     <td data-label="Ribegatan" style="padding: 0.75rem 1rem; text-align: center;">192
                                     </td>
@@ -6595,13 +6591,13 @@
                                     <td style="padding: 1rem; font-weight: 600; color: var(--primary-color);" colspan="3">Valberedning</td>
                                 </tr>
                                 <tr class="member-row" style="background: var(--gray-50);">
-                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Louise Saidi</td>
+                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Valberedning 1 (anonymiserad)</td>
                                     <td data-label="Ribegatan" style="padding: 0.75rem 1rem; text-align: center;">22
                                     </td>
                                     <td data-label="Roll/Uppdrag" style="padding: 0.75rem 1rem;">Sammankallande</td>
                                 </tr>
                                 <tr class="member-row">
-                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Per Hallonquist
+                                    <td data-label="Namn" style="padding: 0.75rem 1rem 0.75rem 3rem;">Valberedning 2 (anonymiserad)
                                     </td>
                                     <td data-label="Ribegatan" style="padding: 0.75rem 1rem; text-align: center;">26
                                     </td>
@@ -6713,36 +6709,36 @@
             <div class="about-content" style="grid-template-columns: 1fr;">
                 <div class="about-text">
                     <h3>KabelTV</h3>
-                    <p>Medlemmarna har tillgång till kabelTV från Com Hem.</p>
+                    <p>Medlemmarna har tillgång till kabelTV från Tele2.</p>
                     <p>Ansvarig för kabelTV inom vårt område framgår av lista på våra anslagstavlor och på vår hemsida.
                     </p>
-                    <p>I samfällighetsavgiften ingår Com Hems basutbud. Varje fastighetsägare kan själv bekosta ett
+                    <p>I samfällighetsavgiften ingår Tele2:s basutbud. Varje fastighetsägare kan själv bekosta ett
                         utökat abonnemang.</p>
 
                     <h3>ParabolTV</h3>
-                    <h4>Regler från Com Hem gällande parabolantenn</h4>
+                    <h4>Regler från Tele2 gällande parabolantenn</h4>
                     <p>Ribe Samfällighetsförening är ägare av kabelTV-nätet i vårt område. Föreningen har ett
-                        distributionsavtal med Com Hem. Det innebär att varje fastighetsägare måste följa de riktlinjer
-                        som Com Hem lämnar.</p>
+                        distributionsavtal med Tele2. Det innebär att varje fastighetsägare måste följa de riktlinjer
+                        som Tele2 lämnar.</p>
 
-                    <p>Får vi problem/störningar på kabelTV-nätet har Com Hem rätten att vidtaga åtgärder mot
-                        störkällan. Om Com Hem lokaliserar en störning orsakad av en fastighetsägare, debiteras Ribe
-                        Samfällighetsförening kostnaden för att åtgärda störningen. Vid debiteringen redovisar Com Hem
+                    <p>Får vi problem/störningar på kabelTV-nätet har Tele2 rätten att vidtaga åtgärder mot
+                        störkällan. Om Tele2 lokaliserar en störning orsakad av en fastighetsägare, debiteras Ribe
+                        Samfällighetsförening kostnaden för att åtgärda störningen. Vid debiteringen redovisar Tele2
                         orsaken till störkällan och vilken fastighet som orsakat denna. Ribe Samfällighetsförening
                         kommer därefter att debitera fastighetsägaren för kostnaden.</p>
 
                     <p>En orsak till störning kan vara att fastighetsägare har kopplat ihop sin parabolantennsignal till
-                        Com Hems kabelTV-nät via antennkabeln till den egna TV-apparaten. Vårt befintliga kabelTV-nät
+                        Tele2:s kabelTV-nät via antennkabeln till den egna TV-apparaten. Vårt befintliga kabelTV-nät
                         medger inte samtidig distribution av kabelTV- och parabolantennsignaler inom fastigheten. Om man
-                        blandar dessa signaler förstör man Com Hems distribuerade signaler.</p>
+                        blandar dessa signaler förstör man Tele2:s distribuerade signaler.</p>
 
                     <p>KabelTV-nätets signaler och parabolantennsignaler måst därför kopplas in separat till den egna
                         TV-apparaten. Detta kan göras till TV-apparatens SCART- alt. HDMI-ingångar.</p>
 
-                    <p>Föreningen har ett serviceavtal med Com Hem, vilket innebär att du själv kan felanmäla till Com
-                        Hem om du har mottagningsstörningar på kabelTV-nätet, antingen via deras hemsida <a href="https://www.comhem.se" target="_blank" rel="noopener noreferrer">www.comhem.se</a>
-                        (klicka på Kundservice) eller på telefon <a href="tel:0771550000">0771-550000</a>. Avtalet
-                        gäller även för felanmälan av Com Hem's bredbandstjänst.</p>
+                    <p>Föreningen har ett serviceavtal med Tele2, vilket innebär att du själv kan felanmäla till Tele2
+                        om du har mottagningsstörningar på kabelTV-nätet, antingen via deras hemsida <a href="https://www.tele2.se" target="_blank" rel="noopener noreferrer">www.tele2.se</a>
+                        eller på telefon <a href="tel:90222">90 222</a>. Avtalet
+                        gäller även för felanmälan av Tele2:s bredbandstjänst.</p>
 
                     <h4>Anvisning för uppsättning av parabolantenn</h4>
                     <p>Parabolmontaget skall vara snyggt och ordentligt gjort och helst placerat på husvägg.
@@ -7350,7 +7346,7 @@
                 <div class="footer-section">
                     <h4>Snabblänkar</h4>
                     <ul>
-                        <li><a href="#home" class="nav-link">Aktuellt</a></li>
+                        <li><a href="#aktuellt" class="nav-link">Allmänt</a></li>
                         <li><a href="#welcome" class="nav-link">Välkommen</a></li>
                         <li><a href="#samfalligheten" class="nav-link">Samfälligheten</a></li>
                         <li><a href="#contact" class="nav-link">Kontakt</a></li>
@@ -7464,7 +7460,7 @@
 
         const categoryMapping = {
             'samfalligheten': ['samfalligheten', 'aegarbyte', 'ekonomisk-forvaltare', 'maklarinfo', 'energideklaration', 'foreningen', 'stadgar-section', 'anlaggningar', 'bygglov', 'styrelsen', 'avgift', 'tv', 'bredband', 'formaner', 'arkiv'],
-            'husen': ['husen', 'fonster', 'panel', 'farg', 'varme', 'termostat', 'krypgrund', 'bygglov', 'takflakt', 'aegarbyte', 'ekonomisk-forvaltare', 'maklarinfo', 'energideklaration'],
+            'husen': ['husen', 'fonster', 'panel', 'farg', 'varme', 'termostat', 'krypgrund', 'bygglov', 'takflakt'],
             'omradet': ['indelning', 'karta', 'skotsel', 'fordon', 'biltrafik', 'garage', 'besoksparkering', 'extragarage', 'parkeringsbolag', 'avfall', 'tvattstuga', 'grannsamverkan', 'snorojning'],
             'fordon': ['fordon', 'biltrafik', 'garage', 'besoksparkering', 'extragarage', 'parkeringsbolag'],
             'foreningen': ['foreningen', 'stadgar-section', 'anlaggningar', 'bygglov'],
@@ -7572,6 +7568,48 @@
             const hamburger = document.querySelector('.hamburger');
             const navMenu = document.querySelector('.nav-menu');
             const navLinks = document.querySelectorAll('.nav-link');
+            const headerNavLinks = document.querySelectorAll('.navbar .nav-link');
+
+            const setActiveNavLink = function (hrefOrElement) {
+                headerNavLinks.forEach(l => l.classList.remove('is-active'));
+
+                if (!hrefOrElement) return;
+
+                if (typeof hrefOrElement !== 'string') {
+                    hrefOrElement.classList.add('is-active');
+                    return;
+                }
+
+                const targetHref = hrefOrElement.trim();
+                if (!targetHref) return;
+
+                const match = Array.from(headerNavLinks).find(l => (l.getAttribute('href') || '').trim() === targetHref);
+                if (match) match.classList.add('is-active');
+            };
+
+            window.goToHome = function () {
+                if (hamburger && navMenu) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                }
+
+                document.querySelectorAll('.dropdown.show, .dropdown-submenu.show').forEach(el => el.classList.remove('show'));
+                document.querySelectorAll('.dropdown-content.show, .dropdown-submenu-content.show').forEach(el => el.classList.remove('show'));
+                document.querySelectorAll('.dropdown-toggle.active').forEach(el => el.classList.remove('active'));
+
+                if (window.hideAllDynamicSections) window.hideAllDynamicSections();
+
+                const grannsamverkan = document.getElementById('grannsamverkan');
+                if (grannsamverkan) {
+                    grannsamverkan.classList.remove('hidden-section');
+                    grannsamverkan.classList.add('show-section');
+                }
+
+                setActiveNavLink('#aktuellt');
+                history.pushState(null, null, '#home');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
 
             // Mobile menu toggle - simplified for better mobile support
             if (hamburger && navMenu) {
@@ -7742,6 +7780,10 @@
                     
                     if (category || (href && href.startsWith('#') && href.length > 1)) {
                         e.preventDefault();
+
+                        if (this.closest('.navbar')) {
+                            setActiveNavLink(this);
+                        }
                         
                         // Close mobile menu
                         if (window.innerWidth <= 768) {
@@ -7773,6 +7815,31 @@
                     }
                 });
             });
+
+            setActiveNavLink(window.location.hash || '#aktuellt');
+
+            const sectionIdToHref = new Map();
+            headerNavLinks.forEach(l => {
+                const href = (l.getAttribute('href') || '').trim();
+                if (href.startsWith('#') && href.length > 1) sectionIdToHref.set(href.slice(1), href);
+            });
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    const visible = entries
+                        .filter(e => e.isIntersecting)
+                        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+                    if (!visible) return;
+                    const href = sectionIdToHref.get(visible.target.id);
+                    if (href) setActiveNavLink(href);
+                }, { root: null, threshold: [0.25, 0.4, 0.55], rootMargin: '-20% 0px -70% 0px' });
+
+                sectionIdToHref.forEach((_, id) => {
+                    const el = document.getElementById(id);
+                    if (el) observer.observe(el);
+                });
+            }
 
             // Handle initial hash on page load
             if (window.location.hash) {
