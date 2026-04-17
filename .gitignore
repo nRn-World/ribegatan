@@ -44,3 +44,6 @@ build/
 # Large zip files
 ribegatan.zip
 *.zip
+
+# Local assets (not for repo)
+Alla bilder/

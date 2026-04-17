@@ -697,6 +697,20 @@
             animation: slideInLeft 1s ease-out;
         }
 
+        .hero-head-logo {
+            display: block;
+            width: min(620px, 100%);
+            height: auto;
+            margin: 0;
+            object-fit: contain;
+        }
+
+        .home-icon--hero-secondary {
+            width: 14rem;
+            height: 14rem;
+            margin-top: 1.25rem;
+        }
+
         .hero-text p {
             font-size: 1.25rem;
             color: var(--gray-600);
@@ -713,10 +727,10 @@
         .hero-image {
             grid-area: heroImage;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: flex-start;
+            align-items: flex-start;
             flex-direction: column;
-            animation: slideInRight 1s ease-out;
+            padding-top: 0.75rem;
         }
 
         .hero-widgets {
@@ -750,6 +764,8 @@
 
         .hero-dates h3 {
             margin-bottom: 0.35rem !important;
+            line-height: 1.2;
+            margin-top: -0.35rem;
         }
 
         .hero-dates-inner .hero-dates-grid {
@@ -757,6 +773,22 @@
             gap: 0.6rem !important;
             align-content: start;
             max-width: none !important;
+        }
+
+        @media (min-width: 769px) {
+            .hero-widgets {
+                --heroDatesHeaderOffset: calc(1.3rem * 1.2 + 0.35rem);
+            }
+
+            .hero-widgets .clock-widget {
+                margin-top: var(--heroDatesHeaderOffset);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-widgets .clock-widget {
+                margin-top: 0;
+            }
         }
 
         .home-icon {
@@ -1403,9 +1435,9 @@
             .hero-content {
                 grid-template-columns: 1fr;
                 grid-template-areas:
+                    "heroImage"
                     "heroText"
-                    "heroWidgets"
-                    "heroImage";
+                    "heroWidgets";
                 text-align: center;
                 gap: var(--space-xl);
                 padding: 2rem var(--space-md) var(--space-2xl);
@@ -1442,6 +1474,17 @@
                 flex-direction: column;
                 align-items: center;
                 gap: 1rem;
+            }
+
+            .hero-head-logo {
+                width: min(340px, 78vw);
+                margin: 0 auto 0.75rem auto;
+            }
+
+            .home-icon--hero-secondary {
+                width: 11rem;
+                height: 11rem;
+                margin-top: 0.75rem;
             }
 
             .hero-content .hero-widgets {
@@ -2712,7 +2755,8 @@
                 </div>
             </div>
             <div class="hero-image">
-                <div class="home-icon" style="opacity: 1; transform: scale(1); transition: 1.2s ease-out;">
+                <img class="hero-head-logo" src="Alla%20bilder/ribehead.png" alt="Ribe Samfällighet">
+                <div class="home-icon home-icon--hero-secondary">
                     <img src="logo-removebg-preview.png" alt="Ribe Samfällighetsförening logo" aria-hidden="true">
                 </div>
             </div>
@@ -2795,11 +2839,23 @@
                             <i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Viktigt
                         </div>
                         <a href="https://app.boappa.se/login" target="_blank" style="display: block; margin-bottom: 1.5rem;">
-                            <img src="boappa.png" alt="boAppa" style="max-height: 120px; max-width: 100%;">
+                            <img src="boappa.png" alt="boAppa" style="max-height: 120px; max-width: 100%; height: auto; display: block; margin: 0 auto;">
                         </a>
-                        <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.5rem;">boAppa</h3>
                         <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;">
                             Föreningen använder boAppa som är en app och webb för all boende information som inte är upplagd på hemsidan.
+                        </p>
+                        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 0.75rem;">
+                            Det är:
+                        </p>
+                        <ul style="margin: 0 auto 1rem; padding-left: 1.25rem; text-align: left; max-width: 520px; line-height: 1.8; font-size: 1.05rem;">
+                            <li>Styrelseprotokoll</li>
+                            <li>Årsstämmoprotokoll</li>
+                            <li>Ribe-info</li>
+                            <li>Kallelse till Årsstämma</li>
+                            <li>Info till boende</li>
+                        </ul>
+                        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;">
+                            För att få tillgång till information som medlem i föreningen behöver du ansöka till boAppa.
                         </p>
                         <a href="https://boappa.se/ribe-samf-kista" target="_blank" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">
                             boappa.se/ribe-samf-kista <i class="fas fa-external-link-alt" style="margin-left: 0.3rem; font-size: 0.8rem;"></i>
@@ -2951,18 +3007,6 @@
                         </div>
                     </div>
 
-                    <!-- Information till boende -->
-                    <div style="margin-top: 2.5rem; padding-top: 2rem; border-top: 2px solid rgb(224, 224, 224);">
-                        <h4 style="color: var(--primary-color); font-size: 1.3rem; margin-bottom: 1rem;">
-                            Information till boende i Ribe Samfällighetsförening!
-                        </h4>
-                        <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem;">
-                            Klicka här för mer info:
-                        </p>
-                        <a href="ribegatan.se/res/Boendeinformation/Info-till-boende-2016.pdf" target="_blank" style="display: inline-block; background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%); color: white; padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 500; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
-                            <i class="fas fa-file-pdf" style="margin-right: 0.5rem;"></i>Info till boende 2016
-                        </a>
-                    </div>
                 </div>
             </div>
 
@@ -3212,11 +3256,23 @@
                         <i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Viktigt
                     </div>
                     <a href="https://app.boappa.se/login" target="_blank" style="display: block; margin-bottom: 1.5rem;">
-                        <img src="boappa.png" alt="boAppa" style="max-height: 120px; max-width: 100%;">
+                        <img src="boappa.png" alt="boAppa" style="max-height: 120px; max-width: 100%; height: auto; display: block; margin: 0 auto;">
                     </a>
-                    <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.5rem;">boAppa</h3>
                     <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;">
-                        Föreningen använder boAppa som är en app och webb för all boende information som inte är upplagd på hemsidan.
+                        Föreningen använder boAppa som är en app och webb för all boendeinformation som inte är upplagd på hemsidan.
+                    </p>
+                    <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 0.75rem;">
+                        Det är:
+                    </p>
+                    <ul style="margin: 0 auto 1rem; padding-left: 1.25rem; text-align: left; max-width: 520px; line-height: 1.8; font-size: 1.05rem;">
+                        <li>Styrelseprotokoll</li>
+                        <li>Årsstämmoprotokoll</li>
+                        <li>Ribe-info</li>
+                        <li>Kallelse till årsstämma</li>
+                        <li>Info till boende</li>
+                    </ul>
+                    <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;">
+                        För att få tillgång till information som medlem i föreningen behöver du ansöka till boAppa.
                     </p>
                     <a href="https://boappa.se/ribe-samf-kista" target="_blank" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">
                         boappa.se/ribe-samf-kista <i class="fas fa-external-link-alt" style="margin-left: 0.3rem; font-size: 0.8rem;"></i>
@@ -3235,7 +3291,7 @@
                     <p>Enligt årsstämmobeslut den 25 november 2021 kommer tvättavgiften per pass att ändras från 20
                         kronor till 40 kronor. Den nya avgiften startar 1 februari 2022.</p>
 
-                    <p>De boende som är intresserade av att använda tjänsten kan kontakta styrelsen via <a href="#contact" style="color: var(--primary-color);">kontaktformuläret</a>.</p>
+                    <p>De boende som är intresserade av att använda tjänsten kan kontakta styrelsen via <a href="#" onclick="document.getElementById('contactModalOverlay').style.display='flex'; document.body.style.overflow='hidden'; return false;" style="color: var(--primary-color);">kontaktformuläret</a>.</p>
 
                     <p>Då får ni uppgifter per mejl, användarnamn, lösenord och information, hur man får tillgång till
                         portalen.</p>
@@ -5492,34 +5548,22 @@
                     <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.2rem;">
                         Ribe Samfällighetsförening ekonomiska förvaltare är <strong>Redisa</strong> som har fått förtroendet att sköta föreningens ekonomiska förvaltning. Det innebär att vi hjälper föreningen med t.ex. redovisning och bokföring. Det är också från oss du får dina avier för medlemsavgiften.
                     </p>
-                    <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.2rem;">
-                        De avier du får nu är för perioden juli t o m september och de första Redisa skickar ut.
-                    </p>
                     <div style="background: #fff3cd; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #ffc107; margin-bottom: 1.5rem;">
+                        <p style="font-size: 1.05rem; line-height: 1.8; margin: 0 0 0.75rem 0; color: #856404;">
+                            <strong>VIKTIGT:</strong> När du har erhållit de första avierna vid ägarbyte till e-postadressen angivet i ägarbytesblanketten kan du välja digitalt aviseringssätt.
+                        </p>
+                        <p style="font-size: 1.05rem; line-height: 1.8; margin: 0 0 0.75rem 0; color: #856404;">
+                            Du kan behålla avier med e-post, e-faktura eller auto-giro. Det går också att ha pappersavier, men då tillkommer aviseringskostnad om 50 kr per aviseringstillfälle.
+                        </p>
+                        <p style="font-size: 1.05rem; line-height: 1.8; margin: 0 0 0.75rem 0; color: #856404;">
+                            Om du väljer auto-giro behöver du anmäla till Redisa när autogirot är registrerat på banken.
+                        </p>
                         <p style="font-size: 1.05rem; line-height: 1.8; margin: 0; color: #856404;">
-                            <strong>VIKTIGT:</strong> Samfällighetsföreningen har ett nytt bankgironummer – det är därför viktigt att du betalar in avgiften på det bankgironummer som finns angivet på avin.
+                            Anmälan görs till: <a href="mailto:medlem@redisa.se" style="color: var(--primary-color); text-decoration: underline;">medlem@redisa.se</a>
                         </p>
                     </div>
-                    <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.2rem;">
-                        De första avierna som skickas till dig från Redisa kommer att vara vanliga pappersavier som du måste betala manuellt.
-                    </p>
-                    <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.2rem;">
-                        Vi aviserar fyra gånger per år och du får då tre avier åt gången. All avisering via e-post är kostnadsfri.
-                    </p>
-                    <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.2rem;">
-                        Efter att du har erhållit de första avierna från Redisa är det viktigt att du ändrar aviseringssätt eftersom all avisering är kostnadsfri om den sker digitalt, via e-post. Om du inte gör någon ändring av aviseringssätt kommer pappersavier fortsätta att skickas ut. Det är då viktigt att känna till att det påförs en aviseringskostnad om 50 kr per aviseringstillfälle från Redisa.
-                    </p>
-                    <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.2rem;">
-                        Anmäl din e-postadress här: <a href="mailto:medlem@redisa.se" style="color: var(--primary-color); text-decoration: underline;">medlem@redisa.se</a>
-                    </p>
-                    <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.2rem;">
-                        Du som tidigare har betalat avgiften med autogiro måste nu vid denna avisering betala manuellt då autogirot inte fungerar på grund av att föreningen har ett nytt bankgironummer. Vill du i fortsättningen betala med autogiro måste du kontakta din bank. Först när ansökan är gjord och behandlad av banken kan vi hantera din avisering via autogiro.
-                    </p>
-                    <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.2rem;">
-                        Eftersom Redisa inte får information från banken när autogirot är registrerat behöver du meddela oss när det är klart. Det gör du enklast via e-postadressen nedan. Observera att autogirot kommer att kunna användas först vid nästa aviseringstillfälle, det är därför viktigt att betala avierna för juli till september manuellt.
-                    </p>
                     <p style="font-size: 1.05rem; line-height: 1.8; margin-top: 2rem; text-align: center; font-weight: 600;">
-                        För frågor rörande avisering, avier och autogiro kan ni kontakta oss på: <a href="mailto:medlem@redisa.se" style="color: var(--primary-color); text-decoration: underline;">medlem@redisa.se</a>
+                        För frågor eller anmälan: <a href="mailto:medlem@redisa.se" style="color: var(--primary-color); text-decoration: underline;">medlem@redisa.se</a>
                     </p>
                 </div>
             </div>
@@ -7357,7 +7401,12 @@
                     <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Ribegatan 77, 164 45 Kista</p>
                     <p id="openEmailModalFooterBtn" style="cursor: pointer; color: var(--primary-color); font-weight: 500; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-color)'" onmouseout="this.style.color='var(--primary-color)'"><i class="fas fa-envelope" aria-hidden="true"></i> Klicka här för kontaktformulär</p>
                     <p style="margin-top: 15px; font-size: 0.9rem; color: #94a3b8;">Created 2026 by © nRn World</p>
-                    <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 5px;">bynrnworld@gmail.com</p>
+                    <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 5px; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <span>bynrnworld@gmail.com</span>
+                        <button type="button" aria-label="Kopiera e-postadress" title="Kopiera e-postadress" onclick="window.copyTextToClipboard('bynrnworld@gmail.com', this)" style="background: transparent; border: none; padding: 0; cursor: pointer; color: #94a3b8; line-height: 1; display: inline-flex; align-items: center;">
+                            <i class="fas fa-copy" aria-hidden="true" style="font-size: 0.95rem;"></i>
+                        </button>
+                    </p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -7452,6 +7501,43 @@
             }
             console.log('Dropdown toggled');
         }
+
+        window.copyTextToClipboard = async function(text, buttonEl) {
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(text);
+                } else {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = text;
+                    textarea.setAttribute('readonly', '');
+                    textarea.style.position = 'fixed';
+                    textarea.style.left = '-9999px';
+                    textarea.style.top = '0';
+                    document.body.appendChild(textarea);
+                    textarea.focus();
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                }
+
+                if (buttonEl) {
+                    const icon = buttonEl.querySelector('i');
+                    const previousIconClass = icon ? icon.className : '';
+                    if (icon) icon.className = 'fas fa-check';
+                    buttonEl.style.color = 'var(--primary-color)';
+                    buttonEl.setAttribute('aria-label', 'Kopierat');
+                    setTimeout(() => {
+                        if (icon) icon.className = previousIconClass;
+                        buttonEl.style.color = '#94a3b8';
+                        buttonEl.setAttribute('aria-label', 'Kopiera e-postadress');
+                    }, 1200);
+                }
+
+                if (typeof showNotification === 'function') showNotification('E-post kopierad', 'success');
+            } catch (err) {
+                if (typeof showNotification === 'function') showNotification('Kunde inte kopiera e-post', 'error');
+            }
+        };
         
         
         // ======================================
