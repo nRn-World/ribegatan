@@ -1963,6 +1963,374 @@
             color: var(--gray-700);
         }
 
+        .guide-link.nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 0.6rem;
+            padding: 0;
+            background: transparent;
+            border: 0;
+            box-shadow: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            text-decoration: underline;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .guide-link.nav-link:hover {
+            background: transparent;
+            border: 0;
+            box-shadow: none;
+            color: var(--primary-dark);
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .guide-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.1rem;
+            width: 100%;
+            padding: 1.35rem 1.45rem;
+            border-radius: 1.35rem;
+            border: 1px solid rgba(15, 23, 42, 0.10);
+            background: rgba(255, 255, 255, 0.86);
+            box-shadow: 0 18px 52px rgba(15, 23, 42, 0.08);
+            text-decoration: none;
+            color: inherit;
+            text-align: left;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+            cursor: pointer;
+        }
+
+        button.guide-card {
+            appearance: none;
+            -webkit-appearance: none;
+            font: inherit;
+        }
+
+        .guide-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(44, 85, 48, 0.35);
+            box-shadow: 0 26px 72px rgba(15, 23, 42, 0.12);
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+
+        .guide-card.nav-link:hover {
+            color: inherit;
+        }
+
+        .guide-card:focus-visible {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 3px;
+        }
+
+        .guide-card__icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 58px;
+            height: 58px;
+            flex: 0 0 58px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(44, 85, 48, 0.12), rgba(44, 85, 48, 0.02));
+            border: 1px solid rgba(44, 85, 48, 0.18);
+        }
+
+        .guide-card__icon i {
+            font-size: 1.35rem;
+            color: var(--primary-color);
+        }
+
+        .guide-card__body {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            gap: 0.15rem;
+            flex: 1 1 auto;
+        }
+
+        .guide-card__title {
+            font-weight: 750;
+            letter-spacing: 0.01em;
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            line-height: 1.18;
+        }
+
+        .guide-card__meta {
+            color: var(--gray-600);
+            font-size: 1.02rem;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .guide-card__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 750;
+            color: var(--primary-color);
+            white-space: nowrap;
+            margin-left: auto;
+            align-self: center;
+            padding: 0.55rem 0.85rem;
+            border-radius: 999px;
+            border: 1px solid rgba(44, 85, 48, 0.22);
+            background: rgba(44, 85, 48, 0.06);
+        }
+
+        .guide-card__cta::after {
+            content: '→';
+            transform: translateX(0);
+            transition: transform 180ms ease;
+        }
+
+        .guide-card:hover .guide-card__cta {
+            border-color: rgba(44, 85, 48, 0.32);
+            background: rgba(44, 85, 48, 0.10);
+        }
+
+        .guide-card:hover .guide-card__cta::after {
+            transform: translateX(2px);
+        }
+
+        .guide-card--tone-1 {
+            background: linear-gradient(135deg, rgba(233, 247, 239, 0.9), rgba(255, 255, 255, 0.95));
+            border-color: rgba(44, 85, 48, 0.16);
+        }
+
+        .guide-card--tone-2 {
+            background: linear-gradient(135deg, rgba(232, 244, 248, 0.9), rgba(255, 255, 255, 0.95));
+            border-color: rgba(56, 103, 128, 0.16);
+        }
+
+        .guide-card--tone-3 {
+            background: linear-gradient(135deg, rgba(247, 243, 231, 0.9), rgba(255, 255, 255, 0.95));
+            border-color: rgba(147, 115, 52, 0.18);
+        }
+
+        .guide-card--tone-4 {
+            background: linear-gradient(135deg, rgba(238, 240, 252, 0.9), rgba(255, 255, 255, 0.95));
+            border-color: rgba(76, 95, 169, 0.18);
+        }
+
+        .boappa-card {
+            background: #fff;
+            padding: 3rem 2.25rem;
+            border-radius: 1.75rem;
+            box-shadow: 0 18px 52px rgba(15, 23, 42, 0.08);
+            border: 1px solid rgba(15, 23, 42, 0.07);
+            position: relative;
+            text-align: center;
+        }
+
+        .boappa-logo {
+            font-size: clamp(2.4rem, 4vw, 3.2rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            margin: 0 0 1.25rem;
+            line-height: 1;
+        }
+
+        .boappa-logo .bo {
+            color: #111827;
+        }
+
+        .boappa-logo .appa {
+            color: #22c55e;
+        }
+
+        .boappa-text {
+            max-width: 62ch;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            color: var(--gray-600);
+            line-height: 1.9;
+        }
+
+        .boappa-list {
+            list-style: disc;
+            margin: 1.25rem auto 0;
+            padding-left: 1.25rem;
+            display: inline-block;
+            text-align: left;
+            color: var(--gray-700);
+            line-height: 1.9;
+            font-size: 1.02rem;
+        }
+
+        .boappa-footer {
+            margin-top: 1.6rem;
+        }
+
+        .boappa-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-weight: 850;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .boappa-link:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        .apcoa-card {
+            background: #fff;
+            padding: 2.2rem 2.1rem;
+            border-radius: 1.75rem;
+            box-shadow: 0 18px 52px rgba(15, 23, 42, 0.08);
+            border: 3px solid rgba(44, 85, 48, 0.90);
+            position: relative;
+            text-align: left;
+        }
+
+        .apcoa-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.55rem;
+        }
+
+        .apcoa-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: clamp(1.45rem, 2.2vw, 2.05rem);
+            font-weight: 850;
+            letter-spacing: -0.02em;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .apcoa-title i {
+            color: var(--primary-color);
+        }
+
+        .apcoa-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 0.9rem;
+            border-radius: 999px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: #fff;
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+            box-shadow: 0 10px 26px rgba(22, 163, 74, 0.22);
+            white-space: nowrap;
+        }
+
+        .apcoa-subtitle {
+            margin: 0.4rem 0 1.4rem;
+            font-style: italic;
+            color: var(--gray-600);
+            line-height: 1.8;
+            font-size: 1.02rem;
+        }
+
+        .apcoa-panel {
+            background: #f8fafc;
+            border-radius: 1.35rem;
+            border: 1px solid rgba(15, 23, 42, 0.10);
+            padding: 1.4rem 1.35rem;
+        }
+
+        .apcoa-step {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: 1rem 0;
+        }
+
+        .apcoa-step + .apcoa-step {
+            border-top: 1px solid rgba(15, 23, 42, 0.08);
+        }
+
+        .apcoa-step i {
+            width: 22px;
+            min-width: 22px;
+            height: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            margin-top: 0.15rem;
+        }
+
+        .apcoa-step p {
+            margin: 0;
+            color: var(--gray-700);
+            line-height: 1.75;
+            font-size: 1.02rem;
+        }
+
+        .apcoa-call {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.9rem 1.1rem;
+            border-radius: 0.9rem;
+            background: #fff;
+            border: 1px solid rgba(15, 23, 42, 0.10);
+            box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 850;
+            margin-top: 0.75rem;
+            width: fit-content;
+        }
+
+        .apcoa-call:hover {
+            color: var(--primary-dark);
+            border-color: rgba(44, 85, 48, 0.28);
+        }
+
+        .apcoa-strong {
+            font-weight: 850;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 480px) {
+            .boappa-card {
+                padding: 2.1rem 1.4rem;
+                border-radius: 1.35rem;
+            }
+
+            .apcoa-card {
+                padding: 1.7rem 1.25rem;
+                border-radius: 1.35rem;
+            }
+
+            .apcoa-panel {
+                padding: 1.05rem 1rem;
+                border-radius: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .guide-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* ======================================
            MODERN UTILITIES
         ====================================== */
@@ -2628,7 +2996,7 @@
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="#aktuellt" class="nav-link is-active">Allmänt</a>
+                    <a href="#allmant" class="nav-link is-active">Allmänt</a>
                 </li>
                 <li class="nav-item">
                     <a href="#welcome" class="nav-link">Välkommen</a>
@@ -2689,7 +3057,7 @@
                         <a href="#skotsel" class="nav-link">Skötsel</a>
                         <div class="dropdown-submenu">
                             <div class="nav-link-wrapper">
-                                <a href="#fordon" class="nav-link" data-category="fordon">Fordon i området <i class="fas fa-chevron-right menu-indicator"></i></a>
+                                <a href="#biltrafik" class="nav-link nav-link--noactive" data-active-href="#biltrafik">Fordon i området <i class="fas fa-chevron-right menu-indicator"></i></a>
                                 <span class="dropdown-toggle" onclick="(function(e){e.preventDefault();e.stopPropagation();const submenu=e.target.closest('.dropdown-submenu');const content=submenu.querySelector('.dropdown-submenu-content');submenu.classList.toggle('show');content.classList.toggle('show');console.log('Submenu toggled');})(event)"><i class="fas fa-chevron-down"></i></span>
                             </div>
                             <div class="dropdown-submenu-content">
@@ -2827,86 +3195,101 @@
     <section id="grannsamverkan" class="about">
         <div class="container">
             <!-- Aktuellt Preview (Endast boAppa och APCOA på startsidan) -->
-            <div id="aktuellt-preview" style="margin-bottom: 4rem;">
+            <div id="allmant-preview" style="margin-bottom: 4rem;">
                 <div class="section-header">
                     <h2 style="background: linear-gradient(135deg, #2c5530 0%, #4a7c59 50%, #1a3a1f 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 30px rgba(44, 85, 48, 0.3);">Allmänt</h2>
                 </div>
 
                 <div class="aktuellt-content" style="max-width: 900px; margin: 0px auto;">
-                    <!-- boAppa Info (Överst på startsidan) -->
-                    <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; text-align: center; position: relative;">
-                        <div class="attention-badge attention-badge--important">
-                            <i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Viktigt
+                    <div class="guide-grid" style="margin-top: 1.25rem;">
+                        <div class="boappa-card" style="grid-column: 1 / -1;">
+                            <span class="attention-badge attention-badge--important"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Viktigt</span>
+                            <h3 class="boappa-logo" aria-label="boappa"><span class="bo">bo</span><span class="appa">appa</span></h3>
+                            <p class="boappa-text">
+                                Föreningen använder boAppa som är en app och webb för all boende information som inte är upplagd på hemsidan.
+                            </p>
+                            <p class="boappa-text" style="margin-top: 1.25rem;">Det är:</p>
+                            <ul class="boappa-list" aria-label="Information i boAppa">
+                                <li>Styrelseprotokoll</li>
+                                <li>Årsstämmoprotokoll</li>
+                                <li>Ribe-info</li>
+                                <li>Kallelse till Årsstämma</li>
+                                <li>Info till boende</li>
+                            </ul>
+                            <p class="boappa-text" style="margin-top: 1.5rem;">
+                                För att få tillgång till information som medlem i föreningen behöver du ansöka till boAppa.
+                            </p>
+                            <div class="boappa-footer">
+                                <a class="boappa-link" href="https://boappa.se/ribe-samf-kista" target="_blank" rel="noopener noreferrer">
+                                    boappa.se/ribe-samf-kista <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                </a>
+                            </div>
                         </div>
-                        <a href="https://app.boappa.se/login" target="_blank" style="display: block; margin-bottom: 1.5rem;">
-                            <img src="boappa.png" alt="boAppa" style="max-height: 120px; max-width: 100%; height: auto; display: block; margin: 0 auto;">
-                        </a>
-                        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;">
-                            Föreningen använder boAppa som är en app och webb för all boende information som inte är upplagd på hemsidan.
-                        </p>
-                        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 0.75rem;">
-                            Det är:
-                        </p>
-                        <ul style="margin: 0 auto 1rem; padding-left: 1.25rem; text-align: left; max-width: 520px; line-height: 1.8; font-size: 1.05rem;">
-                            <li>Styrelseprotokoll</li>
-                            <li>Årsstämmoprotokoll</li>
-                            <li>Ribe-info</li>
-                            <li>Kallelse till Årsstämma</li>
-                            <li>Info till boende</li>
-                        </ul>
-                        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;">
-                            För att få tillgång till information som medlem i föreningen behöver du ansöka till boAppa.
-                        </p>
-                        <a href="https://boappa.se/ribe-samf-kista" target="_blank" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">
-                            boappa.se/ribe-samf-kista <i class="fas fa-external-link-alt" style="margin-left: 0.3rem; font-size: 0.8rem;"></i>
-                        </a>
-                    </div>
 
-                    <!-- APCOA Guide -->
-                    <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative; border-top: 4px solid var(--primary-color);">
-                        <div class="attention-badge attention-badge--news">
-                            <i class="fas fa-bullhorn" aria-hidden="true"></i> Nyhet
-                        </div>
-                        <h3 style="color: var(--primary-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
-                            <i class="fas fa-shield-halved"></i>
-                            Områdesbevakning - APCOA
-                        </h3>
-                        <p style="margin-bottom: 1.5rem; font-style: italic; color: var(--gray-600);">Guide för anmälan av boende till APCOA där alla hjälps åt mot okynnes parkering i området.</p>
-                        
-                        <div style="background: rgba(44, 85, 48, 0.04); padding: 1.5rem; border-radius: 1rem; border-left: 4px solid var(--primary-color);">
-                            <div style="display: flex; gap: 1rem; margin-bottom: 1.25rem;">
-                                <i class="fas fa-pen-to-square" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
-                                <p style="margin: 0; color: var(--gray-800);">Anteckna registreringsnummer och den exakta adressen där fordonet står felparkerad i området.</p>
+                        <div class="apcoa-card" style="grid-column: 1 / -1;">
+                            <div class="apcoa-header">
+                                <h3 class="apcoa-title"><i class="fas fa-shield-halved" aria-hidden="true"></i> Områdesbevakning - APCOA</h3>
+                                <span class="apcoa-badge"><i class="fas fa-bullhorn" aria-hidden="true"></i> Nyhet</span>
                             </div>
-                            
-                            <div style="display: flex; gap: 1rem; margin-bottom: 1.25rem; align-items: center; background: white; padding: 0.75rem 1rem; border-radius: 0.5rem; width: fit-content; box-shadow: var(--shadow-sm);">
-                                <i class="fas fa-phone-volume" style="color: var(--primary-color);"></i>
-                                <p style="margin: 0; font-size: 1.2rem; font-weight: 700; color: var(--primary-dark);">
-                                    Ring <a href="tel:0771401020" style="color: inherit; text-decoration: none;">0771- 401020</a>
-                                </p>
-                            </div>
-                            
-                            <div style="display: flex; gap: 1rem; margin-bottom: 0.75rem;">
-                                <i class="fas fa-list-ol" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
-                                <div>
-                                    <p style="margin: 0 0 0.5rem 0; color: var(--gray-800);">I början av samtalet får du flera knappval.</p>
-                                    <p style="margin: 0; color: var(--primary-color); font-weight: 600;">
-                                        <i class="fas fa-circle-check" style="margin-right: 0.5rem; font-size: 0.9rem;"></i>
-                                        Välj alternativ 1 för att kopplas till rätt avdelning.
-                                    </p>
+                            <p class="apcoa-subtitle">Guide för anmälan av boende till APCOA där alla hjälps åt mot okynnes parkering i området.</p>
+                            <div class="apcoa-panel" style="border-left: 4px solid rgba(44, 85, 48, 0.90); padding-left: 1.2rem;">
+                                <div class="apcoa-step">
+                                    <i class="fas fa-pen-to-square" aria-hidden="true"></i>
+                                    <div>
+                                        <p>Anteckna registreringsnummer och den exakta adressen där fordonet står felparkerad i området.</p>
+                                        <a class="apcoa-call" href="tel:0771401020"><i class="fas fa-phone" aria-hidden="true"></i> Ring 0771-401020</a>
+                                    </div>
+                                </div>
+                                <div class="apcoa-step">
+                                    <i class="fas fa-list-ol" aria-hidden="true"></i>
+                                    <p>I början av samtalet får du flera knappval. <span class="apcoa-strong">Välj alternativ 1</span> för att kopplas till rätt avdelning.</p>
+                                </div>
+                                <div class="apcoa-step">
+                                    <i class="fas fa-bullhorn" aria-hidden="true"></i>
+                                    <p>Lämna sedan uppgifterna om det felparkerade fordonet.</p>
+                                </div>
+                                <div class="apcoa-step">
+                                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                                    <p>Kundtjänst skickar därefter ett meddelande till samtliga vakter i området så att fordonet <span class="apcoa-strong">bevakas</span>.</p>
                                 </div>
                             </div>
-                            
-                            <div style="display: flex; gap: 1rem; margin-bottom: 1.25rem;">
-                                <i class="fas fa-bullhorn" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
-                                <p style="margin: 0; color: var(--gray-800);">Lämna sedan uppgifterna om det felparkerade fordonet.</p>
-                            </div>
-                            
-                            <div style="display: flex; gap: 1rem; padding-top: 1rem; border-top: 1px solid rgba(44, 85, 48, 0.1);">
-                                <i class="fas fa-paper-plane" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
-                                <p style="margin: 0; font-weight: 500; color: var(--primary-dark);">Kundtjänst skickar därefter ett meddelande till samtliga vakter i området så att fordonet bevakas.</p>
-                            </div>
                         </div>
+
+                        <a class="guide-card guide-card--tone-1 nav-link" href="#besoksparkering">
+                            <span class="guide-card__icon"><i class="fas fa-square-parking" aria-hidden="true"></i></span>
+                            <span class="guide-card__body">
+                                <span class="guide-card__title">Besöksparkering</span>
+                                <span class="guide-card__meta">Regler, betalning och praktisk info för gästparkering.</span>
+                            </span>
+                            <span class="guide-card__cta" aria-hidden="true">Mer info</span>
+                        </a>
+
+                        <a class="guide-card guide-card--tone-2 nav-link" href="#tvattstuga">
+                            <span class="guide-card__icon"><i class="fas fa-soap" aria-hidden="true"></i></span>
+                            <span class="guide-card__body">
+                                <span class="guide-card__title">Tvättstuga</span>
+                                <span class="guide-card__meta">Bokning, tider och ordningsregler.</span>
+                            </span>
+                            <span class="guide-card__cta" aria-hidden="true">Mer info</span>
+                        </a>
+
+                        <a class="guide-card guide-card--tone-3 nav-link" href="#snorojning">
+                            <span class="guide-card__icon"><i class="fas fa-snowplow" aria-hidden="true"></i></span>
+                            <span class="guide-card__body">
+                                <span class="guide-card__title">Snöröjning</span>
+                                <span class="guide-card__meta">Vad som gäller vid snöfall, snöröjning och sandning.</span>
+                            </span>
+                            <span class="guide-card__cta" aria-hidden="true">Mer info</span>
+                        </a>
+
+                        <button type="button" class="guide-card guide-card--tone-4" onclick="(function(){const t=(window.revealSection?window.revealSection('#contact'):null); if(t){setTimeout(()=>{const offsetTop=t.getBoundingClientRect().top+window.pageYOffset-80; window.scrollTo({top:offsetTop,behavior:'smooth'});},50); history.pushState(null,null,'#contact');} else {window.location.hash='#contact';}})()">
+                            <span class="guide-card__icon"><i class="fas fa-envelope" aria-hidden="true"></i></span>
+                            <span class="guide-card__body">
+                                <span class="guide-card__title">Kontakt</span>
+                                <span class="guide-card__meta">Kontakta styrelsen via kontaktformuläret.</span>
+                            </span>
+                            <span class="guide-card__cta" aria-hidden="true">Öppna</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -3196,279 +3579,198 @@
     </section>
 
     <!-- Aktuellt Section -->
-    <section id="aktuellt" class="about hidden-section">
+    <section id="allmant" class="about hidden-section">
         <div class="container">
             <div class="section-header">
-                <h2 style="background: linear-gradient(135deg, #2c5530 0%, #4a7c59 50%, #1a3a1f 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 30px rgba(44, 85, 48, 0.3);">Information & Aktuellt</h2>
+                <h2 style="background: linear-gradient(135deg, #2c5530 0%, #4a7c59 50%, #1a3a1f 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 30px rgba(44, 85, 48, 0.3);">Allmänt</h2>
+                <p>Översikt med länkar till detaljerad information i respektive flik.</p>
             </div>
 
             <div class="aktuellt-content" style="max-width: 900px; margin: 0px auto;">
-
-                <!-- Nytt inlägg: Områdesbevakning - APCOA -->
-                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative; border-top: 4px solid var(--primary-color);">
-                    <div class="attention-badge attention-badge--news">
-                        <i class="fas fa-bullhorn" aria-hidden="true"></i> Nyhet
+                <div style="margin-top: 1.25rem;">
+                    <div class="boappa-card">
+                        <span class="attention-badge attention-badge--important"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Viktigt</span>
+                        <h3 class="boappa-logo" aria-label="boappa"><span class="bo">bo</span><span class="appa">appa</span></h3>
+                        <p class="boappa-text">
+                            Föreningen använder boAppa som är en app och webb för all boende information som inte är upplagd på hemsidan.
+                        </p>
+                        <p class="boappa-text" style="margin-top: 1.25rem;">Det är:</p>
+                        <ul class="boappa-list" aria-label="Information i boAppa">
+                            <li>Styrelseprotokoll</li>
+                            <li>Årsstämmoprotokoll</li>
+                            <li>Ribe-info</li>
+                            <li>Kallelse till Årsstämma</li>
+                            <li>Info till boende</li>
+                        </ul>
+                        <p class="boappa-text" style="margin-top: 1.5rem;">
+                            För att få tillgång till information som medlem i föreningen behöver du ansöka till boAppa.
+                        </p>
+                        <div class="boappa-footer">
+                            <a class="boappa-link" href="https://boappa.se/ribe-samf-kista" target="_blank" rel="noopener noreferrer">
+                                boappa.se/ribe-samf-kista <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                            </a>
+                        </div>
                     </div>
-                    <h3 style="color: var(--primary-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
-                        <i class="fas fa-shield-halved"></i>
-                        Områdesbevakning - APCOA
-                    </h3>
-                    <p style="margin-bottom: 1.5rem; font-style: italic; color: var(--gray-600);">Guide för anmälan av boende till APCOA där alla hjälps åt mot okynnes parkering i området.</p>
-                    
-                    <div style="background: rgba(44, 85, 48, 0.04); padding: 1.5rem; border-radius: 1rem; border-left: 4px solid var(--primary-color);">
-                        <div style="display: flex; gap: 1rem; margin-bottom: 1.25rem;">
-                            <i class="fas fa-pen-to-square" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
-                            <p style="margin: 0; color: var(--gray-800);">Anteckna registreringsnummer och den exakta adressen där fordonet står felparkerad i området.</p>
+                </div>
+
+                <div style="margin-top: 1.25rem;">
+                    <div class="apcoa-card">
+                        <div class="apcoa-header">
+                            <h3 class="apcoa-title"><i class="fas fa-shield-halved" aria-hidden="true"></i> Områdesbevakning - APCOA</h3>
+                            <span class="apcoa-badge"><i class="fas fa-bullhorn" aria-hidden="true"></i> Nyhet</span>
                         </div>
-                        
-                        <div style="display: flex; gap: 1rem; margin-bottom: 1.25rem; align-items: center; background: white; padding: 0.75rem 1rem; border-radius: 0.5rem; width: fit-content; box-shadow: var(--shadow-sm);">
-                            <i class="fas fa-phone-volume" style="color: var(--primary-color);"></i>
-                            <p style="margin: 0; font-size: 1.2rem; font-weight: 700; color: var(--primary-dark);">
-                                Ring <a href="tel:0771401020" style="color: inherit; text-decoration: none;">0771- 401020</a>
-                            </p>
-                        </div>
-                        
-                        <div style="display: flex; gap: 1rem; margin-bottom: 0.75rem;">
-                            <i class="fas fa-list-ol" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
-                            <div>
-                                <p style="margin: 0 0 0.5rem 0; color: var(--gray-800);">I början av samtalet får du flera knappval.</p>
-                                <p style="margin: 0; color: var(--primary-color); font-weight: 600;">
-                                    <i class="fas fa-circle-check" style="margin-right: 0.5rem; font-size: 0.9rem;"></i>
-                                    Välj alternativ 1 för att kopplas till rätt avdelning.
-                                </p>
+                        <p class="apcoa-subtitle">Guide för anmälan av boende till APCOA där alla hjälps åt mot okynnes parkering i området.</p>
+                        <div class="apcoa-panel" style="border-left: 4px solid rgba(44, 85, 48, 0.90); padding-left: 1.2rem;">
+                            <div class="apcoa-step">
+                                <i class="fas fa-pen-to-square" aria-hidden="true"></i>
+                                <div>
+                                    <p>Anteckna registreringsnummer och den exakta adressen där fordonet står felparkerad i området.</p>
+                                    <a class="apcoa-call" href="tel:0771401020"><i class="fas fa-phone" aria-hidden="true"></i> Ring 0771-401020</a>
+                                </div>
+                            </div>
+                            <div class="apcoa-step">
+                                <i class="fas fa-list-ol" aria-hidden="true"></i>
+                                <p>I början av samtalet får du flera knappval. <span class="apcoa-strong">Välj alternativ 1</span> för att kopplas till rätt avdelning.</p>
+                            </div>
+                            <div class="apcoa-step">
+                                <i class="fas fa-bullhorn" aria-hidden="true"></i>
+                                <p>Lämna sedan uppgifterna om det felparkerade fordonet.</p>
+                            </div>
+                            <div class="apcoa-step">
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                                <p>Kundtjänst skickar därefter ett meddelande till samtliga vakter i området så att fordonet <span class="apcoa-strong">bevakas</span>.</p>
                             </div>
                         </div>
-                        
-                        <div style="display: flex; gap: 1rem; margin-bottom: 1.25rem;">
-                            <i class="fas fa-bullhorn" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
-                            <p style="margin: 0; color: var(--gray-800);">Lämna sedan uppgifterna om det felparkerade fordonet.</p>
-                        </div>
-                        
-                        <div style="display: flex; gap: 1rem; padding-top: 1rem; border-top: 1px solid rgba(44, 85, 48, 0.1);">
-                            <i class="fas fa-paper-plane" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
-                            <p style="margin: 0; font-weight: 500; color: var(--primary-dark);">Kundtjänst skickar därefter ett meddelande till samtliga vakter i området så att fordonet bevakas.</p>
-                        </div>
                     </div>
                 </div>
 
-                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; text-align: center; position: relative;">
-                    <div class="attention-badge attention-badge--important">
-                        <i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Viktigt
-                    </div>
-                    <a href="https://app.boappa.se/login" target="_blank" style="display: block; margin-bottom: 1.5rem;">
-                        <img src="boappa.png" alt="boAppa" style="max-height: 120px; max-width: 100%; height: auto; display: block; margin: 0 auto;">
+                <div class="guide-grid" style="margin-top: 1.25rem;">
+                    <button type="button" class="guide-card" onclick="(function(){const t=(window.revealSection?window.revealSection('#contact'):null); if(t){setTimeout(()=>{const offsetTop=t.getBoundingClientRect().top+window.pageYOffset-80; window.scrollTo({top:offsetTop,behavior:'smooth'});},50); history.pushState(null,null,'#contact');} else {window.location.hash='#contact';}})()">
+                        <span class="guide-card__icon"><i class="fas fa-envelope" aria-hidden="true"></i></span>
+                        <span class="guide-card__body">
+                            <span class="guide-card__title">Kontakt styrelsen</span>
+                            <span class="guide-card__meta">Frågor, felanmälan och andra ärenden via kontaktformuläret.</span>
+                        </span>
+                        <span class="guide-card__cta" aria-hidden="true">Öppna</span>
+                    </button>
+
+                    <a class="guide-card nav-link" href="#ekonomisk-forvaltare">
+                        <span class="guide-card__icon"><i class="fas fa-file-invoice-dollar" aria-hidden="true"></i></span>
+                        <span class="guide-card__body">
+                            <span class="guide-card__title">Ekonomisk förvaltare</span>
+                            <span class="guide-card__meta">Avgifter, avier, autogiro och kontaktuppgifter.</span>
+                        </span>
+                        <span class="guide-card__cta" aria-hidden="true">Mer info</span>
                     </a>
-                    <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;">
-                        Föreningen använder boAppa som är en app och webb för all boendeinformation som inte är upplagd på hemsidan.
-                    </p>
-                    <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 0.75rem;">
-                        Det är:
-                    </p>
-                    <ul style="margin: 0 auto 1rem; padding-left: 1.25rem; text-align: left; max-width: 520px; line-height: 1.8; font-size: 1.05rem;">
-                        <li>Styrelseprotokoll</li>
-                        <li>Årsstämmoprotokoll</li>
-                        <li>Ribe-info</li>
-                        <li>Kallelse till årsstämma</li>
-                        <li>Info till boende</li>
-                    </ul>
-                    <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;">
-                        För att få tillgång till information som medlem i föreningen behöver du ansöka till boAppa.
-                    </p>
-                    <a href="https://boappa.se/ribe-samf-kista" target="_blank" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">
-                        boappa.se/ribe-samf-kista <i class="fas fa-external-link-alt" style="margin-left: 0.3rem; font-size: 0.8rem;"></i>
+
+                    <a class="guide-card nav-link" href="#aegarbyte">
+                        <span class="guide-card__icon"><i class="fas fa-file-signature" aria-hidden="true"></i></span>
+                        <span class="guide-card__body">
+                            <span class="guide-card__title">Ägarbyte/Ägarförändring</span>
+                            <span class="guide-card__meta">Blankett, checklista och info vid ägarbyte/försäljning.</span>
+                        </span>
+                        <span class="guide-card__cta" aria-hidden="true">Mer info</span>
+                    </a>
+
+                    <a class="guide-card nav-link" href="#besoksparkering">
+                        <span class="guide-card__icon"><i class="fas fa-square-parking" aria-hidden="true"></i></span>
+                        <span class="guide-card__body">
+                            <span class="guide-card__title">Besöksparkering</span>
+                            <span class="guide-card__meta">Regler, hur man betalar och vanliga frågor för gäster.</span>
+                        </span>
+                        <span class="guide-card__cta" aria-hidden="true">Mer info</span>
+                    </a>
+
+                    <a class="guide-card nav-link" href="#parkeringsbolag">
+                        <span class="guide-card__icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></span>
+                        <span class="guide-card__body">
+                            <span class="guide-card__title">Parkeringsbolag</span>
+                            <span class="guide-card__meta">Bevakning, felanmälan och kontaktvägar.</span>
+                        </span>
+                        <span class="guide-card__cta" aria-hidden="true">Mer info</span>
+                    </a>
+
+                    <a class="guide-card nav-link" href="#biltrafik">
+                        <span class="guide-card__icon"><i class="fas fa-car" aria-hidden="true"></i></span>
+                        <span class="guide-card__body">
+                            <span class="guide-card__title">Biltrafik</span>
+                            <span class="guide-card__meta">Hastighet, regler och hänsyn i området.</span>
+                        </span>
+                        <span class="guide-card__cta" aria-hidden="true">Mer info</span>
+                    </a>
+
+                    <a class="guide-card nav-link" href="#garage">
+                        <span class="guide-card__icon"><i class="fas fa-warehouse" aria-hidden="true"></i></span>
+                        <span class="guide-card__body">
+                            <span class="guide-card__title">Garage</span>
+                            <span class="guide-card__meta">Garageplatser, förråd och vad som gäller.</span>
+                        </span>
+                        <span class="guide-card__cta" aria-hidden="true">Mer info</span>
+                    </a>
+
+                    <a class="guide-card nav-link" href="#tvattstuga">
+                        <span class="guide-card__icon"><i class="fas fa-soap" aria-hidden="true"></i></span>
+                        <span class="guide-card__body">
+                            <span class="guide-card__title">Tvättstuga</span>
+                            <span class="guide-card__meta">Bokning, tider, taggar/nycklar och ordningsregler.</span>
+                        </span>
+                        <span class="guide-card__cta" aria-hidden="true">Mer info</span>
+                    </a>
+
+                    <a class="guide-card nav-link" href="#avfall">
+                        <span class="guide-card__icon"><i class="fas fa-trash" aria-hidden="true"></i></span>
+                        <span class="guide-card__body">
+                            <span class="guide-card__title">Avfall</span>
+                            <span class="guide-card__meta">Sortering, matavfall och återvinning.</span>
+                        </span>
+                        <span class="guide-card__cta" aria-hidden="true">Mer info</span>
+                    </a>
+
+                    <a class="guide-card nav-link" href="#snorojning">
+                        <span class="guide-card__icon"><i class="fas fa-snowplow" aria-hidden="true"></i></span>
+                        <span class="guide-card__body">
+                            <span class="guide-card__title">Snöröjning</span>
+                            <span class="guide-card__meta">Snöröjning, sandning och vad som behöver hållas fritt.</span>
+                        </span>
+                        <span class="guide-card__cta" aria-hidden="true">Mer info</span>
+                    </a>
+
+                    <a class="guide-card nav-link" href="#krypgrund">
+                        <span class="guide-card__icon"><i class="fas fa-house-crack" aria-hidden="true"></i></span>
+                        <span class="guide-card__body">
+                            <span class="guide-card__title">Krypgrund</span>
+                            <span class="guide-card__meta">Översikt, drift/underhåll och åtgärder.</span>
+                        </span>
+                        <span class="guide-card__cta" aria-hidden="true">Mer info</span>
+                    </a>
+
+                    <a class="guide-card nav-link" href="#farg">
+                        <span class="guide-card__icon"><i class="fas fa-paint-roller" aria-hidden="true"></i></span>
+                        <span class="guide-card__body">
+                            <span class="guide-card__title">Färg</span>
+                            <span class="guide-card__meta">Kulörval, målning och riktlinjer.</span>
+                        </span>
+                        <span class="guide-card__cta" aria-hidden="true">Mer info</span>
+                    </a>
+
+                    <a class="guide-card nav-link" href="#grannsamverkan">
+                        <span class="guide-card__icon"><i class="fas fa-user-shield" aria-hidden="true"></i></span>
+                        <span class="guide-card__body">
+                            <span class="guide-card__title">Grannsamverkan</span>
+                            <span class="guide-card__meta">Trygghetsarbete, rutiner och tips.</span>
+                        </span>
+                        <span class="guide-card__cta" aria-hidden="true">Mer info</span>
+                    </a>
+
+                    <a class="guide-card nav-link" href="#documents">
+                        <span class="guide-card__icon"><i class="fas fa-folder-open" aria-hidden="true"></i></span>
+                        <span class="guide-card__body">
+                            <span class="guide-card__title">Dokument</span>
+                            <span class="guide-card__meta">Stadgar, protokoll, blanketter och arkiv.</span>
+                        </span>
+                        <span class="guide-card__cta" aria-hidden="true">Mer info</span>
                     </a>
                 </div>
-
-                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative;">
-                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Information</h3>
-                    <p>Här publiceras löpande information till medlemmarna. Vid brådskande ärenden hänvisas till anslagstavlorna i tvättstugorna eller kontakt med styrelsen.</p>
-                    <p style="margin-top: 1rem;"><strong>För frågor rörande avisering, avier och autogiro kan ni kontakta oss på:</strong> <a href="mailto:medlem@redisa.se" style="color: var(--primary-color);">medlem@redisa.se</a></p>
-                </div>
-
-
-                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative;">
-                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Bokning av tvättstuga</h4>
-                    <p>Enligt årsstämmobeslut den 25 november 2021 kommer tvättavgiften per pass att ändras från 20
-                        kronor till 40 kronor. Den nya avgiften startar 1 februari 2022.</p>
-
-                    <p>De boende som är intresserade av att använda tjänsten kan kontakta styrelsen via <a href="#" onclick="document.getElementById('contactModalOverlay').style.display='flex'; document.body.style.overflow='hidden'; return false;" style="color: var(--primary-color);">kontaktformuläret</a>.</p>
-
-                    <p>Då får ni uppgifter per mejl, användarnamn, lösenord och information, hur man får tillgång till
-                        portalen.</p>
-                </div>
-
-                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative;">
-                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Föreningens matavfallskärl</h4>
-                    <p style="color: rgb(220, 38, 38); font-weight: 600;">Observera! Vanliga hushållssopor får absolut inte
-                        läggas i matfallskärl behållarna.</p>
-
-                    <p><strong>Börja sortera matavfall.</strong> Ni är ett fåtal som ännu inte har hämtat ut era
-                        matfallspåsar och behållare. Kontakta er områdesansvarige som hjälper er. Vi uppmanar alla
-                        medlemmar inom Ribe att sortera sina sopor och matavfall. Nästan 40 % av det som hamnar i
-                        soppåsen är matavfall. Om matresterna istället sorteras ut kan de omvandlas till biogas och
-                        biogödsel. Var med du också och låt dina matraster jobba för klimatet.</p>
-
-                    <p><strong>Matavfall kostnad.</strong> Tömning av matavfall är kostnadsfritt för föreningen vilket
-                        medför att vi sänker våra kostnader för vår sophämtningen samt vi bidrar till klimaet.</p>
-
-                    <p><strong>Matavfalspåsar.</strong> Inne i entrén på hatthyllan i varje områdeslokal kan ni
-                        medlemmar hämta en bunt avfallspåsar själva. Det kommer att fyllas på kontinuerligt med påsar
-                        men vänligen ta bara en bunt per hushåll vid varje tillfälle. Om de är slut, gå till nästa
-                        områdeslokal och hämta där eller kontakta er områdesansvarige.</p>
-
-                    <p><strong>Sortering avfall.</strong> Detta skall sorteras ut hemma i din fastighet med hämtad
-                        avfalsskorg och avfallspåse. Om du inte har sorterat upp får du inte använda matavfallskärlen
-                        för dina sopor.</p>
-
-                    <p><strong>Var lägger vi matavfalspåsarna.</strong> Vid våra sopbehållare finns det bruna
-                        matavfallskärl behållare som är enbart avsedda för matavfall.</p>
-
-                    <p>Det görs stickprovskontroller och om det inte sköts kommer vårt matfallsabonnemang dras in.</p>
-                </div>
-
-                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative;">
-                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Ska ni sälja ert hus eller anmäla
-                        ägarförändring?</h4>
-                    <p>Glöm inte att informera styrelsen vilka de nya ägarna är och när de flyttar in eller om det har
-                        skett ägarförändring. Du hittar blankett för Ägarbyte under Samfälligheten/Arkiv&amp;Blanketter.</p>
-
-                    <p>Vid försäljning så krävs det en Energideklaration. Underlag för denna är husets senaste
-                        avräkning för värme/vatten förbrukning. För frågor om avgifter och avier, se <a href="#ekonomisk-forvaltare" class="nav-link">Ekonomisk förvaltare</a>.</p>
-                </div>
-
-                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative;">
-                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Samfällighetsföreningen driver
-                        Grannsamverkan</h4>
-                    <p>Läs mer om grannsamverkan under Området,
-                        Grannsamverkan, uppdaterad info med länkar och bild till information för att förbättra
-                        inbrottsskyddet.</p>
-
-                    <p>Information om händelser i området meddelas på info tavlorna i området. Uppsatta vid garagen och
-                        tvättstugorna/hobbylokal.</p>
-
-                    <p>Grannsamverkan har en Facebook grupp och alla Ribebor är välkomna. Information till gruppen är
-                        händelser i området, indelning kontaktombud i området, polisinfo om händelser i Kista närområde
-                        och polisens månadsbrev. Gruppen kan också rapportera till gruppen om de ser eller ha sett något
-                        misstänkt.</p>
-
-                    <p><strong>För att gå med klicka på länken:</strong> Grannsamverkan i kv Ribe Kista</p>
-
-                    <p>För att kunna läsa kommentarer behöver man ansöka för att komma med i gruppen.</p>
-
-                    <p>Polisen informerar om förebyggande råd och tips.</p>
-
-                    <p><strong>Följ närpolisen i Kista i Facebook via länken:</strong> Polisen Kista Näpo</p>
-
-                    <p style="font-weight: 600; margin-top: 1rem;">Uppmärksamma - Agera - Larma</p>
-
-                    <p><strong>Vid pågående larma polisen - Ring 112.</strong></p>
-                    <p><strong>Vid något skumt/bostad tipsa polisen - Ring 11414</strong></p>
-
-                    <p>Vi bör vara vaksamma och försvåra för ovälkomna besökare genom att hjälpas åt med att:</p>
-                    <ul style="margin-left: 2rem;">
-                        <li>tända ytterbelysningar - både på fram- och baksidor</li>
-                        <li>klippa ner skymmande häckar</li>
-                    </ul>
-                    <p>Här är en länk till en sida om grannsamverkan, som handlar om allmänna förebyggande åtgärder för
-                        att lura tjuven.</p>
-                </div>
-
-                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative;">
-                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Besöksparkering</h4>
-                    <p>Leverantör av besöksparkering är <strong>EasyPark</strong> eller <strong>APCOA Flow</strong></p>
-
-                    <p>Avgiften för besöksparkeringen 00-24 uppges i appen. Min debitering är en timme.</p>
-
-                    <p><strong>Zon namn för EasyPark:</strong> 50622<br>
-                        <strong>APCOA flow:</strong> 3897 - RIBE SFF BESÖKSPARKERING, STOCKHOLM
-                    </p>
-
-                    <p>Parkering görs via APP och betalningssätt väljs vid registrering.</p>
-
-                    <p>Tjänsten fungerar oavsett abonnemang/telefon så parkeringen är inte knutet till något mobil
-                        abonnemang. Man kan registrera sin parkering till ett oregistrerat kontantkort.</p>
-
-                    <p><strong>APP parkering via SMART phone.</strong> Ladda ner SMS Park eller APCOA Flow</p>
-
-                    <p>Instruktion med skylt finns vid besöksparkeringen hur man startar och avslutar en parkering via
-                        SMS Park eller APCOA Flow.</p>
-
-                    <p>Timdebitering går över automatiskt till dygnsdebitering.</p>
-
-                    <p>Om det känns bekvämt kan du registrera dina gästers parkering. Man kan registrera ett
-                        registreringsnummer upp till nio tecken i fall besök från utlandet.</p>
-
-                    <p>För parkering på huvudgatan Ribegatan gäller kommunens bestämmelser.</p>
-
-                    <h4 style="color: var(--secondary-color); margin-top: 1.5rem; margin-bottom: 1rem;">Parkeringsbolag
-                    </h4>
-                    <p>Inom föreningens område så sköter Apcoa om vår bevakning av våra besöksparkeringar och vägarna
-                        inom vårt område. Parkering inom området gäller max 5 minuter enligt Stockholm stads
-                        parkeringsregler.</p>
-
-                    <p>Vid felanmälan kontakta Apcoa på telefonnummer <strong>0771-401020</strong>. För ytterligare
-                        information se parkeringsbolag.</p>
-                </div>
-
-                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative;">
-                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Inför Årsstämma</h4>
-                    <p>Motioner ska vara styrelsen tillhanda senast 30 september.</p>
-
-                    <p>Du kan antingen e-posta in din motion till styrelsen eller lägga den i brevlådan på Ribegatan 77
-                        (tvättstugan omr 3).</p>
-                </div>
-
-                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative;">
-                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Besiktning krypgrunder</h4>
-                    <p>Anticimex har besiktat områdets krypgrunder när det gäller skadedjur och andra brister i områdets
-                        krypgrunder.</p>
-
-                    <p>Besiktnings protokollet och åtgärdsprogram finns under fliken <a href="#husen">Husen</a>.</p>
-                </div>
-
-                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative;">
-                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Snöröjning</h4>
-                    <p>Alla vägar inom Ribe samfällighetsförening snöröjs på samfällighetens uppdrag av Raines Maskin &amp;
-                        Entreprenad som är föreningens entreprenör för snöröjning.</p>
-
-                    <p>Snöröjning av Ribegatan från Jyllandsgatan till vändplanen längst upp på gatan sköts av
-                        Stockholms Gatukontor och deras entreprenörer.</p>
-                </div>
-
-                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative;">
-                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Anmälningsplikt till styrelsen och
-                        skyldigheter för husen</h4>
-                    <ul style="margin-left: 2rem; line-height: 1.8;">
-                        <li>Anmälningsplikt vid förändringar i rördragningar i krypgrunden.</li>
-                        <li>Anmälningsplikt vid installationsarbeten i värmesystemet.</li>
-                        <li>Även tidigare utförda arbeten i mätarskåpen måste anmälas till styrelsen.</li>
-                        <li>Medlemmarna har skyldighet att se till att ventilationen i huset fungerar.</li>
-                        <li>Medlemmarna har skyldighet att se till att ventilationsöppningarna till krypgrunden inte är
-                            tilltäppta, att näten är hela samt att det är lättåtkomligt för inspektion.</li>
-                    </ul>
-                    <p>Mer detaljerad information finns under fliken <a href="#husen">Husen</a>.</p>
-                </div>
-
-                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative;">
-                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Målning av egna huset</h4>
-                    <p>Styrelsen har fått flera frågor om vilken färg och vilken kulör som bör användas till våra hus.
-                        Läs mer under flikarna <a href="#husen">Husen</a>.</p>
-                </div>
-
-                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative;">
-                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Utebliven sophämtning!</h4>
-                    <p>Behållarna skall tömmas 1 gång i veckan. Om du har synpunkter på sophämtningen ringer du telefon
-                        <strong>08-508 465 40</strong> och uppger vilken/vilka sopbehållare på Ribegatan det gäller.
-                    </p>
-                </div>
-
-                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; position: relative;">
-                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Våra grönområden!</h4>
-                    <p>Vill du vara med och sköta någon rabatt? Arvode betalas per timme.</p>
-
-                    <p>Hör av dig till styrelsen.</p>
-                </div>
-
             </div>
         </div>
     </section>
@@ -6210,21 +6512,6 @@
         </div>
     </section>
 
-    <!-- Fordon i området Section (Intro) -->
-    <section id="fordon" class="about hidden-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Fordon i området</h2>
-                <p>Använd menyn för att välja specifik kategori gällande fordon och parkering.</p>
-            </div>
-            <div style="max-width: 900px; margin: 0px auto;">
-                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
-                    <p style="text-align: center;">Här hittar du all information gällande biltrafik, garage, besöksparkering och parkeringsbolag. Vänligen välj en specifik kategori från menyn.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Biltrafik Section -->
     <section id="biltrafik" class="about hidden-section">
         <div class="container">
@@ -6313,17 +6600,19 @@
             </div>
             <div style="max-width: 900px; margin: 0px auto;">
                 <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
-                    <p style="margin-bottom: 1rem;"><strong>Parkeringsbolag</strong><br>Inom föreningens område så sköter Apcoa om vår bevakning av våra besöksparkeringar och vägarna inom vårt område. Parkering inom området gäller max 5 minuter enligt Stockholm stads parkeringsregler.</p>
-                    <p style="margin-bottom: 1rem;">Vid felanmälan kontakta Apcoa på telefonnummer 0771-401020. För ytterligare information se parkeringsbolag.</p>
-                    <p style="margin-bottom: 1rem;">Leverantör av besöksparkering är APCOA med deras APP - APCOA FLOW</p>
-                    <ul style="margin-bottom: 1.5rem; list-style-type: disc; margin-left: 2rem;">
-                        <li style="margin-bottom: 0.5rem;">Avgiften för besöksparkeringen 00-24 uppges i appen.</li>
-                        <li style="margin-bottom: 0.5rem;">Debitering är per timme eller 24-timmar.</li>
-                        <li style="margin-bottom: 0.5rem;">Zon namn är <strong>APCOA FLOW 3897 - RIBE SFF BESÖKSPARKERING, STOCKHOLM</strong></li>
-                    </ul>
-                    <p style="margin-bottom: 1rem;">Parkering görs via APP och betalningssätt väljs vid registrering. Instruktion med skylt finns vid besöksparkeringen hur man startar och avslutar en parkering via APCOA FLOW.</p>
-                    <p style="margin-bottom: 1rem;">Timdebitering välj "STARTA PARKERING"<br>24-timmar debitering välj "KÖP PERIOD BILJETT</p>
-                    <p style="margin-bottom: 1rem;">Debiteringen per timme eller 24-period framgår i appen och där även en service avgift tillkommer.</p>
+                    <p style="margin-bottom: 1rem;"><strong>Parkeringsbolag</strong><br>Inom föreningens område så sköter <button type="button" aria-expanded="false" aria-controls="parkingCompanyDetails" onclick="(function(btn){const d=document.getElementById('parkingCompanyDetails');if(!d)return;const isOpen=d.style.display==='block';d.style.display=isOpen?'none':'block';btn.setAttribute('aria-expanded', isOpen?'false':'true');})(this)" style="background: none; border: 0; padding: 0; margin: 0; color: var(--primary-color); text-decoration: underline; font: inherit; font-weight: 600; cursor: pointer;">föreningens anlitade parkeringsbolag</button> om vår bevakning av våra besöksparkeringar och vägarna inom vårt område. Parkering inom området gäller max 5 minuter enligt Stockholm stads parkeringsregler.</p>
+                    <div id="parkingCompanyDetails" style="display: none; margin-top: 1rem;">
+                        <p style="margin-bottom: 1rem;">Vid felanmälan kontakta Apcoa på telefonnummer 0771-401020. För ytterligare information se parkeringsbolag.</p>
+                        <p style="margin-bottom: 1rem;">Leverantör av besöksparkering är APCOA med deras APP - APCOA FLOW</p>
+                        <ul style="margin-bottom: 1.5rem; list-style-type: disc; margin-left: 2rem;">
+                            <li style="margin-bottom: 0.5rem;">Avgiften för besöksparkeringen 00-24 uppges i appen.</li>
+                            <li style="margin-bottom: 0.5rem;">Debitering är per timme eller 24-timmar.</li>
+                            <li style="margin-bottom: 0.5rem;">Zon namn är <strong>APCOA FLOW 3897 - RIBE SFF BESÖKSPARKERING, STOCKHOLM</strong></li>
+                        </ul>
+                        <p style="margin-bottom: 1rem;">Parkering görs via APP och betalningssätt väljs vid registrering. Instruktion med skylt finns vid besöksparkeringen hur man startar och avslutar en parkering via APCOA FLOW.</p>
+                        <p style="margin-bottom: 1rem;">Timdebitering välj "STARTA PARKERING"<br>24-timmar debitering välj "KÖP PERIOD BILJETT</p>
+                        <p style="margin-bottom: 1rem;">Debiteringen per timme eller 24-period framgår i appen och där även en service avgift tillkommer.</p>
+                    </div>
                     <p>För parkering på huvudgatan Ribegatan gäller kommunens bestämmelser.</p>
                 </div>
             </div>
@@ -7390,7 +7679,7 @@
                 <div class="footer-section">
                     <h4>Snabblänkar</h4>
                     <ul>
-                        <li><a href="#aktuellt" class="nav-link">Allmänt</a></li>
+                        <li><a href="#allmant" class="nav-link">Allmänt</a></li>
                         <li><a href="#welcome" class="nav-link">Välkommen</a></li>
                         <li><a href="#samfalligheten" class="nav-link">Samfälligheten</a></li>
                         <li><a href="#contact" class="nav-link">Kontakt</a></li>
@@ -7547,8 +7836,7 @@
         const categoryMapping = {
             'samfalligheten': ['samfalligheten', 'aegarbyte', 'ekonomisk-forvaltare', 'maklarinfo', 'energideklaration', 'foreningen', 'stadgar-section', 'anlaggningar', 'bygglov', 'styrelsen', 'avgift', 'tv', 'bredband', 'formaner', 'arkiv'],
             'husen': ['husen', 'fonster', 'panel', 'farg', 'varme', 'termostat', 'krypgrund', 'bygglov', 'takflakt'],
-            'omradet': ['indelning', 'karta', 'skotsel', 'fordon', 'biltrafik', 'garage', 'besoksparkering', 'extragarage', 'parkeringsbolag', 'avfall', 'tvattstuga', 'grannsamverkan', 'snorojning'],
-            'fordon': ['fordon', 'biltrafik', 'garage', 'besoksparkering', 'extragarage', 'parkeringsbolag'],
+            'omradet': ['indelning', 'karta', 'skotsel', 'biltrafik', 'garage', 'besoksparkering', 'extragarage', 'parkeringsbolag', 'avfall', 'tvattstuga', 'grannsamverkan', 'snorojning'],
             'foreningen': ['foreningen', 'stadgar-section', 'anlaggningar', 'bygglov'],
             'aegarbyte': ['aegarbyte', 'ekonomisk-forvaltare', 'maklarinfo', 'energideklaration'],
             'bilder': ['bilder', 'historik', 'historia']
@@ -7669,7 +7957,8 @@
                 const targetHref = hrefOrElement.trim();
                 if (!targetHref) return;
 
-                const match = Array.from(headerNavLinks).find(l => (l.getAttribute('href') || '').trim() === targetHref);
+                const matches = Array.from(headerNavLinks).filter(l => (l.getAttribute('href') || '').trim() === targetHref);
+                const match = matches.find(l => !l.classList.contains('nav-link--noactive')) || matches[0];
                 if (match) match.classList.add('is-active');
             };
 
@@ -7692,7 +7981,7 @@
                     grannsamverkan.classList.add('show-section');
                 }
 
-                setActiveNavLink('#aktuellt');
+                setActiveNavLink('#allmant');
                 history.pushState(null, null, '#home');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
@@ -7868,7 +8157,8 @@
                         e.preventDefault();
 
                         if (this.closest('.navbar')) {
-                            setActiveNavLink(this);
+                            const activeHref = (this.getAttribute('data-active-href') || href || '').trim();
+                            if (activeHref) setActiveNavLink(activeHref);
                         }
                         
                         // Close mobile menu
@@ -7902,7 +8192,8 @@
                 });
             });
 
-            setActiveNavLink(window.location.hash || '#aktuellt');
+            if (window.location.hash === '#aktuellt') history.replaceState(null, null, '#allmant');
+            setActiveNavLink(window.location.hash || '#allmant');
 
             const sectionIdToHref = new Map();
             headerNavLinks.forEach(l => {

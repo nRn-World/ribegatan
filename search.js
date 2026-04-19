@@ -12,7 +12,38 @@
     if (!searchInput || !searchResults) return;
 
     let searchTimeout = null;
-    let fullIndex = []; // Array av { text, sectionId, sectionTitle }
+
+    function normalizeText(input) {
+        const str = String(input || '').toLowerCase();
+        try {
+            return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        } catch (_) {
+            return str;
+        }
+    }
+
+    function squashForSearch(normalizedText) {
+        return String(normalizedText || '').replace(/[^a-z0-9]+/g, '');
+    }
+
+    function tokenizeQuery(query) {
+        return normalizeText(query)
+            .split(/\s+/g)
+            .map(t => t.trim())
+            .filter(t => t.length >= 2);
+    }
+
+    function matchesAllTerms(normalizedHaystack, terms) {
+        const squashedHaystack = squashForSearch(normalizedHaystack);
+        return terms.every(term => {
+            const t = normalizeText(term);
+            if (!t) return true;
+            if (normalizedHaystack.includes(t)) return true;
+            const st = squashForSearch(t);
+            if (!st) return true;
+            return squashedHaystack.includes(st);
+        });
+    }
 
     // =============================================
     // BYGG INDEX AV HELA SIDANS TEXT
@@ -95,13 +126,12 @@
     // SÖK-LOGIK - Aggregerar resultat per sektion
     // =============================================
     function performSearch(query) {
-        const q = query.trim();
-        if (q.length < 2) {
+        const q = String(query || '').trim();
+        const terms = tokenizeQuery(q);
+        if (terms.length === 0) {
             hideResults();
             return;
         }
-
-        const lowerQ = q.toLowerCase();
 
         // Sök igenom varje sektion direkt i DOM (mest pålitlig metod)
         const sectionResults = [];
@@ -113,13 +143,14 @@
 
             // textContent fångar ALL text oavsett synlighet
             const fullText = section.textContent || '';
-            const lowerText = fullText.toLowerCase();
+            const lowerText = normalizeText(fullText);
 
-            if (lowerText.includes(lowerQ)) {
+            const isMatch = matchesAllTerms(lowerText, terms);
+            if (isMatch) {
                 const heading = section.querySelector('h1, h2, h3');
                 const title = heading ? heading.textContent.trim() : id;
-                const snippet = buildSnippet(fullText, q);
-                const score = countOccurrences(lowerText, lowerQ);
+                const snippet = buildSnippet(fullText, terms[0]);
+                const score = terms.reduce((sum, t) => sum + countOccurrences(lowerText, t), 0);
 
                 sectionResults.push({ id, title, snippet, score });
                 seenIds.add(id);
@@ -130,23 +161,24 @@
         document.querySelectorAll('[id]:not(section)').forEach(el => {
             const id = el.id;
             if (!id || seenIds.has(id)) return;
-            if (id.startsWith('search') || id.startsWith('nav')) return;
+            if (id === 'searchInput' || id === 'searchResults') return;
 
             // Kolla om den har en sektion-parent som redan hittades
             const parentSection = el.closest('section[id]');
             if (parentSection && seenIds.has(parentSection.id)) return;
 
             const fullText = el.textContent || '';
-            const lowerText = fullText.toLowerCase();
+            const lowerText = normalizeText(fullText);
 
-            if (lowerText.includes(lowerQ)) {
+            const isMatch = matchesAllTerms(lowerText, terms);
+            if (isMatch) {
                 const targetId = parentSection ? parentSection.id : id;
                 if (seenIds.has(targetId)) return;
 
                 const heading = (parentSection || el).querySelector('h1, h2, h3') || el;
                 const title = heading ? heading.textContent.trim().substring(0, 60) : id;
-                const snippet = buildSnippet(fullText, q);
-                const score = countOccurrences(lowerText, lowerQ);
+                const snippet = buildSnippet(fullText, terms[0]);
+                const score = terms.reduce((sum, t) => sum + countOccurrences(lowerText, t), 0);
 
                 sectionResults.push({ id: targetId, title, snippet, score });
                 seenIds.add(targetId);
@@ -173,10 +205,10 @@
         return count;
     }
 
-    function buildSnippet(text, query) {
+    function buildSnippet(text, queryTerm) {
         const cleaned = text.replace(/\s+/g, ' ').trim();
-        const lowerText = cleaned.toLowerCase();
-        const lowerQ = query.toLowerCase();
+        const lowerText = normalizeText(cleaned);
+        const lowerQ = normalizeText(queryTerm);
         const idx = lowerText.indexOf(lowerQ);
 
         if (idx === -1) {
@@ -184,7 +216,7 @@
         }
 
         const start = Math.max(0, idx - 70);
-        const end = Math.min(cleaned.length, idx + query.length + 90);
+        const end = Math.min(cleaned.length, idx + queryTerm.length + 90);
         let snippet = cleaned.substring(start, end);
 
         if (start > 0) snippet = '…' + snippet;
@@ -219,7 +251,7 @@
             return;
         }
 
-        const toShow = results.slice(0, 10);
+        const toShow = results.slice(0, 25);
 
         toShow.forEach(result => {
             const div = document.createElement('div');
