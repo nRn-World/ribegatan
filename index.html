@@ -2253,6 +2253,26 @@
             padding: 1.4rem 1.35rem;
         }
 
+        .apcoa-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.95rem;
+            border-radius: 999px;
+            border: 1px solid rgba(44, 85, 48, 0.22);
+            background: rgba(44, 85, 48, 0.06);
+            color: var(--primary-color);
+            font-weight: 850;
+            font-size: 0.92rem;
+            cursor: pointer;
+            margin-top: 0.8rem;
+        }
+
+        .apcoa-toggle:hover {
+            border-color: rgba(44, 85, 48, 0.32);
+            background: rgba(44, 85, 48, 0.10);
+        }
+
         .apcoa-step {
             display: flex;
             gap: 1rem;
@@ -3240,17 +3260,28 @@
                                         <a class="apcoa-call" href="tel:0771401020"><i class="fas fa-phone" aria-hidden="true"></i> Ring 0771-401020</a>
                                     </div>
                                 </div>
-                                <div class="apcoa-step">
-                                    <i class="fas fa-list-ol" aria-hidden="true"></i>
-                                    <p>I början av samtalet får du flera knappval. <span class="apcoa-strong">Välj alternativ 1</span> för att kopplas till rätt avdelning.</p>
-                                </div>
-                                <div class="apcoa-step">
-                                    <i class="fas fa-bullhorn" aria-hidden="true"></i>
-                                    <p>Lämna sedan uppgifterna om det felparkerade fordonet.</p>
-                                </div>
-                                <div class="apcoa-step">
-                                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                                    <p>Kundtjänst skickar därefter ett meddelande till samtliga vakter i området så att fordonet <span class="apcoa-strong">bevakas</span>.</p>
+
+                                <button type="button" class="apcoa-toggle" aria-expanded="false" aria-controls="apcoaDetailsPreview" onclick="(function(btn){const d=document.getElementById('apcoaDetailsPreview');if(!d)return;const isOpen=d.style.display==='block';d.style.display=isOpen?'none':'block';btn.setAttribute('aria-expanded',isOpen?'false':'true');})(this)">
+                                    Visa steg-för-steg <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                                </button>
+
+                                <div id="apcoaDetailsPreview" style="display: none;">
+                                    <div class="apcoa-step">
+                                        <i class="fas fa-list-ol" aria-hidden="true"></i>
+                                        <p>I början av samtalet får du flera knappval.</p>
+                                    </div>
+                                    <div class="apcoa-step">
+                                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                        <p><span class="apcoa-strong">Välj alternativ 1</span> för att kopplas till rätt avdelning.</p>
+                                    </div>
+                                    <div class="apcoa-step">
+                                        <i class="fas fa-bullhorn" aria-hidden="true"></i>
+                                        <p>Lämna sedan uppgifterna om det felparkerade fordonet.</p>
+                                    </div>
+                                    <div class="apcoa-step">
+                                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                                        <p>Kundtjänst skickar därefter ett meddelande till samtliga vakter i området så att fordonet <span class="apcoa-strong">bevakas</span>.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -3628,17 +3659,28 @@
                                     <a class="apcoa-call" href="tel:0771401020"><i class="fas fa-phone" aria-hidden="true"></i> Ring 0771-401020</a>
                                 </div>
                             </div>
-                            <div class="apcoa-step">
-                                <i class="fas fa-list-ol" aria-hidden="true"></i>
-                                <p>I början av samtalet får du flera knappval. <span class="apcoa-strong">Välj alternativ 1</span> för att kopplas till rätt avdelning.</p>
-                            </div>
-                            <div class="apcoa-step">
-                                <i class="fas fa-bullhorn" aria-hidden="true"></i>
-                                <p>Lämna sedan uppgifterna om det felparkerade fordonet.</p>
-                            </div>
-                            <div class="apcoa-step">
-                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                                <p>Kundtjänst skickar därefter ett meddelande till samtliga vakter i området så att fordonet <span class="apcoa-strong">bevakas</span>.</p>
+
+                            <button type="button" class="apcoa-toggle" aria-expanded="false" aria-controls="apcoaDetailsAllmant" onclick="(function(btn){const d=document.getElementById('apcoaDetailsAllmant');if(!d)return;const isOpen=d.style.display==='block';d.style.display=isOpen?'none':'block';btn.setAttribute('aria-expanded',isOpen?'false':'true');})(this)">
+                                Visa steg-för-steg <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                            </button>
+
+                            <div id="apcoaDetailsAllmant" style="display: none;">
+                                <div class="apcoa-step">
+                                    <i class="fas fa-list-ol" aria-hidden="true"></i>
+                                    <p>I början av samtalet får du flera knappval.</p>
+                                </div>
+                                <div class="apcoa-step">
+                                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                    <p><span class="apcoa-strong">Välj alternativ 1</span> för att kopplas till rätt avdelning.</p>
+                                </div>
+                                <div class="apcoa-step">
+                                    <i class="fas fa-bullhorn" aria-hidden="true"></i>
+                                    <p>Lämna sedan uppgifterna om det felparkerade fordonet.</p>
+                                </div>
+                                <div class="apcoa-step">
+                                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                                    <p>Kundtjänst skickar därefter ett meddelande till samtliga vakter i området så att fordonet <span class="apcoa-strong">bevakas</span>.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
