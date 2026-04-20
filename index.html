@@ -8441,7 +8441,13 @@
                         apiFormData.set('attachment', attachmentField.files[0]);
                     }
 
-                    fetch('/api/contact', {
+                    const contactApiUrl = (function () {
+                        const host = String(window.location.hostname || '').toLowerCase();
+                        if (host.endsWith('github.io')) return 'https://ribegatan.onrender.com/api/contact';
+                        return '/api/contact';
+                    })();
+
+                    fetch(contactApiUrl, {
                         method: 'POST',
                         body: apiFormData
                     })

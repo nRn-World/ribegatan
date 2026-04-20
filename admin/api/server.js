@@ -20,6 +20,7 @@ const allowedOrigins = [
   'http://127.0.0.1:3000',
   'http://localhost:5500',
   'https://robinayzit.github.io',
+  'https://nrn-world.github.io',
   'https://ribegatan.onrender.com'
 ];
 
@@ -45,10 +46,6 @@ app.use(cors({
 // Body parser för JSON med ökad gräns för stora HTML-filer
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
-
-// Servera statiska filer från admin-mappen och root
-app.use('/admin', express.static(path.join(__dirname, '..')));
-app.use(express.static(path.join(__dirname, '../..')));
 
 // Logga alla requests i utvecklingsmiljö
 if (process.env.NODE_ENV !== 'production') {
@@ -224,6 +221,10 @@ app.post('/api/contact', contactLimiter, maybeMultipartUpload, async (req, res, 
     return next(err);
   }
 });
+
+// Servera statiska filer från admin-mappen och root (läggs efter API så att POST /api/* aldrig fångas av static middleware)
+app.use('/admin', express.static(path.join(__dirname, '..')));
+app.use(express.static(path.join(__dirname, '../..')));
 
 // 404 handler
 app.use((req, res) => {
