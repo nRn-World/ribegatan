@@ -2026,6 +2026,15 @@
             -webkit-backdrop-filter: none;
         }
 
+        .guide-card.nav-link {
+            white-space: normal;
+            height: auto;
+        }
+
+        .guide-card.nav-link {
+            white-space: normal;
+        }
+
         .guide-card.nav-link:hover {
             color: inherit;
         }
@@ -2155,7 +2164,8 @@
         }
 
         .boappa-text {
-            max-width: 62ch;
+            max-width: 100%;
+            width: fit-content;
             margin: 0 auto;
             font-size: 1.05rem;
             color: var(--gray-600);
@@ -2166,7 +2176,9 @@
             list-style: disc;
             margin: 1.25rem auto 0;
             padding-left: 1.25rem;
-            display: inline-block;
+            display: block;
+            width: fit-content;
+            max-width: 100%;
             text-align: left;
             color: var(--gray-700);
             line-height: 1.9;
