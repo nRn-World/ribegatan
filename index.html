@@ -8441,15 +8441,14 @@
                         apiFormData.set('attachment', attachmentField.files[0]);
                     }
 
-                    const contactApiUrl = (function () {
-                        const host = String(window.location.hostname || '').toLowerCase();
-                        if (host.endsWith('github.io')) return 'https://ribegatan.onrender.com/api/contact';
-                        return '/api/contact';
-                    })();
+                    const contactApiUrl = 'https://formsubmit.co/ajax/styrelsen@ribegatan.se';
 
                     fetch(contactApiUrl, {
                         method: 'POST',
-                        body: apiFormData
+                        body: apiFormData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
                     })
                         .then(async (res) => {
                             if (!res.ok) {
