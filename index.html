@@ -8431,22 +8431,73 @@
                     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Skickar...';
                     submitButton.disabled = true;
 
-                    // Simulate API call
-                    setTimeout(() => {
-                        showNotification('Tack för ditt meddelande! Vi återkommer snart.', 'success');
-                        this.reset();
-                        if (charCount) charCount.textContent = '0 / 1000 tecken';
-                        if (fileError) { fileError.style.display = 'none'; fileError.textContent = ''; }
-                        submitButton.innerHTML = originalText;
-                        submitButton.disabled = false;
-                        
-                        // Stäng modalen och återställ scroll
-                        const modal = document.getElementById('contactModalOverlay');
-                        if (modal) {
-                            modal.style.display = 'none';
-                            document.body.style.overflow = '';
-                        }
-                    }, 2000);
+                    // Send to backend (server-side mail)
+                    const apiFormData = new FormData();
+                    apiFormData.set('name', name);
+                    apiFormData.set('email', email);
+                    apiFormData.set('subject', subject);
+                    apiFormData.set('message', message);
+                    if (attachmentField && attachmentField.files && attachmentField.files.length > 0) {
+                        apiFormData.set('attachment', attachmentField.files[0]);
+                    }
+
+                    fetch('/api/contact', {
+                        method: 'POST',
+                        body: apiFormData
+                    })
+                        .then(async (res) => {
+                            if (!res.ok) {
+                                const status = res.status;
+                                const contentType = (res.headers.get('content-type') || '').toLowerCase();
+                                let details = '';
+
+                                if (contentType.includes('application/json')) {
+                                    try {
+                                        const data = await res.json();
+                                        details = (data && (data.message || data.error)) ? String(data.message || data.error) : '';
+                                    } catch (e) {
+                                        details = '';
+                                    }
+                                } else {
+                                    try {
+                                        details = await res.text();
+                                    } catch (e) {
+                                        details = '';
+                                    }
+                                }
+
+                                throw new Error(`${status}${details ? `: ${details}` : ''}`);
+                            }
+                            return res.json().catch(() => ({}));
+                        })
+                        .then((data) => {
+                            if (data && data.mode === 'test' && data.previewUrl) {
+                                showNotification(`Skickat i testläge. Öppna mailet här: ${data.previewUrl}`, 'success');
+                            } else if (data && data.mode === 'log') {
+                                showNotification('Skickat i testläge. Meddelandet loggades i servern (SMTP saknas).', 'success');
+                            } else {
+                                showNotification('Meddelandet är skickat till styrelsen.', 'success');
+                            }
+                            this.reset();
+                            if (charCount) charCount.textContent = '0 / 1000 tecken';
+                            if (fileError) { fileError.style.display = 'none'; fileError.textContent = ''; }
+
+                            // Stäng modalen och återställ scroll
+                            const modal = document.getElementById('contactModalOverlay');
+                            if (modal) {
+                                modal.style.display = 'none';
+                                document.body.style.overflow = '';
+                            }
+                        })
+                        .catch((err) => {
+                            const msg = (err && err.message) ? String(err.message) : '';
+                            const help = 'Kontrollera att servern kör på samma port som sidan, och att SMTP-uppgifterna är korrekta.';
+                            showNotification(msg ? `Kunde inte skicka (${msg}). ${help}` : `Kunde inte skicka. ${help}`, 'error');
+                        })
+                        .finally(() => {
+                            submitButton.innerHTML = originalText;
+                            submitButton.disabled = false;
+                        });
                 });
             }
 
