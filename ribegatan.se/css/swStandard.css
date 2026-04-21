@@ -1,0 +1,167 @@
+/* ============================================================
+   RIBEGATAN.SE - Responsiv CSS för mobil
+   Lägger till mobilvänlighet på toppen av swglobal.css
+   ============================================================ */
+
+@media screen and (max-width: 960px) {
+
+  /* Tvinga allt att rymmas i skärmen */
+  html, body {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box;
+  }
+
+  /* Alla fasta 950px-divvar görs flytande */
+  div[style*="width:950px"],
+  div[style*="width: 950px"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Separatorbilden (Avdelare-2.png) */
+  img[style*="width:949px"],
+  img[style*="width:950px"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Tabellen med kolumnerna 150px + 600px + 200px */
+  table[style*="width:100%"] {
+    width: 100% !important;
+    table-layout: fixed;
+  }
+
+  /* Vänster tom kolumn (150px) - göm på mobil */
+  td[style*="width:150px"] {
+    display: none !important;
+    width: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Höger sök-kolumn (200px) - göm på mobil */
+  td[style*="width:200px"] {
+    display: none !important;
+    width: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Innehålls-kolumnen (600px) - ta all bredd */
+  td[style*="width:600px"] {
+    width: 100% !important;
+    display: block !important;
+    box-sizing: border-box !important;
+    padding: 0 12px !important;
+  }
+
+  /* Navigations-bilderna - låt dem scrolla horisontellt */
+  #swc_MenuHorizontal_ID90A19F9933E448E9BA68B1B9A88BFE95,
+  #swc_MenuHorizontal_ID70A0A6BABBB1496BB39E109077EDEA53,
+  #swc_MenuHorizontal_ID8CC5F0E929E142BC8DA7431217F2C63F {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  #swc_MenuHorizontal_ID90A19F9933E448E9BA68B1B9A88BFE95 table,
+  #swc_MenuHorizontal_ID70A0A6BABBB1496BB39E109077EDEA53 table,
+  #swc_MenuHorizontal_ID8CC5F0E929E142BC8DA7431217F2C63F table {
+    width: auto !important;
+    min-width: 100%;
+  }
+
+  /* Logotyp i headern - centrera och skala */
+  img[src*="ribehead.png"] {
+    max-width: 100% !important;
+    height: auto !important;
+    width: auto !important;
+  }
+
+  /* Header-diven - anpassa höjd */
+  div[style*="height:110px"] {
+    height: auto !important;
+    min-height: 60px;
+    padding: 8px 0;
+  }
+
+  /* Divvar med fast bredd i innehållet */
+  div[style*="width:420px"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    box-sizing: border-box;
+  }
+
+  /* Tabeller i innehållet med fast procent-bredd */
+  table[style*="width:49"] {
+    width: 100% !important;
+  }
+
+  /* Rubriker - justera marginaler på mobil */
+  h1[style*="margin-left:40px"],
+  h2[style*="margin-left:40px"],
+  h3[style*="margin-left:40px"],
+  p[style*="margin-left:40px"],
+  p[style*="margin-left:25px"],
+  div[style*="margin-left:25px"] {
+    margin-left: 0 !important;
+  }
+
+  /* Bilder - skala ned om de är för breda */
+  img:not([src*="swspace"]):not([src*="Knapp"]):not([src*="Etikett"]) {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Footer */
+  div[style*="background-color:#999999"] {
+    width: 100% !important;
+    height: auto !important;
+    padding: 6px 10px !important;
+  }
+
+  /* Brödtext - läsbar på mobil */
+  body {
+    font-size: 11pt !important;
+  }
+
+  p, li {
+    line-height: 1.6;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Horisontal bakgrundsdiv */
+  div[style*="background-image:url(res/Standard/filler_ligth_background"] {
+    width: 100% !important;
+  }
+
+  /* Footertext */
+  .underrubrik {
+    font-size: 7pt;
+    text-align: center;
+  }
+
+  /* Bakgrundsbildikon */
+  div[style*="background-color:#e4f0ef"] {
+    width: 100% !important;
+  }
+}
+
+/* Extra liten skärm (< 480px) */
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 10pt !important;
+  }
+
+  h1, .h1 {
+    font-size: 13pt !important;
+  }
+
+  h2, .h2 {
+    font-size: 11pt !important;
+  }
+}
