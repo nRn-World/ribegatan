@@ -7769,6 +7769,11 @@
                 Använd formuläret nedan för att nå styrelsen. Vi hanterar personuppgifter enligt GDPR och sparar endast information som krävs för att besvara ditt ärende.
             </p>
             <form id="contactForm" novalidate>
+                <!-- FormSubmit.co konfiguration -->
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" id="_replyto" name="_replyto" value="">
+                <input type="hidden" id="_subject" name="_subject" value="">
                 <div class="form-group">
                     <label for="name">Ditt Namn <span style="color: #e53e3e;">*</span></label>
                     <input type="text" id="name" name="name" placeholder="Ange ditt fullständiga namn" required aria-required="true">
@@ -8443,10 +8448,20 @@
                     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Skickar...';
                     submitButton.disabled = true;
 
-                    // Send to backend (server-side mail)
+                    // Sätt reply-to och subject för FormSubmit
+                    const replyToField = document.getElementById('_replyto');
+                    const subjectField = document.getElementById('_subject');
+                    if (replyToField) replyToField.value = email;
+                    if (subjectField) subjectField.value = `[Ribegatan] ${subject} – från ${name}`;
+
+                    // Skicka till FormSubmit.co → styrelsen@ribegatan.se
                     const apiFormData = new FormData();
                     apiFormData.set('name', name);
                     apiFormData.set('email', email);
+                    apiFormData.set('_replyto', email);
+                    apiFormData.set('_subject', `[Ribegatan] ${subject} – från ${name}`);
+                    apiFormData.set('_template', 'table');
+                    apiFormData.set('_captcha', 'false');
                     apiFormData.set('subject', subject);
                     apiFormData.set('message', message);
                     if (attachmentField && attachmentField.files && attachmentField.files.length > 0) {
@@ -8508,8 +8523,11 @@
                         })
                         .catch((err) => {
                             const msg = (err && err.message) ? String(err.message) : '';
-                            const help = 'Kontrollera att servern kör på samma port som sidan, och att SMTP-uppgifterna är korrekta.';
-                            showNotification(msg ? `Kunde inte skicka (${msg}). ${help}` : `Kunde inte skicka. ${help}`, 'error');
+                            showNotification(
+                                'Kunde inte skicka meddelandet just nu. Kontrollera din internetanslutning och försök igen, eller maila oss direkt på styrelsen@ribegatan.se',
+                                'error'
+                            );
+                            console.error('FormSubmit fel:', msg);
                         })
                         .finally(() => {
                             submitButton.innerHTML = originalText;
