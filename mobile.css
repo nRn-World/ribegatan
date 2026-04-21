@@ -434,3 +434,135 @@ iframe[src*="maps.google"] {
         background: white;
     }
 }
+
+/* ======================================
+   GUIDE-CARD FIX - Kategorikort på mobil
+   Problem: "Mer info"-knapp skärs av till
+   höger pga white-space:nowrap + flex.
+   Fix: wrap layout, knapp på egen rad.
+====================================== */
+
+/* Alltid: Förhindra kort från att orsaka horisontell scroll */
+.guide-card {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Alltid: body-delen ska inte trycka ut knappen */
+.guide-card__body {
+    min-width: 0;
+    flex: 1 1 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.guide-card__meta {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Mobil < 640px: Flex wrappas, knappen hamnar på ny rad */
+@media (max-width: 640px) {
+    .guide-card {
+        flex-wrap: wrap !important;
+        padding: 1rem 0.95rem !important;
+        gap: 0.7rem !important;
+    }
+
+    /* Ikon: lite mindre */
+    .guide-card__icon {
+        width: 46px !important;
+        height: 46px !important;
+        flex: 0 0 46px !important;
+    }
+
+    /* Body: ta kvarvarande plats */
+    .guide-card__body {
+        flex: 1 1 calc(100% - 46px - 0.7rem) !important;
+        min-width: 0 !important;
+    }
+
+    /* "Mer info"-knappen: bryt nowrap, lägg på ny rad med indrag */
+    .guide-card__cta {
+        white-space: normal !important;
+        flex-basis: 100% !important;
+        width: fit-content !important;
+        margin-left: calc(46px + 0.7rem) !important;
+        align-self: flex-start !important;
+        font-size: 0.85rem !important;
+        padding: 0.38rem 0.7rem !important;
+    }
+
+    /* Rubrik lite kompaktare */
+    .guide-card__title {
+        font-size: 1.05rem !important;
+        line-height: 1.25 !important;
+    }
+
+    /* Beskrivning: visa all text, ej klipt */
+    .guide-card__meta {
+        font-size: 0.9rem !important;
+        -webkit-line-clamp: unset !important;
+        overflow: visible !important;
+        display: block !important;
+    }
+
+    /* Grid för guide-korten: alltid en kolumn */
+    .guide-cards-grid,
+    .guide-cards-list {
+        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.65rem !important;
+    }
+}
+
+/* Extra smal skärm < 400px */
+@media (max-width: 400px) {
+    .guide-card {
+        padding: 0.8rem 0.75rem !important;
+        gap: 0.55rem !important;
+    }
+
+    .guide-card__icon {
+        width: 38px !important;
+        height: 38px !important;
+        flex: 0 0 38px !important;
+    }
+
+    .guide-card__icon i {
+        font-size: 1rem !important;
+    }
+
+    .guide-card__cta {
+        margin-left: calc(38px + 0.55rem) !important;
+        font-size: 0.8rem !important;
+    }
+
+    .guide-card__title {
+        font-size: 0.97rem !important;
+    }
+}
+
+/* ======================================
+   MENU-ITEM FIX - korrigering på mobil
+====================================== */
+@media (max-width: 640px) {
+    .menu-item {
+        flex-wrap: wrap !important;
+        gap: 0.5rem !important;
+        padding: 1rem !important;
+    }
+
+    .item-info {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        overflow-wrap: break-word !important;
+    }
+
+    .menu-item a.btn,
+    .menu-item .btn {
+        flex-basis: 100% !important;
+        width: 100% !important;
+    }
+}
