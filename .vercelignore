@@ -1,0 +1,19 @@
+node_modules
+.git
+hts-cache
+Bilder
+Ribegatan Bilder
+ribegatan.se/res
+https_
+ribe_clean
+dist_slim
+docs
+*.zip
+*.pdf
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+!admin/api/data/**
+lighthouse-mobile.json

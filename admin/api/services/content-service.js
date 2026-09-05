@@ -1,9 +1,10 @@
 const fs = require('fs').promises;
 const path = require('path');
-const { v4: uuidv4 } = require('uuid');
+const crypto = require('crypto');
 const { commitFile } = require('./github-service');
 
 const CONTENT_FILE = path.join(__dirname, '../data/content.json');
+const uuidv4 = () => crypto.randomUUID();
 
 /**
  * Content Service - Hanterar CRUD-operationer för inlägg och sidor
@@ -252,10 +253,14 @@ class ContentService {
       throw error;
     }
 
-    // Spara uppdaterat innehåll lokalt (Render/disk)
-    await fs.writeFile(filePath, content, 'utf8');
+    // Spara lokalt om möjligt (Render/disk). På Vercel är filsystemet read-only.
+    try {
+      await fs.writeFile(filePath, content, 'utf8');
+    } catch (error) {
+      console.warn('Lokal filskrivning hoppades över:', error.message);
+    }
 
-    // Synka till GitHub så GitHub Pages uppdateras
+    // Synka till GitHub så GitHub Pages uppdateras (detta är den riktiga publiceringen)
     let githubSync = null;
     try {
       githubSync = await commitFile(
@@ -266,13 +271,13 @@ class ContentService {
     } catch (error) {
       console.error('GitHub-synk misslyckades:', error.message);
       throw new Error(
-        'Sidan sparades lokalt men kunde inte publiceras till GitHub Pages: ' + error.message
+        'Kunde inte publicera till GitHub Pages: ' + error.message
       );
     }
 
-    if (process.env.NODE_ENV === 'production' && githubSync && githubSync.skipped) {
+    if (githubSync && githubSync.skipped) {
       throw new Error(
-        'GITHUB_TOKEN saknas på servern. Lägg till en GitHub-token med repo-rättigheter i Render för att kunna publicera.'
+        'GITHUB_TOKEN saknas på servern. Lägg till en GitHub-token med repo-rättigheter för att kunna publicera.'
       );
     }
 
@@ -295,7 +300,11 @@ class ContentService {
       data.pages[pageIndex] = pageMetadata;
     }
 
-    await this.writeContentData(data);
+    try {
+      await this.writeContentData(data);
+    } catch (error) {
+      console.warn('Kunde inte uppdatera content.json:', error.message);
+    }
 
     return {
       filename,

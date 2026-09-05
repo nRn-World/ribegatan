@@ -26,6 +26,15 @@ const allowedOrigins = [
   'https://ribegatan.onrender.com'
 ];
 
+// Tillåt även Vercel-preview/production-URL:er för API:t
+function isAllowedOrigin(origin) {
+  if (!origin) return true;
+  if (allowedOrigins.includes(origin)) return true;
+  if (/^https:\/\/[\w-]+-bynrnworld\.vercel\.app$/i.test(origin)) return true;
+  if (/^https:\/\/ribegatan-api[-\w]*\.vercel\.app$/i.test(origin)) return true;
+  return false;
+}
+
 const isDev = process.env.NODE_ENV !== 'production';
 
 app.use(cors({
@@ -36,7 +45,7 @@ app.use(cors({
       return callback(null, true);
     }
 
-    if (allowedOrigins.indexOf(origin) !== -1) {
+    if (isAllowedOrigin(origin)) {
       return callback(null, true);
     }
 
@@ -224,9 +233,11 @@ app.post('/api/contact', contactLimiter, maybeMultipartUpload, async (req, res, 
   }
 });
 
-// Servera statiska filer från admin-mappen och root (läggs efter API så att POST /api/* aldrig fångas av static middleware)
-app.use('/admin', express.static(path.join(__dirname, '..')));
-app.use(express.static(path.join(__dirname, '../..')));
+// Servera statiska filer lokalt (hoppa över på Vercel serverless)
+if (!process.env.VERCEL) {
+  app.use('/admin', express.static(path.join(__dirname, '..')));
+  app.use(express.static(path.join(__dirname, '../..')));
+}
 
 // 404 handler
 app.use((req, res) => {
@@ -240,15 +251,17 @@ app.use((req, res) => {
 // Global error handler (must be last)
 app.use(errorHandler);
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`=================================`);
-  console.log(`Admin CMS API Server`);
-  console.log(`=================================`);
-  console.log(`Server running on port ${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`API Base URL: http://localhost:${PORT}`);
-  console.log(`=================================`);
-});
+// Start server (inte på Vercel – där exporteras appen som serverless function)
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`=================================`);
+    console.log(`Admin CMS API Server`);
+    console.log(`=================================`);
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`API Base URL: http://localhost:${PORT}`);
+    console.log(`=================================`);
+  });
+}
 
 module.exports = app;

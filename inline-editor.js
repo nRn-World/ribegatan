@@ -6,7 +6,7 @@
 const InlineEditor = {
   isLoggedIn: false,
   token: null,
-  API_URL: 'https://ribegatan.onrender.com/api',
+  API_URL: 'https://ribegatan-api.vercel.app/api',
   undoStack: [],
   redoStack: [],
   maxUndoSteps: 50,
