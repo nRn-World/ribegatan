@@ -13,3 +13,9 @@ services:
         sync: false
       - key: JWT_SECRET
         generateValue: true
+      - key: GITHUB_REPO
+        value: nRn-World/ribegatan
+      - key: GITHUB_BRANCH
+        value: main
+      - key: GITHUB_TOKEN
+        sync: false

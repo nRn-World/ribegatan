@@ -40,37 +40,51 @@ const InlineEditor = {
   },
   
   /**
-   * Lägg till login-knapp
+   * Lägg till diskret admin-länk i footern (ingen flytande knapp)
    */
   addLoginButton() {
-    const loginBtn = document.createElement('div');
+    const existing = document.getElementById('admin-login-btn');
+    if (existing) existing.remove();
+
+    const footerBottom = document.querySelector('.footer-bottom');
+    const loginBtn = document.createElement(footerBottom ? 'button' : 'div');
     loginBtn.id = 'admin-login-btn';
-    loginBtn.innerHTML = this.isLoggedIn ? '🔓 Admin' : '🔒 Admin';
-    loginBtn.style.cssText = `
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background: #1f2937;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      z-index: 10000;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      touch-action: manipulation;
-      -webkit-tap-highlight-color: transparent;
-    `;
-    
-    // Mobilanpassning
-    if (window.innerWidth <= 768) {
-      loginBtn.style.padding = '8px 15px';
-      loginBtn.style.fontSize = '13px';
-      loginBtn.style.top = '5px';
-      loginBtn.style.right = '5px';
+    loginBtn.type = footerBottom ? 'button' : undefined;
+    loginBtn.innerHTML = this.isLoggedIn ? 'Admin (inloggad)' : 'Admin';
+    loginBtn.setAttribute('aria-label', 'Admin-inloggning');
+
+    if (footerBottom) {
+      loginBtn.style.cssText = `
+        display: inline-block;
+        margin-top: 0.75rem;
+        background: transparent;
+        border: none;
+        color: #94a3b8;
+        font-size: 0.8rem;
+        cursor: pointer;
+        padding: 0;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        opacity: 0.85;
+      `;
+      footerBottom.appendChild(loginBtn);
+    } else {
+      // Fallback om footern saknas
+      loginBtn.style.cssText = `
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        background: #1f2937;
+        color: white;
+        padding: 8px 14px;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 10000;
+        font-size: 13px;
+      `;
+      document.body.appendChild(loginBtn);
     }
-    
+
     loginBtn.onclick = () => {
       if (this.isLoggedIn) {
         this.showAdminMenu();
@@ -78,8 +92,6 @@ const InlineEditor = {
         this.showLoginModal();
       }
     };
-    
-    document.body.appendChild(loginBtn);
   },
   
   /**
@@ -145,7 +157,8 @@ const InlineEditor = {
         document.getElementById('admin-login-modal').remove();
         
         // Uppdatera login-knapp
-        document.getElementById('admin-login-btn').innerHTML = '🔓 Admin';
+        const loginBtn = document.getElementById('admin-login-btn');
+        if (loginBtn) loginBtn.innerHTML = 'Admin (inloggad)';
         
         // Aktivera redigeringsläge
         this.enableEditMode();
@@ -170,7 +183,8 @@ const InlineEditor = {
       
       if (response.ok) {
         this.isLoggedIn = true;
-        document.getElementById('admin-login-btn').innerHTML = '🔓 Admin';
+        const loginBtn = document.getElementById('admin-login-btn');
+        if (loginBtn) loginBtn.innerHTML = 'Admin (inloggad)';
         this.enableEditMode();
       } else {
         localStorage.removeItem('adminToken');
@@ -552,9 +566,10 @@ const InlineEditor = {
         img.style.transition = '';
       });
       
-      // Hämta den rensade HTML:en
-      const html = clonedDoc.documentElement.outerHTML;
-      const filename = window.location.pathname.split('/').pop() || 'index.html';
+      const html = '<!DOCTYPE html>\n' + clonedDoc.documentElement.outerHTML;
+      const pathParts = window.location.pathname.split('/').filter(Boolean);
+      let filename = pathParts[pathParts.length - 1] || 'index.html';
+      if (!filename.endsWith('.html')) filename = 'index.html';
       
       console.log('Sparar sida:', filename);
       console.log('HTML-storlek:', html.length, 'bytes');

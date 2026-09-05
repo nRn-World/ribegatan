@@ -3,7 +3,7 @@
     {
       "id": "admin-001",
       "username": "ADMIN",
-      "passwordHash": "$2b$10$yx.G6g242bWwNVVMEBfmeuHcHOibz8gEje89bVHTrMEnIWukPrdMq",
+      "passwordHash": "$2b$10$pwdv11/d7GTLlYDRS.EMIe85Zmp40SrcEDsWv5G/oFNJf5ssce0vq",
       "role": "admin",
       "createdAt": "2024-01-01T00:00:00Z"
     }

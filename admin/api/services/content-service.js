@@ -1,6 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
+const { commitFile } = require('./github-service');
 
 const CONTENT_FILE = path.join(__dirname, '../data/content.json');
 
@@ -251,8 +252,29 @@ class ContentService {
       throw error;
     }
 
-    // Spara uppdaterat innehåll
+    // Spara uppdaterat innehåll lokalt (Render/disk)
     await fs.writeFile(filePath, content, 'utf8');
+
+    // Synka till GitHub så GitHub Pages uppdateras
+    let githubSync = null;
+    try {
+      githubSync = await commitFile(
+        filename,
+        content,
+        `admin: uppdatera ${filename}`
+      );
+    } catch (error) {
+      console.error('GitHub-synk misslyckades:', error.message);
+      throw new Error(
+        'Sidan sparades lokalt men kunde inte publiceras till GitHub Pages: ' + error.message
+      );
+    }
+
+    if (process.env.NODE_ENV === 'production' && githubSync && githubSync.skipped) {
+      throw new Error(
+        'GITHUB_TOKEN saknas på servern. Lägg till en GitHub-token med repo-rättigheter i Render för att kunna publicera.'
+      );
+    }
 
     // Uppdatera metadata i content.json
     const data = await this.readContentData();
@@ -279,7 +301,8 @@ class ContentService {
       filename,
       title,
       content,
-      lastModified: pageMetadata.lastModified
+      lastModified: pageMetadata.lastModified,
+      githubSync
     };
   }
 

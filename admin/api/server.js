@@ -21,6 +21,8 @@ const allowedOrigins = [
   'http://localhost:5500',
   'https://robinayzit.github.io',
   'https://nrn-world.github.io',
+  'https://nrnworld.one',
+  'https://www.nrnworld.one',
   'https://ribegatan.onrender.com'
 ];
 

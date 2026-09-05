@@ -99,7 +99,7 @@ async function findUserByUsername(username) {
  * @returns {Promise<object|null>} - Användaren om autentisering lyckas, null annars
  */
 async function authenticateUser(username, password) {
-  // Om miljövariabler finns (produktion), använd dem
+  // Produktion: miljövariabler (Render m.m.)
   if (process.env.ADMIN_USERNAME && process.env.ADMIN_PASSWORD) {
     if (username === process.env.ADMIN_USERNAME && password === process.env.ADMIN_PASSWORD) {
       return {
@@ -108,23 +108,21 @@ async function authenticateUser(username, password) {
         role: 'admin'
       };
     }
-    return null;
   }
-  
-  // Annars använd users.json (lokal utveckling)
+
+  // Fallback: users.json (lokal + om env-lösenordet inte matchar)
   const user = await findUserByUsername(username);
-  
+
   if (!user) {
     return null;
   }
-  
+
   const isValid = await comparePassword(password, user.passwordHash);
-  
+
   if (!isValid) {
     return null;
   }
-  
-  // Returnera användaren utan lösenordshash
+
   const { passwordHash, ...userWithoutPassword } = user;
   return userWithoutPassword;
 }
