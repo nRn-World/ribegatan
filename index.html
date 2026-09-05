@@ -6,15 +6,28 @@
     <title>Ribe Samfällighetsförening - Ribegatan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preload" as="image" type="image/webp" href="ribegatan.se/res/Standard/ribehead.webp" fetchpriority="high">
-    <link rel="preload" as="image" type="image/webp" href="logo-removebg-preview.webp" fetchpriority="high">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <link rel="stylesheet" href="mobile.css">
     <link rel="icon" type="image/webp" href="logo-removebg-preview.webp">
+    <script>
+      // Load non-critical CSS after first paint so they don't block LCP/FCP
+      window.addEventListener('load', function () {
+        var sheets = [
+          'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap',
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
+        ];
+        sheets.forEach(function (href) {
+          var l = document.createElement('link');
+          l.rel = 'stylesheet';
+          l.href = href;
+          document.head.appendChild(l);
+        });
+      });
+    </script>
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
 
     <style>
             .notification-content {
@@ -3171,7 +3184,7 @@
             <div class="hero-image">
                 <img class="hero-head-logo" src="ribegatan.se/res/Standard/ribehead.webp" width="620" height="114" alt="Ribe Samfällighet" fetchpriority="high" decoding="async">
                 <div class="home-icon home-icon--hero-secondary">
-                    <img src="logo-removebg-preview.webp" width="280" height="280" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
+                    <img src="logo-removebg-preview.webp" width="280" height="280" alt="" aria-hidden="true" decoding="async">
                 </div>
             </div>
             <div class="hero-widgets">
@@ -3360,12 +3373,12 @@
 
                 <!-- Stor huvudbild -->
                 <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; width: 100%;">
-                    <img id="mainWelcomeImage" src="ribegatan.se/res/Bilderhost/Drone1.webp" alt="Välkommen till kvarteret Ribe" width="1200" height="899" loading="lazy" decoding="async" style="width: 100%; max-width: 700px; height: auto; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; display: block; margin: 0 auto;">
+                    <img id="mainWelcomeImage" src="ribegatan.se/res/Bilderhost/Drone1-sm.webp" alt="Välkommen till kvarteret Ribe" width="700" height="524" loading="lazy" decoding="async" style="width: 100%; max-width: 700px; height: auto; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; display: block; margin: 0 auto;">
                 </div>
 
                 <!-- Fyra små miniatyrbilder -->
                 <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; width: 100%;">
-                    <img src="ribegatan.se/res/Bilderhost/Drone1-thumb.webp" alt="Drönarbild 1" width="120" height="80" loading="lazy" decoding="async" style="width: 120px; height: 80px; object-fit: cover; border-radius: 0.25rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; cursor: pointer;" onclick="document.getElementById('mainWelcomeImage').src = 'ribegatan.se/res/Bilderhost/Drone1.webp'">
+                    <img src="ribegatan.se/res/Bilderhost/Drone1-thumb.webp" alt="Drönarbild 1" width="120" height="80" loading="lazy" decoding="async" style="width: 120px; height: 80px; object-fit: cover; border-radius: 0.25rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; cursor: pointer;" onclick="document.getElementById('mainWelcomeImage').src = 'ribegatan.se/res/Bilderhost/Drone1-sm.webp'">
                     <img src="ribegatan.se/res/Bilderhost/Drone2-thumb.webp" alt="Drönarbild 2" width="120" height="80" loading="lazy" decoding="async" style="width: 120px; height: 80px; object-fit: cover; border-radius: 0.25rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; cursor: pointer;" onclick="document.getElementById('mainWelcomeImage').src = 'ribegatan.se/res/Bilderhost/Drone2.webp'">
                     <img src="ribegatan.se/res/Bilderhost/Drone3-thumb.webp" alt="Drönarbild 3" width="120" height="80" loading="lazy" decoding="async" style="width: 120px; height: 80px; object-fit: cover; border-radius: 0.25rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; cursor: pointer;" onclick="document.getElementById('mainWelcomeImage').src = 'ribegatan.se/res/Bilderhost/Drone3.webp'">
                     <img src="ribegatan.se/res/Bilderhost/Drone4-thumb.webp" alt="Drönarbild 4" width="120" height="80" loading="lazy" decoding="async" style="width: 120px; height: 80px; object-fit: cover; border-radius: 0.25rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; cursor: pointer;" onclick="document.getElementById('mainWelcomeImage').src = 'ribegatan.se/res/Bilderhost/Drone4.webp'">
@@ -9565,6 +9578,6 @@
     </script>
     
     <!-- Search functionality - loaded last to ensure DOM is ready -->
-    <script src="search.js"></script>
+    <script src="search.js" defer></script>
 
 </body></html>
