@@ -66,8 +66,11 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
-// Root endpoint - visa hemsidan (admin finns under /admin)
+// Root: på Vercel är detta bara API – skicka besökare till riktiga hemsidan
 app.get('/', (req, res) => {
+  if (process.env.VERCEL) {
+    return res.redirect(302, 'https://nrnworld.one/ribegatan/');
+  }
   res.sendFile(path.join(__dirname, '../..', 'index.html'));
 });
 
