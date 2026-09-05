@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node admin/api/server.js",
     "dev": "nodemon admin/api/server.js",
+    "optimize:perf": "node scripts/optimize-perf.mjs",
     "test": "echo \"Error: no test command specified\" && exit 1"
   },
   "keywords": [

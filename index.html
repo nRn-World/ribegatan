@@ -4,10 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ribe Samfällighetsförening - Ribegatan</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preload" as="image" type="image/webp" href="ribegatan.se/res/Standard/ribehead.webp" fetchpriority="high">
+    <link rel="preload" as="image" type="image/webp" href="logo-removebg-preview.webp" fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <link rel="stylesheet" href="mobile.css">
-    <link rel="icon" type="image/png" href="logo-removebg-preview.png">
+    <link rel="icon" type="image/webp" href="logo-removebg-preview.webp">
 
     <style>
             .notification-content {
@@ -90,6 +97,12 @@
             }
             section {
                 scroll-margin-top: 100px;
+            }
+
+            /* Speed up initial render: skip layout for offscreen sections */
+            section:not(#home):not(.hero) {
+                content-visibility: auto;
+                contain-intrinsic-size: 1px 800px;
             }
 
             /* Accordion Styles */
@@ -189,8 +202,8 @@
             --gray-900: #111827;
 
             /* Typography */
-            --font-heading: 'Playfair Display', serif;
-            --font-body: 'Inter', sans-serif;
+            --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+            --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
             /* Spacing System */
             --space-xs: 0.5rem;
@@ -3156,9 +3169,9 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img class="hero-head-logo" src="ribegatan.se/res/Standard/ribehead.png" alt="Ribe Samfällighet">
+                <img class="hero-head-logo" src="ribegatan.se/res/Standard/ribehead.webp" width="620" height="114" alt="Ribe Samfällighet" fetchpriority="high" decoding="async">
                 <div class="home-icon home-icon--hero-secondary">
-                    <img src="logo-removebg-preview.png" alt="Ribe Samfällighetsförening logo" aria-hidden="true">
+                    <img src="logo-removebg-preview.webp" width="280" height="280" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
                 </div>
             </div>
             <div class="hero-widgets">
@@ -3347,15 +3360,15 @@
 
                 <!-- Stor huvudbild -->
                 <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; width: 100%;">
-                    <img id="mainWelcomeImage" src="ribegatan.se/res/Bilderhost/Drone1.jpg" alt="Välkommen till kvarteret Ribe" style="width: 100%; max-width: 700px; height: auto; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; display: block; margin: 0 auto;">
+                    <img id="mainWelcomeImage" src="ribegatan.se/res/Bilderhost/Drone1.webp" alt="Välkommen till kvarteret Ribe" width="1200" height="899" loading="lazy" decoding="async" style="width: 100%; max-width: 700px; height: auto; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; display: block; margin: 0 auto;">
                 </div>
 
                 <!-- Fyra små miniatyrbilder -->
                 <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; width: 100%;">
-                    <img src="ribegatan.se/res/Bilderhost/Drone1.jpg" alt="Drönarbild 1" style="width: 120px; height: 80px; object-fit: cover; border-radius: 0.25rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; cursor: pointer;" onclick="document.getElementById('mainWelcomeImage').src = 'ribegatan.se/res/Bilderhost/Drone1.jpg'">
-                    <img src="ribegatan.se/res/Bilderhost/Drone2.jpg" alt="Drönarbild 2" style="width: 120px; height: 80px; object-fit: cover; border-radius: 0.25rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; cursor: pointer;" onclick="document.getElementById('mainWelcomeImage').src = 'ribegatan.se/res/Bilderhost/Drone2.jpg'">
-                    <img src="ribegatan.se/res/Bilderhost/Drone3.jpg" alt="Drönarbild 3" style="width: 120px; height: 80px; object-fit: cover; border-radius: 0.25rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; cursor: pointer;" onclick="document.getElementById('mainWelcomeImage').src = 'ribegatan.se/res/Bilderhost/Drone3.jpg'">
-                    <img src="ribegatan.se/res/Bilderhost/Drone4.jpg" alt="Drönarbild 4" style="width: 120px; height: 80px; object-fit: cover; border-radius: 0.25rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; cursor: pointer;" onclick="document.getElementById('mainWelcomeImage').src = 'ribegatan.se/res/Bilderhost/Drone4.jpg'">
+                    <img src="ribegatan.se/res/Bilderhost/Drone1-thumb.webp" alt="Drönarbild 1" width="120" height="80" loading="lazy" decoding="async" style="width: 120px; height: 80px; object-fit: cover; border-radius: 0.25rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; cursor: pointer;" onclick="document.getElementById('mainWelcomeImage').src = 'ribegatan.se/res/Bilderhost/Drone1.webp'">
+                    <img src="ribegatan.se/res/Bilderhost/Drone2-thumb.webp" alt="Drönarbild 2" width="120" height="80" loading="lazy" decoding="async" style="width: 120px; height: 80px; object-fit: cover; border-radius: 0.25rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; cursor: pointer;" onclick="document.getElementById('mainWelcomeImage').src = 'ribegatan.se/res/Bilderhost/Drone2.webp'">
+                    <img src="ribegatan.se/res/Bilderhost/Drone3-thumb.webp" alt="Drönarbild 3" width="120" height="80" loading="lazy" decoding="async" style="width: 120px; height: 80px; object-fit: cover; border-radius: 0.25rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; cursor: pointer;" onclick="document.getElementById('mainWelcomeImage').src = 'ribegatan.se/res/Bilderhost/Drone3.webp'">
+                    <img src="ribegatan.se/res/Bilderhost/Drone4-thumb.webp" alt="Drönarbild 4" width="120" height="80" loading="lazy" decoding="async" style="width: 120px; height: 80px; object-fit: cover; border-radius: 0.25rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; cursor: pointer;" onclick="document.getElementById('mainWelcomeImage').src = 'ribegatan.se/res/Bilderhost/Drone4.webp'">
                 </div>
 
                 <!-- Beskrivande text -->
@@ -3490,7 +3503,7 @@
 
                     <div style="margin-top: 2rem; text-align: center;">
                         <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Exempel på monterad C-profil</h4>
-                        <img src="ribegatan.se/res/Grannsamverkan/P1030922.png" alt="Monterad C-profil" style="max-width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px;">
+                        <img src="ribegatan.se/res/Grannsamverkan/P1030922.webp" alt="Monterad C-profil" style="max-width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px;" loading="lazy" decoding="async">
                         <p style="font-size: 0.9rem; color: rgb(102, 102, 102); margin-top: 0.5rem;">C-profil på original ytterdörr i området (modell UB)</p>
                     </div>
 
@@ -3566,15 +3579,15 @@
                     <!-- Bildgalleri 3 bilder -->
                     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; margin: 3rem 0;">
                         <div style="text-align: center;">
-                            <img src="ribegatan.se/res/Historik/bygge_storaochsma.gif" alt="Stora och små hjälps åt" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                            <img src="ribegatan.se/res/Historik/bygge_storaochsma.gif" alt="Stora och små hjälps åt" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" loading="lazy" decoding="async">
                             <p style="font-size: 0.85rem; color: rgb(102, 102, 102); margin-top: 0.5rem;">Stora och små hjälps åt</p>
                         </div>
                         <div style="text-align: center;">
-                            <img src="ribegatan.se/res/Historik/bygge_lotta_fortaring.gif" alt="Gemensam förtäring" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                            <img src="ribegatan.se/res/Historik/bygge_lotta_fortaring.gif" alt="Gemensam förtäring" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" loading="lazy" decoding="async">
                             <p style="font-size: 0.85rem; color: rgb(102, 102, 102); margin-top: 0.5rem;">Gemensam förtäring</p>
                         </div>
                         <div style="text-align: center;">
-                            <img src="ribegatan.se/res/Historik/bygge_leffe_paus.gif" alt="Välförtjänt paus i bygget" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                            <img src="ribegatan.se/res/Historik/bygge_leffe_paus.gif" alt="Välförtjänt paus i bygget" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" loading="lazy" decoding="async">
                             <p style="font-size: 0.85rem; color: rgb(102, 102, 102); margin-top: 0.5rem;">Välförtjänt paus i bygget</p>
                         </div>
                     </div>
@@ -3984,19 +3997,19 @@
                         </h4>
                         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;">
                             <div style="text-align: center;">
-                                <img src="ribegatan.se/res/Bilderhost/Drone1.jpg" alt="Ribe drönarbild 1" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                                <img src="ribegatan.se/res/Bilderhost/Drone1.webp" alt="Ribe drönarbild 1" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" loading="lazy" decoding="async">
                                 <p style="font-size: 0.85rem; color: rgb(102, 102, 102); margin-top: 0.5rem;">Drönarbild 1</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="ribegatan.se/res/Bilderhost/Drone2.jpg" alt="Ribe drönarbild 2" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                                <img src="ribegatan.se/res/Bilderhost/Drone2.webp" alt="Ribe drönarbild 2" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" loading="lazy" decoding="async">
                                 <p style="font-size: 0.85rem; color: rgb(102, 102, 102); margin-top: 0.5rem;">Drönarbild 2</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="ribegatan.se/res/Bilderhost/Drone3.jpg" alt="Ribe drönarbild 3" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                                <img src="ribegatan.se/res/Bilderhost/Drone3.webp" alt="Ribe drönarbild 3" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" loading="lazy" decoding="async">
                                 <p style="font-size: 0.85rem; color: rgb(102, 102, 102); margin-top: 0.5rem;">Drönarbild 3</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="ribegatan.se/res/Bilderhost/Drone4.jpg" alt="Ribe drönarbild 4" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                                <img src="ribegatan.se/res/Bilderhost/Drone4.webp" alt="Ribe drönarbild 4" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" loading="lazy" decoding="async">
                                 <p style="font-size: 0.85rem; color: rgb(102, 102, 102); margin-top: 0.5rem;">Drönarbild 4</p>
                             </div>
                         </div>
@@ -4009,23 +4022,23 @@
                         </h4>
                         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;">
                             <div style="text-align: center;">
-                                <img src="ribegatan.se/res/Bilderkvarteretbygg/byggstartribe.png" alt="Byggstart Ribe" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                                <img src="ribegatan.se/res/Bilderkvarteretbygg/byggstartribe.webp" alt="Byggstart Ribe" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                                 <p style="font-size: 0.85rem; color: rgb(102, 102, 102); margin-top: 0.5rem;">Byggstart</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="ribegatan.se/res/Bilderkvarteretbygg/histo_bild2.png" alt="Historisk bild 2" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                                <img src="ribegatan.se/res/Bilderkvarteretbygg/histo_bild2.webp" alt="Historisk bild 2" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                             </div>
                             <div style="text-align: center;">
-                                <img src="ribegatan.se/res/Bilderkvarteretbygg/histo_bild3.png" alt="Historisk bild 3" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                                <img src="ribegatan.se/res/Bilderkvarteretbygg/histo_bild3.webp" alt="Historisk bild 3" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                             </div>
                             <div style="text-align: center;">
-                                <img src="ribegatan.se/res/Bilderkvarteretbygg/histo_bild4.png" alt="Historisk bild 4" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                                <img src="ribegatan.se/res/Bilderkvarteretbygg/histo_bild4.webp" alt="Historisk bild 4" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                             </div>
                             <div style="text-align: center;">
-                                <img src="ribegatan.se/res/Bilderkvarteretbygg/histo_bild5.png" alt="Historisk bild 5" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                                <img src="ribegatan.se/res/Bilderkvarteretbygg/histo_bild5.webp" alt="Historisk bild 5" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                             </div>
                             <div style="text-align: center;">
-                                <img src="ribegatan.se/res/Bilderkvarteretbygg/histo_bild6.png" alt="Historisk bild 6" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                                <img src="ribegatan.se/res/Bilderkvarteretbygg/histo_bild6.webp" alt="Historisk bild 6" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                             </div>
                         </div>
                     </div>
@@ -4036,12 +4049,12 @@
                             <i class="fas fa-child" style="margin-right: 0.5rem;"></i>Bygge av lekplats
                         </h4>
                         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
-                            <img src="ribegatan.se/res/Bilderlekplats/1_planritningribe3lekplats.png" alt="Planritning lekplats" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
-                            <img src="ribegatan.se/res/Bilderlekplats/4_lekplats3.png" alt="Lekplats bild 4" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
-                            <img src="ribegatan.se/res/Bilderlekplats/5_lekplats3.png" alt="Lekplats bild 5" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
-                            <img src="ribegatan.se/res/Bilderlekplats/6_lekplats3.png" alt="Lekplats bild 6" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
-                            <img src="ribegatan.se/res/Bilderlekplats/7_lekplats3.png" alt="Lekplats bild 7" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
-                            <img src="ribegatan.se/res/Bilderlekplats/8_lekplats3.png" alt="Lekplats bild 8" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                            <img src="ribegatan.se/res/Bilderlekplats/1_planritningribe3lekplats.webp" alt="Planritning lekplats" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
+                            <img src="ribegatan.se/res/Bilderlekplats/4_lekplats3.webp" alt="Lekplats bild 4" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
+                            <img src="ribegatan.se/res/Bilderlekplats/5_lekplats3.webp" alt="Lekplats bild 5" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
+                            <img src="ribegatan.se/res/Bilderlekplats/6_lekplats3.webp" alt="Lekplats bild 6" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
+                            <img src="ribegatan.se/res/Bilderlekplats/7_lekplats3.webp" alt="Lekplats bild 7" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
+                            <img src="ribegatan.se/res/Bilderlekplats/8_lekplats3.webp" alt="Lekplats bild 8" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                         </div>
                     </div>
 
@@ -4052,19 +4065,19 @@
                         </h4>
                         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;">
                             <div style="text-align: center;">
-                                <img src="ribegatan.se/res/Historik/bygge_leffe_paus.gif" alt="Bygge - Paus" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                                <img src="ribegatan.se/res/Historik/bygge_leffe_paus.gif" alt="Bygge - Paus" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                                 <p style="font-size: 0.85rem; color: rgb(102, 102, 102); margin-top: 0.5rem;">Välförtjänt paus i bygget</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="ribegatan.se/res/Historik/bygge_lotta_fortaring.gif" alt="Bygge - Förtäring" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                                <img src="ribegatan.se/res/Historik/bygge_lotta_fortaring.gif" alt="Bygge - Förtäring" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                                 <p style="font-size: 0.85rem; color: rgb(102, 102, 102); margin-top: 0.5rem;">Gemensam förtäring</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="ribegatan.se/res/Historik/bygge_storaochsma.gif" alt="Bygge - Stora och små" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                                <img src="ribegatan.se/res/Historik/bygge_storaochsma.gif" alt="Bygge - Stora och små" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                                 <p style="font-size: 0.85rem; color: rgb(102, 102, 102); margin-top: 0.5rem;">Stora och små hjälps åt</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="ribegatan.se/res/Bilderallmant/kalad_ribelakt_liten.gif" alt="Ribe läkt" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                                <img src="ribegatan.se/res/Bilderallmant/kalad_ribelakt_liten.gif" alt="Ribe läkt" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                                 <p style="font-size: 0.85rem; color: rgb(102, 102, 102); margin-top: 0.5rem;">Gemensamt arbete</p>
                             </div>
                         </div>
@@ -4176,8 +4189,8 @@
                 <!-- Inledning -->
                 <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                        <img src="ribegatan.se/res/Renovering/vindue1.gif" alt="Rötskadad fönsterbotten" style="width: 100%; border-radius: 0.5rem;">
-                        <img src="ribegatan.se/res/Renovering/vindue2.gif" alt="Skadat fönster" style="width: 100%; border-radius: 0.5rem;">
+                        <img src="ribegatan.se/res/Renovering/vindue1.gif" alt="Rötskadad fönsterbotten" style="width: 100%; border-radius: 0.5rem;" loading="lazy" decoding="async">
+                        <img src="ribegatan.se/res/Renovering/vindue2.gif" alt="Skadat fönster" style="width: 100%; border-radius: 0.5rem;" loading="lazy" decoding="async">
                     </div>
                     <p style="font-size: 1.1rem; margin-top: 1rem;">Om fönstret ser ut så här är det dags att byta
                         bottenstycke och om du har otur även byta ut trä i något av sidostyckena.</p>
@@ -4191,11 +4204,11 @@
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
                         <div>
                             <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Bottenstycke</h4>
-                            <img src="ribegatan.se/res/Renovering/bottenstycke.jpg" alt="Måttritning bottenstycke" style="width: 100%; border-radius: 0.5rem; border: 1px solid var(--gray-200);">
+                            <img src="ribegatan.se/res/Renovering/bottenstycke.webp" alt="Måttritning bottenstycke" style="width: 100%; border-radius: 0.5rem; border: 1px solid var(--gray-200);" loading="lazy" decoding="async">
                         </div>
                         <div>
                             <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Dropplist</h4>
-                            <img src="ribegatan.se/res/Renovering/dropplist.gif" alt="Måttritning dropplist" style="width: 100%; border-radius: 0.5rem; border: 1px solid var(--gray-200);">
+                            <img src="ribegatan.se/res/Renovering/dropplist.gif" alt="Måttritning dropplist" style="width: 100%; border-radius: 0.5rem; border: 1px solid var(--gray-200);" loading="lazy" decoding="async">
                         </div>
                     </div>
                 </div>
@@ -4205,8 +4218,8 @@
                     <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Borttagning av gammalt bottenstycke
                     </h3>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
-                        <img src="ribegatan.se/res/Renovering/vindue3.gif" alt="Såga bort gammalt bottenstycke" style="width: 100%; border-radius: 0.5rem;">
-                        <img src="ribegatan.se/res/Renovering/vindue4.gif" alt="Ta tillvara dropplist" style="width: 100%; border-radius: 0.5rem;">
+                        <img src="ribegatan.se/res/Renovering/vindue3.gif" alt="Såga bort gammalt bottenstycke" style="width: 100%; border-radius: 0.5rem;" loading="lazy" decoding="async">
+                        <img src="ribegatan.se/res/Renovering/vindue4.gif" alt="Ta tillvara dropplist" style="width: 100%; border-radius: 0.5rem;" loading="lazy" decoding="async">
                     </div>
                     <ul style="margin-left: 2rem; line-height: 1.8;">
                         <li>Såga bort det gamla bottenstycket mellan sidostyckena och ta tillvara dropplisten av
@@ -4221,8 +4234,8 @@
                     <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Dags att passa in det nya
                         bottenstycket</h3>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
-                        <img src="ribegatan.se/res/Renovering/vindue5.gif" alt="Rita ut tapparna" style="width: 100%; border-radius: 0.5rem;">
-                        <img src="ribegatan.se/res/Renovering/vindue6.gif" alt="Passa in bottenstycke" style="width: 100%; border-radius: 0.5rem;">
+                        <img src="ribegatan.se/res/Renovering/vindue5.gif" alt="Rita ut tapparna" style="width: 100%; border-radius: 0.5rem;" loading="lazy" decoding="async">
+                        <img src="ribegatan.se/res/Renovering/vindue6.gif" alt="Passa in bottenstycke" style="width: 100%; border-radius: 0.5rem;" loading="lazy" decoding="async">
                     </div>
                     <p>Rita noggrant ut tapparna på bottenstycket så du vet var du skall såga.</p>
                     <p style="margin-top: 1rem;">Använd en fintandad såg, stämjärn, kniv, rasp och slipklots med
@@ -4241,9 +4254,9 @@
                     </ul>
 
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-top: 2rem;">
-                        <img src="ribegatan.se/res/Renovering/vindue9.gif" alt="Fönsterram med limning" style="width: 100%; border-radius: 0.5rem;">
-                        <img src="ribegatan.se/res/Renovering/vindue10.gif" alt="Tvinganordning med gula tvingar" style="width: 100%; border-radius: 0.5rem;">
-                        <img src="ribegatan.se/res/Renovering/vindue11.gif" alt="Detalj av fastsättning med tvingar" style="width: 100%; border-radius: 0.5rem;">
+                        <img src="ribegatan.se/res/Renovering/vindue9.gif" alt="Fönsterram med limning" style="width: 100%; border-radius: 0.5rem;" loading="lazy" decoding="async">
+                        <img src="ribegatan.se/res/Renovering/vindue10.gif" alt="Tvinganordning med gula tvingar" style="width: 100%; border-radius: 0.5rem;" loading="lazy" decoding="async">
+                        <img src="ribegatan.se/res/Renovering/vindue11.gif" alt="Detalj av fastsättning med tvingar" style="width: 100%; border-radius: 0.5rem;" loading="lazy" decoding="async">
                     </div>
                 </div>
 
@@ -4259,8 +4272,8 @@
                         du har kvar momentet att limma fast bottenstycket (se nedersta bilden).</p>
 
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                        <img src="ribegatan.se/res/Renovering/vindue7.gif" alt="Reparation steg 1" style="width: 100%; border-radius: 0.5rem;">
-                        <img src="ribegatan.se/res/Renovering/vindue8.gif" alt="Reparation steg 2" style="width: 100%; border-radius: 0.5rem;">
+                        <img src="ribegatan.se/res/Renovering/vindue7.gif" alt="Reparation steg 1" style="width: 100%; border-radius: 0.5rem;" loading="lazy" decoding="async">
+                        <img src="ribegatan.se/res/Renovering/vindue8.gif" alt="Reparation steg 2" style="width: 100%; border-radius: 0.5rem;" loading="lazy" decoding="async">
                     </div>
                 </div>
 
@@ -4297,7 +4310,7 @@
                         </div>
                     </div>
                     <div style="text-align: center; margin: 2rem 0;">
-                        <img src="ribegatan.se/res/Renovering/kalad_ribelakt_liten.gif" alt="Ritning på kälad ribeläkt" style="max-width: 100%; height: auto; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; border: 1px solid var(--gray-200);">
+                        <img src="ribegatan.se/res/Renovering/kalad_ribelakt_liten.gif" alt="Ritning på kälad ribeläkt" style="max-width: 100%; height: auto; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; border: 1px solid var(--gray-200);" loading="lazy" decoding="async">
                     </div>
 
                     <div style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; margin-top: 2rem;">
@@ -5473,30 +5486,30 @@
                     <h4 style="color: var(--secondary-color); margin-bottom: 1.5rem;">Detaljbilder för fönster</h4>
                     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem;">
                         <div style="text-align: center;">
-                            <img src="ribegatan.se/res/Renovering/bottenstycke.jpg" alt="Bottenstycke" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                            <img src="ribegatan.se/res/Renovering/bottenstycke.webp" alt="Bottenstycke" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                             <p style="font-size: 0.9rem; color: rgb(102, 102, 102); margin-top: 0.5rem;">Bottenstycke</p>
                         </div>
                         <div style="text-align: center;">
-                            <img src="ribegatan.se/res/Renovering/dropplist.gif" alt="Dropplist" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                            <img src="ribegatan.se/res/Renovering/dropplist.gif" alt="Dropplist" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                             <p style="font-size: 0.9rem; color: rgb(102, 102, 102); margin-top: 0.5rem;">Dropplist</p>
                         </div>
                         <div style="text-align: center;">
-                            <img src="ribegatan.se/res/Renovering/vindue1.gif" alt="Fönsterdetalj 1" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                            <img src="ribegatan.se/res/Renovering/vindue1.gif" alt="Fönsterdetalj 1" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                         </div>
                         <div style="text-align: center;">
-                            <img src="ribegatan.se/res/Renovering/vindue2.gif" alt="Fönsterdetalj 2" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                            <img src="ribegatan.se/res/Renovering/vindue2.gif" alt="Fönsterdetalj 2" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                         </div>
                         <div style="text-align: center;">
-                            <img src="ribegatan.se/res/Renovering/vindue3.gif" alt="Fönsterdetalj 3" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                            <img src="ribegatan.se/res/Renovering/vindue3.gif" alt="Fönsterdetalj 3" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                         </div>
                         <div style="text-align: center;">
-                            <img src="ribegatan.se/res/Renovering/vindue4.gif" alt="Fönsterdetalj 4" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                            <img src="ribegatan.se/res/Renovering/vindue4.gif" alt="Fönsterdetalj 4" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                         </div>
                         <div style="text-align: center;">
-                            <img src="ribegatan.se/res/Renovering/vindue5.gif" alt="Fönsterdetalj 5" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                            <img src="ribegatan.se/res/Renovering/vindue5.gif" alt="Fönsterdetalj 5" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                         </div>
                         <div style="text-align: center;">
-                            <img src="ribegatan.se/res/Renovering/vindue6.gif" alt="Fönsterdetalj 6" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;">
+                            <img src="ribegatan.se/res/Renovering/vindue6.gif" alt="Fönsterdetalj 6" style="width: 100%; border-radius: 0.5rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;" loading="lazy" decoding="async">
                         </div>
                     </div>
                 </div>
