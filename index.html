@@ -119,12 +119,6 @@
                 scroll-margin-top: 100px;
             }
 
-            /* Speed up initial render: skip layout for offscreen sections */
-            section:not(#home):not(.hero) {
-                content-visibility: auto;
-                contain-intrinsic-size: 1px 800px;
-            }
-
             /* Accordion Styles */
             .accordion-item {
                 border-bottom: 1px solid rgba(44, 85, 48, 0.1);
