@@ -1191,6 +1191,13 @@
             margin-bottom: var(--space-2xl);
         }
 
+        .footer-section {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         .footer-section h3,
         .footer-section h4 {
             background: linear-gradient(135deg, var(--primary-light), var(--accent-color));
@@ -1205,10 +1212,16 @@
             color: var(--gray-300);
             line-height: 1.7;
             margin-bottom: var(--space-lg);
+            max-width: 28rem;
         }
 
         .footer-section ul {
             list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .footer-section ul li {
@@ -1221,18 +1234,20 @@
             transition: all var(--transition-base);
             padding: var(--space-xs) var(--space-sm);
             border-radius: var(--radius-sm);
+            display: inline-block;
         }
 
         .footer-section ul li a:hover {
             color: var(--primary-light);
             background: rgba(74, 124, 89, 0.1);
-            transform: translateX(4px);
+            transform: translateY(-2px);
         }
 
         .social-links {
             display: flex;
             gap: var(--space-md);
             margin-top: var(--space-lg);
+            justify-content: center;
         }
 
         .social-links a {
@@ -7801,7 +7816,7 @@
                     <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Ribegatan 77, 164 45 Kista</p>
                     <p id="openEmailModalFooterBtn" style="cursor: pointer; color: var(--primary-color); font-weight: 500; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-color)'" onmouseout="this.style.color='var(--primary-color)'"><i class="fas fa-envelope" aria-hidden="true"></i> Klicka här för kontaktformulär</p>
                     <p style="margin-top: 15px; font-size: 0.9rem; color: #94a3b8;">Created 2026 by © nRn World</p>
-                    <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 5px; display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 5px; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
                         <span>bynrnworld@gmail.com</span>
                         <button type="button" aria-label="Kopiera e-postadress" title="Kopiera e-postadress" onclick="window.copyTextToClipboard('bynrnworld@gmail.com', this)" style="background: transparent; border: none; padding: 0; cursor: pointer; color: #94a3b8; line-height: 1; display: inline-flex; align-items: center;">
                             <i class="fas fa-copy" aria-hidden="true" style="font-size: 0.95rem;"></i>
