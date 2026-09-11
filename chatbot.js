@@ -379,6 +379,8 @@
         'mote',
         'årsstämma',
         'arsstamma',
+        'årstämma',
+        'arstamma',
         'stämma',
         'stamma',
         'kalender',
@@ -872,22 +874,29 @@
       })
     );
 
-    // Prefer calendar entries when same title exists
-    var byTitle = {};
+    // Prefer calendar entries; merge titles that only differ by year ("Årsstämma" / "Årsstämma 2026")
+    var byKey = {};
     events.forEach(function (ev) {
       if (!ev.date) return;
-      var key = normalize(ev.title);
-      var existing = byTitle[key];
-      if (!existing || (ev.source === 'kalender' && existing.source !== 'kalender')) {
-        byTitle[key] = ev;
-      } else if (existing.source === ev.source && ev.date < existing.date) {
-        byTitle[key] = ev;
+      var key = normalize(ev.title).replace(/\b20\d{2}\b/g, '').replace(/\s+/g, ' ').trim();
+      var existing = byKey[key];
+      if (!existing) {
+        byKey[key] = ev;
+        return;
+      }
+      // Prefer kalender-source and richer time info
+      if (ev.source === 'kalender' && existing.source !== 'kalender') {
+        byKey[key] = ev;
+      } else if (ev.source === existing.source) {
+        if ((ev.time && !existing.time) || ev.date.getTime() === existing.date.getTime()) {
+          if (ev.time && !existing.time) byKey[key] = ev;
+        }
       }
     });
 
-    return Object.keys(byTitle)
+    return Object.keys(byKey)
       .map(function (k) {
-        return byTitle[k];
+        return byKey[k];
       })
       .filter(function (ev) {
         return ev.date && ev.date >= now;
@@ -897,45 +906,128 @@
       });
   }
 
+  function eventKind(titleNorm) {
+    if (/(arsstamma|arstamma|stamma)/.test(titleNorm) && !/motion/.test(titleNorm)) return 'stamma';
+    if (/(staddag|varstaddag|hoststaddag)/.test(titleNorm)) return 'staddag';
+    if (/arbetsdag/.test(titleNorm)) return 'arbetsdag';
+    if (/motion|sista dag/.test(titleNorm)) return 'motion';
+    return 'other';
+  }
+
+  function matchEventsToQuery(events, queryNorm) {
+    var wantsStamma = /(arsstamma|arstamma|stamma)/.test(queryNorm) && !/motion/.test(queryNorm);
+    var wantsStaddag = /(staddag|stadag|vardag|hoststadda)/.test(queryNorm);
+    var wantsArbetsdag = /arbetsdag/.test(queryNorm);
+
+    if (wantsStamma) {
+      return events.filter(function (ev) {
+        return eventKind(normalize(ev.title)) === 'stamma';
+      });
+    }
+    if (wantsStaddag) {
+      return events.filter(function (ev) {
+        return eventKind(normalize(ev.title)) === 'staddag';
+      });
+    }
+    if (wantsArbetsdag) {
+      return events.filter(function (ev) {
+        return eventKind(normalize(ev.title)) === 'arbetsdag';
+      });
+    }
+
+    // Soft title overlap
+    return events.filter(function (ev) {
+      var t = normalize(ev.title).replace(/\b20\d{2}\b/g, '').trim();
+      if (!t) return false;
+      if (queryNorm.indexOf(t) !== -1) return true;
+      return t.split(' ').some(function (w) {
+        return w.length > 4 && queryNorm.indexOf(w) !== -1;
+      });
+    });
+  }
+
+  function goToKalender() {
+    var id = 'kalender';
+    var el = document.getElementById(id);
+    if (window.revealSection) {
+      try {
+        window.revealSection('#' + id);
+      } catch (e) {}
+    }
+    // Kalendern ligger under grannsamverkan/välkommen – se till att den syns
+    var section = el && el.closest('section');
+    if (section) {
+      section.classList.remove('hidden-section');
+      section.classList.add('show-section');
+    }
+    if (el) {
+      setTimeout(function () {
+        var top = el.getBoundingClientRect().top + window.pageYOffset - 90;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+        try {
+          history.pushState(null, null, '#kalender');
+        } catch (e2) {}
+      }, 60);
+      return true;
+    }
+    window.location.hash = 'kalender';
+    return false;
+  }
+
   function answerCalendarQuestion(query) {
     var n = normalize(query);
     var upcoming = getUpcomingEvents();
     if (!upcoming.length) return null;
 
-    var isCalIntent = /(kalender|datum|arsstamma|stamma|arbetsdag|staddag|mote|nasta|kommande|nar ar|nar sker|nar halls)/.test(n);
+    // "visa/öppna kalender" → scrolla till kalendern på sidan (hanteras separat)
+    if (/^(visa|oppna|öppna)?\s*(hela\s+)?kalendern?$/.test(n) || n === 'visa kalender' || n === 'oppna kalender' || n === 'öppna kalendern') {
+      return { gotoKalender: true };
+    }
+
+    var isCalIntent = /(kalender|datum|arsstamma|arstamma|stamma|arbetsdag|staddag|mote|nasta|kommande|nar ar|nar sker|nar halls)/.test(n);
     if (!isCalIntent) return null;
 
     var wantsMeeting =
-      /(mote|stamma|arsstamma|staddag|arbetsdag|nasta mote|nasta stamma)/.test(n) &&
+      /(mote|stamma|arsstamma|arstamma|staddag|arbetsdag|nasta mote|nasta stamma)/.test(n) &&
       !/(motion|lamna motion)/.test(n);
 
     var meetingLike = upcoming.filter(function (ev) {
-      var t = normalize(ev.title);
-      return (
-        ev.source === 'kalender' ||
-        /(stamma|arsstamma|staddag|arbetsdag|mote)/.test(t)
-      ) && !/(motion|lamna motion|sista dag)/.test(t);
+      var kind = eventKind(normalize(ev.title));
+      return kind === 'stamma' || kind === 'staddag' || kind === 'arbetsdag' || ev.source === 'kalender';
     });
 
-    var pool = wantsMeeting && meetingLike.length ? meetingLike : upcoming;
+    var specific = matchEventsToQuery(upcoming, n);
+    var pool = specific.length ? specific : wantsMeeting && meetingLike.length ? meetingLike : upcoming;
+    if (!pool.length) pool = upcoming;
 
-    // Specific event match within pool
-    var specific = pool.filter(function (ev) {
-      var t = normalize(ev.title);
-      return (
-        n.indexOf(t) !== -1 ||
-        t.split(' ').some(function (w) {
-          return w.length > 4 && n.indexOf(w) !== -1;
-        })
-      );
-    });
-
-    var focus = specific.length ? specific : pool;
-    if (!focus.length) focus = upcoming;
+    var focus = pool;
     var next = focus[0];
     var lines = [];
+    var askingSpecific = specific.length > 0;
 
-    if (wantsMeeting || /(nasta mote|nasta stamma|nar ar nasta)/.test(n)) {
+    if (askingSpecific) {
+      var label =
+        eventKind(normalize(next.title)) === 'stamma'
+          ? 'Nästa årsstämma'
+          : 'Nästa: ' + escapeHtml(next.title);
+      if (eventKind(normalize(next.title)) === 'stamma') {
+        lines.push(
+          '<strong>Nästa årsstämma:</strong><br>' +
+            escapeHtml(next.title) +
+            '<br>' +
+            formatSvDate(next.date) +
+            (next.time ? '<br>Tid: ' + escapeHtml(next.time) : '')
+        );
+      } else {
+        lines.push(
+          '<strong>' +
+            label +
+            '</strong><br>' +
+            formatSvDate(next.date) +
+            (next.time ? '<br>Tid: ' + escapeHtml(next.time) : '')
+        );
+      }
+    } else if (wantsMeeting || /(nasta mote|nasta stamma|nar ar nasta)/.test(n)) {
       lines.push(
         '<strong>Nästa i kalendern:</strong> ' +
           escapeHtml(next.title) +
@@ -977,7 +1069,7 @@
     return {
       html: lines.join('<br>'),
       actions: [
-        { label: 'Visa hela kalendern', q: 'visa kalender' },
+        { label: 'Visa hela kalendern', q: '__goto_kalender__' },
         { label: 'Motion till årsstämman', q: 'motion årsstämma' },
         { label: '← Tillbaka till menyn', q: '__menu__', secondary: true }
       ]
@@ -1327,17 +1419,43 @@
         }
         if (q === '__contact__') self.showContactForm();
         else if (q === '__menu__') self.showMainMenu();
-        else if (q) self.handleUserText(q);
+        else if (q === '__goto_kalender__') {
+          self.addUserMessage('Visa hela kalendern');
+          goToKalender();
+          self.showTyping(function () {
+            self.addBotMessage('Jag öppnar kalendern på sidan. Du kan också fråga t.ex. ”När är nästa årsstämma?”', {
+              actions: [
+                { label: 'När är nästa årsstämma?', q: 'När är nästa årsstämma?' },
+                { label: '← Tillbaka till menyn', q: '__menu__', secondary: true }
+              ]
+            });
+          });
+        } else if (q) self.handleUserText(q);
         return;
       }
 
       var link = t.closest('[data-section]');
       if (link) {
         var id = link.getAttribute('data-section');
+        if (id === 'kalender') {
+          goToKalender();
+          return;
+        }
         if (id) {
+          if (window.revealSection) {
+            try {
+              window.revealSection('#' + id);
+            } catch (err) {}
+          }
           var el = document.getElementById(id);
-          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          else window.location.hash = id;
+          if (el) {
+            setTimeout(function () {
+              var top = el.getBoundingClientRect().top + window.pageYOffset - 90;
+              window.scrollTo({ top: top, behavior: 'smooth' });
+            }, 50);
+          } else {
+            window.location.hash = id;
+          }
         }
       }
     });
@@ -1667,6 +1785,16 @@
       // 1) Kalender / möten / datum
       var cal = answerCalendarQuestion(text);
       if (cal) {
+        if (cal.gotoKalender) {
+          goToKalender();
+          self.addBotMessage('Här är kalendern på sidan. Scrolla gärna ner om du inte ser den direkt.', {
+            actions: [
+              { label: 'När är nästa årsstämma?', q: 'När är nästa årsstämma?' },
+              { label: '← Tillbaka till menyn', q: '__menu__', secondary: true }
+            ]
+          });
+          return;
+        }
         self.addBotMessage(cal.html, { actions: cal.actions });
         return;
       }
