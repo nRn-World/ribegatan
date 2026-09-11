@@ -6,7 +6,16 @@
 const InlineEditor = {
   isLoggedIn: false,
   token: null,
-  API_URL: 'https://ribegatan-api.vercel.app/api',
+  // Lokal admin-API (ta bort online Vercel-URL)
+  API_URL: (function () {
+    try {
+      var host = window.location.hostname;
+      if (host === 'localhost' || host === '127.0.0.1') {
+        return 'http://localhost:3000/api';
+      }
+    } catch (e) {}
+    return 'http://localhost:3000/api';
+  })(),
   undoStack: [],
   redoStack: [],
   maxUndoSteps: 50,
