@@ -6,24 +6,36 @@
 const InlineEditor = {
   isLoggedIn: false,
   token: null,
-  // Lokal admin-API (ta bort online Vercel-URL)
-  API_URL: (function () {
-    try {
-      var host = window.location.hostname;
-      if (host === 'localhost' || host === '127.0.0.1') {
-        return 'http://localhost:3000/api';
-      }
-    } catch (e) {}
-    return 'http://localhost:3000/api';
-  })(),
+  // Endast lokal admin-API (localhost)
+  API_URL: 'http://localhost:3000/api',
   undoStack: [],
   redoStack: [],
   maxUndoSteps: 50,
+
+  isLocalHost() {
+    try {
+      var host = window.location.hostname;
+      return host === 'localhost' || host === '127.0.0.1';
+    } catch (e) {
+      return false;
+    }
+  },
   
   /**
-   * Initiera inline editor
+   * Initiera inline editor — endast på localhost
    */
   init() {
+    // Online (nrnworld.one m.m.): ingen Admin-knapp, ingen edit
+    if (!this.isLocalHost()) {
+      const existing = document.getElementById('admin-login-btn');
+      if (existing) existing.remove();
+      const toolbar = document.getElementById('admin-toolbar');
+      if (toolbar) toolbar.remove();
+      const modal = document.getElementById('admin-login-modal');
+      if (modal) modal.remove();
+      return;
+    }
+
     // Ta bort alla gamla notifikationer som kan vara kvar i DOM
     const oldNotifications = document.querySelectorAll('[style*="position: fixed"][style*="bottom: 20px"]');
     oldNotifications.forEach(notif => {
@@ -38,7 +50,7 @@ const InlineEditor = {
       this.verifyToken();
     }
     
-    // Lägg till login-knapp i hörnet
+    // Lägg till login-knapp i footern (endast localhost)
     this.addLoginButton();
     
     // Lägg till context menu för textfärg
@@ -1042,9 +1054,24 @@ const InlineEditor = {
   }
 };
 
-// Initiera när sidan laddas
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => InlineEditor.init());
+// Initiera endast på localhost — aldrig online
+if (InlineEditor.isLocalHost()) {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => InlineEditor.init());
+  } else {
+    InlineEditor.init();
+  }
 } else {
-  InlineEditor.init();
+  // Säkerställ att ingen Admin-UI syns om gammal cache lämnat kvar element
+  const wipe = () => {
+    ['admin-login-btn', 'admin-toolbar', 'admin-login-modal'].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) el.remove();
+    });
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wipe);
+  } else {
+    wipe();
+  }
 }
